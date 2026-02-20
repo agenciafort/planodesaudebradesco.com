@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://planodesaudebradesco.com/</loc>
         <lastmod>2026-02-20</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>daily</changefreq>
         <priority>1.0</priority>
-        <image:image>
-            <image:loc>https://planodesaudebradesco.com/img/logo-bradesco-saude.png</image:loc>
-            <image:title>Bradesco Saúde — Plano de Saúde Empresarial</image:title>
-        </image:image>
-        <image:image>
-            <image:loc>https://planodesaudebradesco.com/img/comparativo-5-linhas-bradesco-saude.webp</image:loc>
-            <image:title>Comparativo das 5 linhas de plano Bradesco Saúde</image:title>
-        </image:image>
-        <image:image>
-            <image:loc>https://planodesaudebradesco.com/img/tabela-precos-bradesco-saude-2026.webp</image:loc>
-            <image:title>Tabela de preços Bradesco Saúde PME 2026</image:title>
-        </image:image>
-        <image:image>
-            <image:loc>https://planodesaudebradesco.com/img/rede-credenciada-bradesco-sao-paulo.webp</image:loc>
-            <image:title>Rede credenciada Bradesco Saúde em São Paulo — 326 hospitais</image:title>
-        </image:image>
-        <image:image>
-            <image:loc>https://planodesaudebradesco.com/img/passo-a-passo-contratacao-bradesco.webp</image:loc>
-            <image:title>Como contratar plano Bradesco Saúde — passo a passo</image:title>
-        </image:image>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/sao-paulo/</loc>
+        <lastmod>2026-02-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
 </urlset>
