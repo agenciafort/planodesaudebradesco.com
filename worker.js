@@ -1,23 +1,22 @@
 // ============================================================
-// FortPlanos — Cloudflare Worker: API Bradesco Saúde
+// FortPlanos — Cloudflare Worker: API Gateway + Dados
 // ============================================================
-// Endpoints disponíveis:
-//   GET /api/v1/operadora   → Informações da operadora
-//   GET /api/v1/planos      → Lista de planos
-//   GET /api/v1/tabelas     → Tabelas de preços por faixa etária
-//   GET /api/v1/hospitais   → Rede credenciada de hospitais
-//   GET /api/v1/contato     → Informações de contato
+// Proteção original MANTIDA + Endpoints com dados reais
 //
-// CONFIGURAÇÃO NO CLOUDFLARE:
-// 1. Workers & Pages → Criar/Editar Worker
-// 2. Cole este código no editor
-// 3. Em Settings > Variables, adicione:
+// COMO CONFIGURAR NO CLOUDFLARE:
+// 1. Workers & Pages → fortplanos-api-gateway → Edit Code
+// 2. SUBSTITUA o código pelo conteúdo deste arquivo
+// 3. Em Settings > Variables, configure:
 //    - API_KEY = fp_live_7kX9mR2pQ4wB8nF3jL6vC5dT1yH0
-//    - ALLOWED_DOMAINS = planodesaudebradesco.com,fortplanos.com.br
-// 4. Clique "Save and Deploy"
+//    - ALLOWED_DOMAINS = fortplanos.com.br,planodesaudebradesco.com
+// 4. Em Triggers > Routes:
+//    - fortplanos.com.br/api/v1/*
+// 5. Clique "Save and Deploy"
 // ============================================================
 
-// ── DADOS DA API ──
+// ══════════════════════════════════════════
+// DADOS DA API — Edite aqui para atualizar
+// ══════════════════════════════════════════
 
 const OPERADORA = {
   nome: "Bradesco Saúde",
@@ -386,7 +385,9 @@ const CONTATO = {
   mensagem_cotacao: "Solicite sua cotação gratuita e sem compromisso! Nossos consultores especializados encontram o melhor plano Bradesco Saúde para você, sua família ou sua empresa."
 };
 
-// ── WORKER ──
+// ══════════════════════════════════════════
+// WORKER — Gateway de proteção + API
+// ══════════════════════════════════════════
 
 export default {
   async fetch(request, env) {
@@ -406,100 +407,116 @@ export default {
       return jsonResponse({ error: true, message: 'Método não permitido.' }, 405, request, env);
     }
 
-    // ── Rota raiz ──
-    if (path === '/' || path === '') {
+    // ── Rotas fora de /api/v1/ passam direto (não interferir no site) ──
+    if (!path.startsWith('/api/v1/')) {
+      return fetch(request);
+    }
+
+    // ══════════════════════════════════════
+    // AUTENTICAÇÃO (proteção original mantida)
+    // ══════════════════════════════════════
+    const apiKey = request.headers.get('X-API-Key');
+    const referer = request.headers.get('Referer') || '';
+    const origin = request.headers.get('Origin') || '';
+    const allowedDomains = (env.ALLOWED_DOMAINS || 'fortplanos.com.br,planodesaudebradesco.com')
+      .split(',').map(d => d.trim().toLowerCase());
+
+    const isValidKey = apiKey && env.API_KEY && apiKey === env.API_KEY;
+    const isAllowedDomain = allowedDomains.some(d =>
+      referer.toLowerCase().includes(d) || origin.toLowerCase().includes(d)
+    );
+
+    if (!isValidKey && !isAllowedDomain) {
+      console.log(`[BLOCKED] IP: ${request.headers.get('CF-Connecting-IP')} | Referer: ${referer} | Origin: ${origin}`);
       return jsonResponse({
-        api: "FortPlanos API - Bradesco Saúde",
-        versao: "1.0.0",
-        endpoints: [
-          "GET /api/v1/operadora",
-          "GET /api/v1/planos",
-          "GET /api/v1/planos/:id",
-          "GET /api/v1/tabelas",
-          "GET /api/v1/tabelas/:plano_id",
-          "GET /api/v1/hospitais",
-          "GET /api/v1/hospitais?regiao=São Paulo",
-          "GET /api/v1/contato"
-        ],
-        autenticacao: "Header X-API-Key obrigatório"
+        error: true,
+        message: 'Acesso negado. Chave de API inválida ou domínio não autorizado.'
+      }, 403, request, env);
+    }
+
+    // ══════════════════════════════════════
+    // ENDPOINTS DA API
+    // ══════════════════════════════════════
+
+    // ── Informações da operadora ──
+    if (path === '/api/v1/operadora') {
+      return jsonResponse({ success: true, data: OPERADORA }, 200, request, env);
+    }
+
+    // ── Lista de planos ──
+    if (path === '/api/v1/planos') {
+      return jsonResponse({ success: true, total: PLANOS.length, data: PLANOS }, 200, request, env);
+    }
+
+    // ── Plano por ID ──
+    const planoMatch = path.match(/^\/api\/v1\/planos\/(\d+)$/);
+    if (planoMatch) {
+      const plano = PLANOS.find(p => p.id === parseInt(planoMatch[1]));
+      if (!plano) return jsonResponse({ error: true, message: 'Plano não encontrado.' }, 404, request, env);
+      return jsonResponse({ success: true, data: plano }, 200, request, env);
+    }
+
+    // ── Tabelas de preços ──
+    if (path === '/api/v1/tabelas') {
+      return jsonResponse({ success: true, total: TABELAS_PRECOS.length, data: TABELAS_PRECOS }, 200, request, env);
+    }
+
+    // ── Tabela por plano_id ──
+    const tabelaMatch = path.match(/^\/api\/v1\/tabelas\/(\d+)$/);
+    if (tabelaMatch) {
+      const tabela = TABELAS_PRECOS.find(t => t.plano_id === parseInt(tabelaMatch[1]));
+      if (!tabela) return jsonResponse({ error: true, message: 'Tabela não encontrada.' }, 404, request, env);
+      return jsonResponse({ success: true, data: tabela }, 200, request, env);
+    }
+
+    // ── Hospitais (com filtro opcional por região) ──
+    if (path === '/api/v1/hospitais') {
+      const regiao = url.searchParams.get('regiao');
+      if (regiao) {
+        const filtrada = HOSPITAIS.regioes.filter(r =>
+          r.regiao.toLowerCase().includes(regiao.toLowerCase())
+        );
+        const total = filtrada.reduce((acc, r) => acc + r.hospitais.length, 0);
+        return jsonResponse({ success: true, total, data: filtrada }, 200, request, env);
+      }
+      return jsonResponse({
+        success: true,
+        total: HOSPITAIS.total,
+        ultima_atualizacao: HOSPITAIS.ultima_atualizacao,
+        data: HOSPITAIS.regioes
       }, 200, request, env);
     }
 
-    // ── Verificar autenticação para /api/v1/* ──
-    if (path.startsWith('/api/v1/')) {
-      const apiKey = request.headers.get('X-API-Key');
-      const referer = request.headers.get('Referer') || '';
-      const origin = request.headers.get('Origin') || '';
-      const allowedDomains = (env.ALLOWED_DOMAINS || 'planodesaudebradesco.com,fortplanos.com.br')
-        .split(',').map(d => d.trim().toLowerCase());
-
-      const isValidKey = apiKey && env.API_KEY && apiKey === env.API_KEY;
-      const isAllowedDomain = allowedDomains.some(d =>
-        referer.toLowerCase().includes(d) || origin.toLowerCase().includes(d)
-      );
-
-      if (!isValidKey && !isAllowedDomain) {
-        return jsonResponse({
-          error: true,
-          message: 'Acesso negado. Chave de API inválida ou domínio não autorizado.'
-        }, 403, request, env);
-      }
-
-      // ── Rotas da API ──
-      if (path === '/api/v1/operadora') {
-        return jsonResponse({ success: true, data: OPERADORA }, 200, request, env);
-      }
-
-      if (path === '/api/v1/planos') {
-        return jsonResponse({ success: true, total: PLANOS.length, data: PLANOS }, 200, request, env);
-      }
-
-      const planoMatch = path.match(/^\/api\/v1\/planos\/(\d+)$/);
-      if (planoMatch) {
-        const plano = PLANOS.find(p => p.id === parseInt(planoMatch[1]));
-        if (!plano) return jsonResponse({ error: true, message: 'Plano não encontrado.' }, 404, request, env);
-        return jsonResponse({ success: true, data: plano }, 200, request, env);
-      }
-
-      if (path === '/api/v1/tabelas') {
-        return jsonResponse({ success: true, total: TABELAS_PRECOS.length, data: TABELAS_PRECOS }, 200, request, env);
-      }
-
-      const tabelaMatch = path.match(/^\/api\/v1\/tabelas\/(\d+)$/);
-      if (tabelaMatch) {
-        const tabela = TABELAS_PRECOS.find(t => t.plano_id === parseInt(tabelaMatch[1]));
-        if (!tabela) return jsonResponse({ error: true, message: 'Tabela não encontrada para este plano.' }, 404, request, env);
-        return jsonResponse({ success: true, data: tabela }, 200, request, env);
-      }
-
-      if (path === '/api/v1/hospitais') {
-        const regiao = url.searchParams.get('regiao');
-        if (regiao) {
-          const regiaoFiltrada = HOSPITAIS.regioes.filter(r =>
-            r.regiao.toLowerCase().includes(regiao.toLowerCase())
-          );
-          const total = regiaoFiltrada.reduce((acc, r) => acc + r.hospitais.length, 0);
-          return jsonResponse({ success: true, total, data: regiaoFiltrada }, 200, request, env);
-        }
-        return jsonResponse({ success: true, total: HOSPITAIS.total, ultima_atualizacao: HOSPITAIS.ultima_atualizacao, data: HOSPITAIS.regioes }, 200, request, env);
-      }
-
-      if (path === '/api/v1/contato') {
-        return jsonResponse({ success: true, data: CONTATO }, 200, request, env);
-      }
-
-      return jsonResponse({ error: true, message: 'Endpoint não encontrado.' }, 404, request, env);
+    // ── Contato ──
+    if (path === '/api/v1/contato') {
+      return jsonResponse({ success: true, data: CONTATO }, 200, request, env);
     }
 
-    return jsonResponse({ error: true, message: 'Rota não encontrada.' }, 404, request, env);
+    // ── Endpoint não encontrado ──
+    return jsonResponse({
+      error: true,
+      message: 'Endpoint não encontrado.',
+      endpoints_disponiveis: [
+        "GET /api/v1/operadora",
+        "GET /api/v1/planos",
+        "GET /api/v1/planos/:id",
+        "GET /api/v1/tabelas",
+        "GET /api/v1/tabelas/:plano_id",
+        "GET /api/v1/hospitais",
+        "GET /api/v1/hospitais?regiao=São Paulo",
+        "GET /api/v1/contato"
+      ]
+    }, 404, request, env);
   }
 };
 
-// ── Helpers ──
+// ══════════════════════════════════════════
+// FUNÇÕES AUXILIARES
+// ══════════════════════════════════════════
 
 function corsHeaders(request, env) {
   const origin = request.headers.get('Origin') || '';
-  const allowedDomains = (env.ALLOWED_DOMAINS || 'planodesaudebradesco.com,fortplanos.com.br')
+  const allowedDomains = (env.ALLOWED_DOMAINS || 'fortplanos.com.br,planodesaudebradesco.com')
     .split(',').map(d => d.trim().toLowerCase());
   const allowedOrigin = allowedDomains.some(d => origin.toLowerCase().includes(d)) ? origin : '*';
 
@@ -512,12 +529,14 @@ function corsHeaders(request, env) {
 }
 
 function jsonResponse(data, status, request, env) {
-  const headers = {
-    'Content-Type': 'application/json; charset=utf-8',
-    'X-Content-Type-Options': 'nosniff',
-    'Cache-Control': 'public, max-age=300',
-    ...corsHeaders(request, env)
-  };
-
-  return new Response(JSON.stringify(data, null, 2), { status, headers });
+  return new Response(JSON.stringify(data, null, 2), {
+    status,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'Cache-Control': 'public, max-age=300',
+      ...corsHeaders(request, env)
+    }
+  });
 }
