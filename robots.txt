@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /img/og-*
+
+Sitemap: https://planodesaudebradesco.com/sitemap.xml
