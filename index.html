@@ -293,7 +293,49 @@
             }
             nav.aberto { display: flex; }
             nav a { padding: 10px 0; font-size: 1rem; }
+            nav .nav-cta { margin-top: 6px; text-align: center; }
         }
+
+        /* ── Page Nav (navegação in-page) ── */
+        .page-nav {
+            background: var(--branco);
+            border-bottom: 2px solid var(--cinza-200);
+            position: sticky;
+            top: 60px;
+            z-index: 90;
+            box-shadow: 0 2px 8px rgba(0,0,0,.04);
+        }
+        .page-nav .container {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .page-nav .container::-webkit-scrollbar { display: none; }
+        .page-nav a {
+            color: var(--cinza-700);
+            font-size: .82rem;
+            font-weight: 600;
+            padding: 13px 18px;
+            white-space: nowrap;
+            transition: color .2s, border-color .2s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        .page-nav a:hover {
+            color: var(--vermelho);
+            border-bottom-color: var(--vermelho);
+            text-decoration: none;
+        }
+        .page-nav a.ativo {
+            color: var(--vermelho);
+            border-bottom-color: var(--vermelho);
+        }
+
+        /* ── Scroll Margin (offset para sticky header + page-nav) ── */
+        [id] { scroll-margin-top: 120px; }
 
         /* ── Hero ── */
         .hero { text-align: center; padding: 80px 0 70px; }
@@ -472,16 +514,14 @@
         <button class="menu-toggle" aria-label="Abrir menu de navegação">☰</button>
 
         <nav>
-            <a href="#planos">Planos</a>
-            <a href="#cidades">Cidades</a>
-            <a href="#precos">Preços</a>
-            <a href="#como-contratar">Contratar</a>
-            <a href="#faq">FAQ</a>
-            <a href="/servicos/">Serviços</a>
-            <a href="/blog/">Blog</a>
             <a href="/quem-somos/">Sobre</a>
+            <a href="/servicos/">Serviços</a>
+            <a href="/planos/">Planos</a>
+            <a href="/cidades/">Cidades</a>
+            <a href="/blog/">Blog</a>
             <a href="/contato/">Contato</a>
-            <a href="https://fortplanos.com.br" class="btn-vermelho btn" style="padding:8px 20px; font-size:.85rem;" target="_blank" rel="noopener">Cotação Grátis</a>
+            <a href="/tabela-de-precos/" class="btn btn-branco nav-cta" style="padding:8px 20px; font-size:.85rem;">Tabela de Preços</a>
+            <a href="/simulador-de-precos/" class="btn btn-vermelho nav-cta" style="padding:8px 20px; font-size:.85rem;">Simulador de Preços</a>
         </nav>
     </div>
 </header>
@@ -542,6 +582,19 @@
         <div class="trust-badge"><span class="icon">🏢</span> CNPJ Ativo</div>
     </div>
 </div>
+
+<!-- ═══════════════════ NAVEGAÇÃO IN-PAGE ═══════════════════ -->
+<nav class="page-nav" aria-label="Navegação rápida desta página">
+    <div class="container">
+        <a href="#planos">Linhas de Produto</a>
+        <a href="#precos">Preços</a>
+        <a href="#cidades">Cidades</a>
+        <a href="#conteudo">Conteúdo</a>
+        <a href="#como-contratar">Como Contratar</a>
+        <a href="#faq">FAQ</a>
+        <a href="#sobre">Sobre</a>
+    </div>
+</nav>
 
 <!-- ═══════════════════ INTRO ═══════════════════ -->
 <section class="sec">
@@ -1073,13 +1126,11 @@
         <!-- Coluna 2: Navegação -->
         <div>
             <strong style="color:var(--branco);">Bradesco Saúde</strong><br>
-            <a href="#planos">Linhas de Produto</a><br>
-            <a href="#precos">Tabela de Preços</a><br>
-            <a href="#cidades">Cidades Disponíveis</a><br>
-            <a href="#como-contratar">Como Contratar</a><br>
-            <a href="#faq">Perguntas Frequentes</a><br>
-            <a href="/sao-paulo/">Bradesco Saúde SP</a><br>
+            <a href="/planos/">Planos</a><br>
             <a href="/tabela-de-precos/">Tabela de Preços</a><br>
+            <a href="/simulador-de-precos/">Simulador de Preços</a><br>
+            <a href="/cidades/">Cidades</a><br>
+            <a href="/sao-paulo/">Bradesco Saúde SP</a><br>
             <a href="/blog/">Blog</a>
         </div>
 
@@ -1170,9 +1221,33 @@
             e.preventDefault();
             const target = document.querySelector(link.getAttribute('href'));
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            document.querySelector('nav').classList.remove('aberto');
+            document.querySelector('header nav').classList.remove('aberto');
         });
     });
+
+    // ── Page-nav: destacar seção ativa (IntersectionObserver) ──
+    (function() {
+        const pageNavLinks = document.querySelectorAll('.page-nav a[href^="#"]');
+        if (!pageNavLinks.length) return;
+        const sections = [];
+        pageNavLinks.forEach(link => {
+            const id = link.getAttribute('href').substring(1);
+            const sec = document.getElementById(id);
+            if (sec) sections.push({ el: sec, link: link });
+        });
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const match = sections.find(s => s.el === entry.target);
+                if (match) {
+                    if (entry.isIntersecting) {
+                        pageNavLinks.forEach(l => l.classList.remove('ativo'));
+                        match.link.classList.add('ativo');
+                    }
+                }
+            });
+        }, { rootMargin: '-130px 0px -60% 0px', threshold: 0 });
+        sections.forEach(s => obs.observe(s.el));
+    })();
 </script>
 
 </body>

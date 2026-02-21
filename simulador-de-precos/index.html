@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preços — Plano de Saúde Bradesco | FortPlanos</title>
+    <meta name="description" content="Simule o preço do plano de saúde Bradesco para sua empresa. Escolha a linha, quantidade de vidas e faixas etárias. Resultado em tempo real, grátis e sem cadastro. Cotação completa pela FortPlanos.">
+    <link rel="canonical" href="https://planodesaudebradesco.com/simulador-de-precos/">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fortplanos.com.br" crossorigin>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Simulador de Preços — Plano de Saúde Bradesco | FortPlanos">
+    <meta property="og:description" content="Simule o preço do Bradesco Saúde para sua empresa. Grátis, sem cadastro. Resultado em tempo real.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://planodesaudebradesco.com/simulador-de-precos/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Plano de Saúde Bradesco — FortPlanos">
+    <meta property="og:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Simulador de Preços — Bradesco Saúde | FortPlanos">
+    <meta name="twitter:description" content="Simule o preço do plano Bradesco Saúde para sua empresa. Grátis e sem cadastro.">
+    <meta name="twitter:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
+
+    <!-- ══════ Schema.org: WebPage + BreadcrumbList ══════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Simulador de Preços — Plano de Saúde Bradesco",
+        "description": "Ferramenta online gratuita para simular preços do plano de saúde Bradesco para empresas.",
+        "url": "https://planodesaudebradesco.com/simulador-de-precos/",
+        "dateModified": "2026-02-20",
+        "publisher": {
+            "@type": "Organization",
+            "name": "FortPlanos",
+            "url": "https://fortplanos.com.br",
+            "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://planodesaudebradesco.com/" },
+                { "@type": "ListItem", "position": 2, "name": "Simulador de Preços", "item": "https://planodesaudebradesco.com/simulador-de-precos/" }
+            ]
+        }
+    }
+    </script>
+
+    <!-- ══════ Schema.org: FAQPage ══════ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "O simulador de preços do Bradesco Saúde é gratuito?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sim, o simulador é 100% gratuito e não requer cadastro. Você pode simular quantas vezes quiser, alterando linha de produto, quantidade de vidas e faixas etárias. Para uma cotação completa e personalizada, solicite pelo WhatsApp (11) 5192-0609."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Os valores do simulador são os preços finais?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Os valores são estimativas baseadas na tabela vigente (atualizada em 06/02/2026) para contratação compulsória, 3 a 29 vidas. O preço final pode variar conforme análise médica (DPS), tipo de adesão e condições comerciais. Solicite uma cotação completa para valores definitivos."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Posso simular preços de diferentes linhas de plano ao mesmo tempo?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sim, o simulador mostra simultaneamente os preços de todas as 5 linhas de produto do Bradesco Saúde (Saúde+, Efetivo, Nacional, Nacional Plus e Premium) para facilitar a comparação."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --vermelho: #CC092F;
+            --vermelho-escuro: #A00725;
+            --cinza-900: #1a1a2e;
+            --cinza-800: #2d2d44;
+            --cinza-700: #3d3d5c;
+            --cinza-200: #e8e8ef;
+            --cinza-100: #f4f4f8;
+            --branco: #ffffff;
+            --verde: #0a8f3c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--cinza-900);
+            line-height: 1.7;
+            background: var(--branco);
+        }
+
+        h1, h2, h3, h4 { line-height: 1.25; }
+        h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+        h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 0.5em; }
+        h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+        p { margin-bottom: 1em; }
+        a { color: var(--vermelho); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .sec { padding: 60px 0; }
+        .sec-alt { padding: 60px 0; background: var(--cinza-100); }
+        .sec-dark {
+            padding: 70px 0;
+            background: linear-gradient(135deg, var(--cinza-900) 0%, var(--cinza-800) 50%, var(--vermelho-escuro) 100%);
+            color: var(--branco);
+        }
+
+        /* ── Header ── */
+        header {
+            background: var(--cinza-900);
+            color: var(--branco);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,.25);
+        }
+        header .container { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .header-brand { display: flex; align-items: center; gap: 10px; }
+        .header-brand img { height: 36px; width: auto; }
+
+        nav { display: flex; align-items: center; gap: 4px; }
+        nav a { color: var(--cinza-200); padding: 6px 12px; font-size: .85rem; font-weight: 500; transition: color .2s; border-radius: 6px; }
+        nav a:hover { color: var(--branco); text-decoration: none; background: rgba(255,255,255,.08); }
+
+        .menu-toggle { display: none; background: none; border: none; color: var(--branco); font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--cinza-900); flex-direction: column;
+                padding: 10px 20px 20px; box-shadow: 0 8px 20px rgba(0,0,0,.3);
+            }
+            nav.aberto { display: flex; }
+            nav a { padding: 10px 0; font-size: 1rem; }
+            nav .nav-cta { margin-top: 6px; text-align: center; }
+        }
+
+        /* ── Breadcrumb ── */
+        .breadcrumb { padding: 12px 0; font-size: .82rem; color: var(--cinza-700); background: var(--cinza-100); border-bottom: 1px solid var(--cinza-200); }
+        .breadcrumb a { color: var(--cinza-700); }
+        .breadcrumb a:hover { color: var(--vermelho); }
+
+        /* ── Botões ── */
+        .btn { display: inline-block; padding: 14px 36px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all .2s; border: none; text-decoration: none; }
+        .btn:hover { text-decoration: none; transform: translateY(-1px); }
+        .btn-vermelho { background: var(--vermelho); color: var(--branco); }
+        .btn-vermelho:hover { background: var(--vermelho-escuro); }
+        .btn-branco { background: var(--branco); color: var(--cinza-900); }
+        .btn-branco:hover { background: var(--cinza-100); }
+        .btn-outline { background: transparent; color: var(--vermelho); border: 2px solid var(--vermelho); }
+        .btn-outline:hover { background: var(--vermelho); color: var(--branco); }
+        .btn-sm { padding: 10px 22px; font-size: .9rem; }
+
+        /* ── Section Header ── */
+        .section-header { text-align: center; margin-bottom: 15px; }
+        .section-header .label { display: inline-block; background: var(--vermelho); color: var(--branco); font-size: .72rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+        .section-header p { color: var(--cinza-700); max-width: 650px; margin: 0 auto; }
+
+        /* ── Data atualização ── */
+        .data-atualizacao { text-align: center; font-size: .78rem; color: var(--cinza-700); padding: 10px 0; background: var(--cinza-100); border-bottom: 1px solid var(--cinza-200); }
+
+        /* ── Simulador ── */
+        .simulador-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .simulador-form {
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,.08);
+            border: 1px solid var(--cinza-200);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: .92rem;
+            color: var(--cinza-900);
+        }
+        .form-group small {
+            display: block;
+            font-size: .78rem;
+            color: var(--cinza-700);
+            margin-top: 4px;
+        }
+        .form-group select,
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--cinza-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--cinza-900);
+            background: var(--branco);
+            transition: border-color .2s;
+        }
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--vermelho);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .simulador-form { padding: 25px 20px; }
+        }
+
+        /* ── Vidas Input ── */
+        .vidas-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .vida-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 10px;
+            align-items: center;
+            padding: 10px 14px;
+            background: var(--cinza-100);
+            border-radius: 8px;
+        }
+        .vida-row select {
+            padding: 8px 12px;
+            border: 1px solid var(--cinza-200);
+            border-radius: 6px;
+            font-size: .9rem;
+        }
+        .vida-row .btn-remove {
+            background: none;
+            border: none;
+            color: var(--vermelho);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .vida-row .btn-remove:hover { background: #fdf0f3; }
+        .vida-label { font-size: .88rem; font-weight: 500; }
+
+        .btn-add-vida {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: 2px dashed var(--cinza-200);
+            color: var(--cinza-700);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: .88rem;
+            cursor: pointer;
+            transition: all .2s;
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-add-vida:hover {
+            border-color: var(--vermelho);
+            color: var(--vermelho);
+        }
+
+        /* ── Resultado ── */
+        .resultado-container {
+            margin-top: 30px;
+            display: none;
+        }
+        .resultado-container.visivel { display: block; }
+
+        .resultado-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .resultado-card {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,.06);
+            border: 2px solid var(--cinza-200);
+            transition: border-color .2s;
+        }
+        .resultado-card:hover { border-color: var(--vermelho); }
+        .resultado-card h3 { font-size: 1rem; margin-bottom: 4px; }
+        .resultado-card .resultado-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: .7rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .resultado-card .preco-total {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--vermelho);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .resultado-card .preco-detalhe {
+            font-size: .78rem;
+            color: var(--cinza-700);
+        }
+        .resultado-card .preco-pessoa {
+            font-size: .85rem;
+            color: var(--cinza-700);
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--cinza-200);
+        }
+        .resultado-disclaimer {
+            text-align: center;
+            font-size: .78rem;
+            color: var(--cinza-700);
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--cinza-100);
+            border-radius: 8px;
+        }
+
+        /* ── Highlight Box ── */
+        .highlight-box { background: linear-gradient(135deg, #fdf0f3, #fff); border-left: 4px solid var(--vermelho); padding: 20px 24px; border-radius: 0 10px 10px 0; margin: 25px 0; }
+        .highlight-box strong { color: var(--vermelho); }
+
+        /* ── FAQ ── */
+        .faq-item { background: var(--branco); border-radius: 10px; margin-bottom: 12px; border: 1px solid var(--cinza-200); overflow: hidden; }
+        .faq-pergunta { padding: 18px 50px 18px 22px; font-weight: 600; font-size: 1rem; cursor: pointer; position: relative; user-select: none; }
+        .faq-pergunta::after { content: "+"; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); font-size: 1.3rem; font-weight: 300; color: var(--vermelho); }
+        .faq-item.aberto .faq-pergunta::after { content: "−"; }
+        .faq-resposta { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+        .faq-resposta-inner { padding: 0 22px 18px; font-size: .93rem; color: var(--cinza-700); line-height: 1.7; }
+        .faq-item.aberto .faq-resposta { max-height: 500px; }
+
+        /* ── CTA Dark ── */
+        .sec-dark h2 { color: var(--branco); margin-bottom: 12px; }
+        .sec-dark p { color: var(--cinza-200); max-width: 600px; margin: 0 auto 30px; }
+
+        /* ── Footer ── */
+        footer { background: var(--cinza-900); color: var(--cinza-200); padding: 40px 0 30px; font-size: .85rem; }
+        footer .container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; }
+        footer a { color: var(--cinza-200); }
+        footer a:hover { color: var(--branco); }
+        footer img { height: 30px; width: auto; margin-bottom: 10px; }
+        .footer-social { display: flex; gap: 14px; margin-top: 12px; }
+        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; }
+        .footer-social a:hover { color: var(--branco); text-decoration: none; }
+        .footer-legal { grid-column: 1 / -1; font-size: .75rem; color: #888; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--cinza-800); text-align: center; }
+
+        @media (max-width: 768px) { footer .container { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { footer .container { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) {
+            .sec, .sec-alt { padding: 40px 0; }
+            .sec-dark { padding: 50px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════ BARRA DE ATUALIZAÇÃO ═══════════════════ -->
+<div class="data-atualizacao">
+    Dados atualizados em 06/02/2026 · Fonte: <a href="https://fortplanos.com.br" target="_blank" rel="noopener">Base FortPlanos</a> · Regulado pela <strong>ANS</strong>
+</div>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+    <div class="container">
+        <a href="/" class="header-brand">
+            <img src="/img/logo-fortplanos.webp" alt="FortPlanos — Corretora de Planos de Saúde Bradesco" width="140" height="36" fetchpriority="high">
+        </a>
+
+        <button class="menu-toggle" aria-label="Abrir menu de navegação">☰</button>
+
+        <nav>
+            <a href="/quem-somos/">Sobre</a>
+            <a href="/servicos/">Serviços</a>
+            <a href="/planos/">Planos</a>
+            <a href="/cidades/">Cidades</a>
+            <a href="/blog/">Blog</a>
+            <a href="/contato/">Contato</a>
+            <a href="/tabela-de-precos/" class="btn btn-branco nav-cta" style="padding:8px 20px; font-size:.85rem;">Tabela de Preços</a>
+            <a href="/simulador-de-precos/" class="btn btn-vermelho nav-cta" style="padding:8px 20px; font-size:.85rem;">Simulador de Preços</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ═══════════════════ BREADCRUMB ═══════════════════ -->
+<div class="breadcrumb">
+    <div class="container">
+        <a href="/">Início</a> &rsaquo; <strong>Simulador de Preços</strong>
+    </div>
+</div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="sec-dark" style="text-align:center; padding:50px 0 40px;">
+    <div class="container">
+        <h1>Simulador de Preços <span style="color:var(--vermelho);">Bradesco Saúde</span></h1>
+        <p style="color:var(--cinza-200); max-width:700px; margin:16px auto 0; font-size:1.05rem;">
+            Calcule em tempo real o valor estimado do plano de saúde Bradesco para sua empresa.
+            Grátis, sem cadastro e com resultados instantâneos.
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════ SIMULADOR ═══════════════════ -->
+<section class="sec">
+    <div class="container">
+        <div class="simulador-container">
+            <div class="simulador-form">
+                <h2 style="text-align:center; margin-bottom:25px;">Configure sua Simulação</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipo-adesao">Tipo de Adesão</label>
+                        <select id="tipo-adesao">
+                            <option value="compulsoria" selected>Compulsória (todos aderem)</option>
+                            <option value="livre">Livre Adesão (adesão opcional)</option>
+                        </select>
+                        <small>Compulsória = menor preço. Livre adesão = mais flexibilidade.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="acomodacao">Acomodação (quando disponível)</label>
+                        <select id="acomodacao">
+                            <option value="enfermaria" selected>Enfermaria</option>
+                            <option value="apartamento">Apartamento</option>
+                        </select>
+                        <small>Algumas linhas só oferecem apartamento.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Beneficiários (titulares + dependentes)</label>
+                    <small>Adicione cada pessoa com sua faixa etária. Mínimo 3 vidas.</small>
+                    <div class="vidas-container" id="vidas-container">
+                        <div class="vida-row">
+                            <span class="vida-label">Vida 1</span>
+                            <select class="faixa-etaria">
+                                <option value="0-18">0 a 18 anos</option>
+                                <option value="19-23">19 a 23 anos</option>
+                                <option value="24-28">24 a 28 anos</option>
+                                <option value="29-33" selected>29 a 33 anos</option>
+                                <option value="34-38">34 a 38 anos</option>
+                                <option value="39-43">39 a 43 anos</option>
+                                <option value="44-48">44 a 48 anos</option>
+                                <option value="49-53">49 a 53 anos</option>
+                                <option value="54-58">54 a 58 anos</option>
+                                <option value="59+">59 anos ou mais</option>
+                            </select>
+                            <button class="btn-remove" title="Remover" aria-label="Remover vida">&times;</button>
+                        </div>
+                        <div class="vida-row">
+                            <span class="vida-label">Vida 2</span>
+                            <select class="faixa-etaria">
+                                <option value="0-18">0 a 18 anos</option>
+                                <option value="19-23">19 a 23 anos</option>
+                                <option value="24-28">24 a 28 anos</option>
+                                <option value="29-33" selected>29 a 33 anos</option>
+                                <option value="34-38">34 a 38 anos</option>
+                                <option value="39-43">39 a 43 anos</option>
+                                <option value="44-48">44 a 48 anos</option>
+                                <option value="49-53">49 a 53 anos</option>
+                                <option value="54-58">54 a 58 anos</option>
+                                <option value="59+">59 anos ou mais</option>
+                            </select>
+                            <button class="btn-remove" title="Remover" aria-label="Remover vida">&times;</button>
+                        </div>
+                        <div class="vida-row">
+                            <span class="vida-label">Vida 3</span>
+                            <select class="faixa-etaria">
+                                <option value="0-18" selected>0 a 18 anos</option>
+                                <option value="19-23">19 a 23 anos</option>
+                                <option value="24-28">24 a 28 anos</option>
+                                <option value="29-33">29 a 33 anos</option>
+                                <option value="34-38">34 a 38 anos</option>
+                                <option value="39-43">39 a 43 anos</option>
+                                <option value="44-48">44 a 48 anos</option>
+                                <option value="49-53">49 a 53 anos</option>
+                                <option value="54-58">54 a 58 anos</option>
+                                <option value="59+">59 anos ou mais</option>
+                            </select>
+                            <button class="btn-remove" title="Remover" aria-label="Remover vida">&times;</button>
+                        </div>
+                    </div>
+                    <button class="btn-add-vida" id="btn-add-vida">+ Adicionar Vida</button>
+                </div>
+
+                <div style="text-align:center; margin-top:25px;">
+                    <button class="btn btn-vermelho" id="btn-simular" style="min-width:280px;">Simular Preços</button>
+                </div>
+            </div>
+
+            <!-- ── Resultado ── -->
+            <div class="resultado-container" id="resultado-container">
+                <h2 style="text-align:center; margin-bottom:8px;">Resultado da Simulação</h2>
+                <p style="text-align:center; color:var(--cinza-700); font-size:.9rem; margin-bottom:25px;" id="resultado-resumo"></p>
+
+                <div class="resultado-grid" id="resultado-grid"></div>
+
+                <div class="resultado-disclaimer">
+                    <strong>Valores estimados</strong> baseados na tabela vigente (06/02/2026), contratação
+                    <span id="disclaimer-adesao">compulsória</span>, 3 a 29 vidas.
+                    O preço final pode variar conforme análise médica (DPS) e condições comerciais.
+                    <strong>Para cotação definitiva, fale com a FortPlanos.</strong>
+                </div>
+
+                <div style="text-align:center; margin-top:25px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                    <a href="https://fortplanos.com.br" class="btn btn-vermelho" target="_blank" rel="noopener">Solicitar Cotação Completa</a>
+                    <a href="tel:+551151920609" class="btn btn-outline">(11) 5192-0609</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ COMO FUNCIONA ═══════════════════ -->
+<section class="sec-alt">
+    <div class="container">
+        <div class="section-header">
+            <span class="label">Como Funciona</span>
+            <h2>Como Usar o Simulador de Preços</h2>
+        </div>
+
+        <div style="max-width:700px; margin:30px auto 0;">
+            <p><strong>1. Escolha o tipo de adesão:</strong> Compulsória (todos os funcionários aderem, menor preço) ou Livre Adesão (adesão opcional, preço um pouco maior).</p>
+            <p><strong>2. Selecione a acomodação:</strong> Enfermaria (menor preço) ou Apartamento (maior conforto). Algumas linhas só oferecem apartamento.</p>
+            <p><strong>3. Adicione os beneficiários:</strong> Informe a faixa etária de cada titular e dependente. Mínimo 3 vidas.</p>
+            <p><strong>4. Clique em "Simular Preços":</strong> O sistema calcula o valor total mensal para todas as 5 linhas de produto simultaneamente.</p>
+        </div>
+
+        <div class="highlight-box" style="margin-top:20px; max-width:700px; margin-left:auto; margin-right:auto;">
+            <strong>Importante:</strong> O simulador mostra valores estimados baseados na tabela vigente.
+            Para uma cotação completa e personalizada com condições especiais, solicite pelo WhatsApp
+            <a href="tel:+551151920609">(11) 5192-0609</a> ou pelo site
+            <a href="https://fortplanos.com.br" target="_blank" rel="noopener">fortplanos.com.br</a>.
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="sec" id="faq">
+    <div class="container">
+        <div class="section-header">
+            <span class="label">Perguntas Frequentes</span>
+            <h2>Dúvidas sobre o Simulador</h2>
+        </div>
+
+        <div style="max-width:780px; margin:30px auto 0;">
+            <div class="faq-item">
+                <div class="faq-pergunta">O simulador é gratuito?</div>
+                <div class="faq-resposta"><div class="faq-resposta-inner">
+                    Sim, o simulador é <strong>100% gratuito</strong> e não requer cadastro.
+                    Você pode simular quantas vezes quiser, alterando linha de produto, quantidade de vidas e faixas etárias.
+                    Para uma cotação completa e personalizada, solicite pelo WhatsApp <a href="tel:+551151920609">(11) 5192-0609</a>.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pergunta">Os valores do simulador são os preços finais?</div>
+                <div class="faq-resposta"><div class="faq-resposta-inner">
+                    Os valores são <strong>estimativas</strong> baseadas na tabela vigente (atualizada em 06/02/2026) para contratação compulsória, 3 a 29 vidas.
+                    O preço final pode variar conforme análise médica (DPS), tipo de adesão e condições comerciais.
+                    Solicite uma cotação completa para valores definitivos.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pergunta">Posso comparar diferentes linhas ao mesmo tempo?</div>
+                <div class="faq-resposta"><div class="faq-resposta-inner">
+                    Sim! O simulador mostra simultaneamente os preços de <strong>todas as 5 linhas</strong> de produto do Bradesco Saúde
+                    (Saúde+, Efetivo, Nacional, Nacional Plus e Premium) para facilitar a comparação.
+                </div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ CTA FINAL ═══════════════════ -->
+<section class="sec-dark" style="text-align:center;">
+    <div class="container">
+        <h2>Quer uma Cotação Completa e Personalizada?</h2>
+        <p>
+            O simulador dá uma estimativa. Para valores definitivos com condições especiais,
+            fale com a FortPlanos, corretora autorizada Bradesco Saúde.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <a href="https://fortplanos.com.br" class="btn btn-vermelho" target="_blank" rel="noopener">Solicitar Cotação Grátis</a>
+            <a href="tel:+551151920609" class="btn btn-branco">(11) 5192-0609</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+    <div class="container">
+        <div>
+            <img src="/img/logo-fortplanos.webp" alt="FortPlanos" width="120" height="30" loading="lazy"><br>
+            <strong style="color:var(--branco);">FortPlanos</strong><br>
+            Corretora autorizada Bradesco Saúde.<br>
+            Planos de saúde empresariais PME.<br>
+            <a href="https://fortplanos.com.br" target="_blank" rel="noopener">fortplanos.com.br</a>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/fortplanosdesaude/" target="_blank" rel="noopener" aria-label="Instagram FortPlanos">📷 Instagram</a>
+                <a href="https://www.facebook.com/fortplanos/" target="_blank" rel="noopener" aria-label="Facebook FortPlanos">👍 Facebook</a>
+                <a href="https://www.youtube.com/@fortplanos" target="_blank" rel="noopener" aria-label="YouTube FortPlanos">▶️ YouTube</a>
+            </div>
+        </div>
+        <div>
+            <strong style="color:var(--branco);">Bradesco Saúde</strong><br>
+            <a href="/planos/">Planos</a><br>
+            <a href="/tabela-de-precos/">Tabela de Preços</a><br>
+            <a href="/simulador-de-precos/">Simulador de Preços</a><br>
+            <a href="/cidades/">Cidades</a><br>
+            <a href="/sao-paulo/">Bradesco Saúde SP</a><br>
+            <a href="/blog/">Blog</a>
+        </div>
+        <div>
+            <strong style="color:var(--branco);">Cidades</strong><br>
+            <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
+            <span style="color:#666;">Campinas — em breve</span><br>
+            <span style="color:#666;">Jundiaí — em breve</span><br>
+            <span style="color:#666;">Sorocaba — em breve</span><br>
+            <span style="color:#666;">São José dos Campos — em breve</span>
+        </div>
+        <div>
+            <strong style="color:var(--branco);">Institucional</strong><br>
+            <a href="/quem-somos/">Quem Somos</a><br>
+            <a href="/servicos/">Serviços</a><br>
+            <a href="/contato/">Contato</a><br>
+            <a href="/termos-de-uso/">Termos de Uso</a><br>
+            <a href="/politica-de-privacidade/">Política de Privacidade</a><br><br>
+            <strong style="color:var(--branco);">Contato</strong><br>
+            <a href="tel:+551151920609">(11) 5192-0609</a><br>
+            contato@fortplanos.com.br
+        </div>
+        <div class="footer-legal">
+            <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
+            Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
+            Não possui vínculo societário com a Bradesco Seguros S.A.
+            Os planos de saúde citados são regulados pela <strong>ANS — Agência Nacional de Saúde Suplementar</strong>.<br>
+            © 2024–2026 FortPlanos — Todos os direitos reservados.
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ── Menu Mobile ──
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+        document.querySelector('nav').classList.toggle('aberto');
+    });
+
+    // ── FAQ Accordion ──
+    document.querySelectorAll('.faq-pergunta').forEach(p => {
+        p.addEventListener('click', () => {
+            const item = p.parentElement;
+            const aberto = item.classList.contains('aberto');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('aberto'));
+            if (!aberto) item.classList.add('aberto');
+        });
+    });
+
+    // ══════════════════════════════════════════════
+    // ══════ SIMULADOR DE PREÇOS ══════
+    // ══════════════════════════════════════════════
+
+    // Tabela de preços por faixa etária (compulsória, 3-29 vidas, vigência jan/2026)
+    const TABELA = {
+        compulsoria: {
+            enfermaria: {
+                'saude_mais':     { '0-18': 510.67, '19-23': 575.01, '24-28': 639.35, '29-33': 703.71, '34-38': 768.05, '39-43': 893.55, '44-48': 1068.26, '49-53': 1336.69, '54-58': 1605.95, '59+': 2140.93 },
+                'efetivo':        { '0-18': 392.09, '19-23': 470.52, '24-28': 548.93, '29-33': 627.34, '34-38': 705.77, '39-43': 862.60, '44-48': 1019.44, '49-53': 1333.13, '54-58': 1646.80, '59+': 2274.18 },
+                'nacional':       null,
+                'nacional_plus':  null,
+                'premium':        null
+            },
+            apartamento: {
+                'saude_mais':     null,
+                'efetivo':        { '0-18': 441.10, '19-23': 529.33, '24-28': 617.55, '29-33': 705.77, '34-38': 794.00, '39-43': 970.44, '44-48': 1146.88, '49-53': 1499.77, '54-58': 1852.66, '59+': 2558.42 },
+                'nacional':       { '0-18': 576.68, '19-23': 692.01, '24-28': 807.35, '29-33': 922.69, '34-38': 1038.02, '39-43': 1268.70, '44-48': 1499.37, '49-53': 1960.72, '54-58': 2422.07, '59+': 3344.78 },
+                'nacional_plus':  { '0-18': 1343.25, '19-23': 1611.90, '24-28': 1880.55, '29-33': 2149.20, '34-38': 2417.85, '39-43': 2955.15, '44-48': 3492.45, '49-53': 4566.97, '54-58': 5641.65, '59+': 7791.00 },
+                'premium':        { '0-18': 1855.45, '19-23': 2226.54, '24-28': 2597.63, '29-33': 2968.72, '34-38': 3339.81, '39-43': 4081.99, '44-48': 4824.17, '49-53': 6308.35, '54-58': 7792.70, '59+': 10761.40 }
+            }
+        },
+        livre: {
+            enfermaria: {
+                'saude_mais':     { '0-18': 561.74, '19-23': 632.51, '24-28': 703.29, '29-33': 774.08, '34-38': 844.86, '39-43': 982.91, '44-48': 1175.09, '49-53': 1470.36, '54-58': 1766.55, '59+': 2355.02 },
+                'efetivo':        { '0-18': 431.30, '19-23': 517.57, '24-28': 603.82, '29-33': 690.07, '34-38': 776.35, '39-43': 948.86, '44-48': 1121.38, '49-53': 1466.44, '54-58': 1811.48, '59+': 2501.60 },
+                'nacional':       null,
+                'nacional_plus':  null,
+                'premium':        null
+            },
+            apartamento: {
+                'saude_mais':     null,
+                'efetivo':        { '0-18': 485.21, '19-23': 582.26, '24-28': 679.31, '29-33': 776.35, '34-38': 873.40, '39-43': 1067.48, '44-48': 1261.57, '49-53': 1649.75, '54-58': 2037.93, '59+': 2814.26 },
+                'nacional':       { '0-18': 634.35, '19-23': 761.21, '24-28': 888.09, '29-33': 1014.96, '34-38': 1141.82, '39-43': 1395.57, '44-48': 1649.31, '49-53': 2156.79, '54-58': 2664.28, '59+': 3679.26 },
+                'nacional_plus':  { '0-18': 1477.58, '19-23': 1773.09, '24-28': 2068.61, '29-33': 2364.12, '34-38': 2659.64, '39-43': 3250.67, '44-48': 3841.70, '49-53': 5023.67, '54-58': 6205.82, '59+': 8570.10 },
+                'premium':        { '0-18': 2041.00, '19-23': 2449.19, '24-28': 2857.39, '29-33': 3265.59, '34-38': 3673.79, '39-43': 4490.19, '44-48': 5306.59, '49-53': 6939.19, '54-58': 8571.97, '59+': 11837.54 }
+            }
+        }
+    };
+
+    const NOMES = {
+        'saude_mais': 'Saúde+',
+        'efetivo': 'Efetivo',
+        'nacional': 'Nacional',
+        'nacional_plus': 'Nacional Plus',
+        'premium': 'Premium'
+    };
+
+    const TAGS = {
+        'saude_mais': { text: 'Regional', class: 'tag-regional' },
+        'efetivo': { text: 'Nacional', class: 'tag-nacional' },
+        'nacional': { text: 'Nacional', class: 'tag-nacional' },
+        'nacional_plus': { text: 'Premium', class: 'tag-premium' },
+        'premium': { text: 'Ultra Premium', class: 'tag-premium' }
+    };
+
+    const TAG_CSS = `
+        .tag-regional { background: #fff4e6; color: #b35c00; }
+        .tag-nacional { background: #e6f0ff; color: #1a5fb4; }
+        .tag-premium { background: #fdf0f3; color: #CC092F; }
+    `;
+    const styleEl = document.createElement('style');
+    styleEl.textContent = TAG_CSS;
+    document.head.appendChild(styleEl);
+
+    const vidasContainer = document.getElementById('vidas-container');
+    const btnAddVida = document.getElementById('btn-add-vida');
+    const btnSimular = document.getElementById('btn-simular');
+    const resultadoContainer = document.getElementById('resultado-container');
+    const resultadoGrid = document.getElementById('resultado-grid');
+    const resultadoResumo = document.getElementById('resultado-resumo');
+    const disclaimerAdesao = document.getElementById('disclaimer-adesao');
+
+    function criarVidaRow(num) {
+        const row = document.createElement('div');
+        row.className = 'vida-row';
+        row.innerHTML = `
+            <span class="vida-label">Vida ${num}</span>
+            <select class="faixa-etaria">
+                <option value="0-18">0 a 18 anos</option>
+                <option value="19-23">19 a 23 anos</option>
+                <option value="24-28">24 a 28 anos</option>
+                <option value="29-33" selected>29 a 33 anos</option>
+                <option value="34-38">34 a 38 anos</option>
+                <option value="39-43">39 a 43 anos</option>
+                <option value="44-48">44 a 48 anos</option>
+                <option value="49-53">49 a 53 anos</option>
+                <option value="54-58">54 a 58 anos</option>
+                <option value="59+">59 anos ou mais</option>
+            </select>
+            <button class="btn-remove" title="Remover" aria-label="Remover vida">&times;</button>
+        `;
+        return row;
+    }
+
+    function atualizarNumeracao() {
+        const rows = vidasContainer.querySelectorAll('.vida-row');
+        rows.forEach((row, i) => {
+            row.querySelector('.vida-label').textContent = `Vida ${i + 1}`;
+        });
+    }
+
+    btnAddVida.addEventListener('click', () => {
+        const count = vidasContainer.querySelectorAll('.vida-row').length;
+        if (count >= 29) return alert('Máximo de 29 vidas por simulação.');
+        const row = criarVidaRow(count + 1);
+        vidasContainer.appendChild(row);
+    });
+
+    vidasContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-remove')) {
+            const rows = vidasContainer.querySelectorAll('.vida-row');
+            if (rows.length <= 3) return alert('Mínimo de 3 vidas para simulação.');
+            e.target.closest('.vida-row').remove();
+            atualizarNumeracao();
+        }
+    });
+
+    btnSimular.addEventListener('click', () => {
+        const tipoAdesao = document.getElementById('tipo-adesao').value;
+        const acomodacao = document.getElementById('acomodacao').value;
+        const faixas = [];
+        vidasContainer.querySelectorAll('.faixa-etaria').forEach(sel => {
+            faixas.push(sel.value);
+        });
+
+        if (faixas.length < 3) {
+            alert('Informe pelo menos 3 vidas.');
+            return;
+        }
+
+        const tabela = TABELA[tipoAdesao][acomodacao];
+        resultadoGrid.innerHTML = '';
+
+        const planos = ['saude_mais', 'efetivo', 'nacional', 'nacional_plus', 'premium'];
+        let temResultado = false;
+
+        planos.forEach(plano => {
+            const precos = tabela[plano];
+            if (!precos) {
+                // Plano não disponível nesta combinação
+                const card = document.createElement('div');
+                card.className = 'resultado-card';
+                card.style.opacity = '.5';
+                const tag = TAGS[plano];
+                card.innerHTML = `
+                    <h3>${NOMES[plano]}</h3>
+                    <span class="resultado-tag ${tag.class}">${tag.text}</span>
+                    <span class="preco-total" style="font-size:1rem; color:var(--cinza-700);">Não disponível</span>
+                    <span class="preco-detalhe">nesta acomodação</span>
+                `;
+                resultadoGrid.appendChild(card);
+                return;
+            }
+
+            let total = 0;
+            faixas.forEach(faixa => {
+                total += precos[faixa] || 0;
+            });
+
+            const mediaPorPessoa = total / faixas.length;
+            const tag = TAGS[plano];
+
+            const card = document.createElement('div');
+            card.className = 'resultado-card';
+            card.innerHTML = `
+                <h3>${NOMES[plano]}</h3>
+                <span class="resultado-tag ${tag.class}">${tag.text}</span>
+                <span class="preco-total">R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                <span class="preco-detalhe">total mensal (${faixas.length} vidas)</span>
+                <div class="preco-pessoa">Média: R$ ${mediaPorPessoa.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} / pessoa</div>
+            `;
+            resultadoGrid.appendChild(card);
+            temResultado = true;
+        });
+
+        const adesaoTexto = tipoAdesao === 'compulsoria' ? 'compulsória' : 'livre adesão';
+        resultadoResumo.textContent = `${faixas.length} vidas · ${acomodacao.charAt(0).toUpperCase() + acomodacao.slice(1)} · ${adesaoTexto.charAt(0).toUpperCase() + adesaoTexto.slice(1)}`;
+        disclaimerAdesao.textContent = adesaoTexto;
+
+        resultadoContainer.classList.add('visivel');
+        resultadoContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+</script>
+
+</body>
+</html>
