@@ -1001,7 +1001,12 @@ function getFilteredPlans(vidasKey, adesaoKey) {
             if (linhaFilter !== 'todos' && meta.g !== linhaFilter) return false;
             return true;
         })
-        .sort((a, b) => P[a].ord - P[b].ord);
+        .sort((a, b) => {
+            const pa = plans[a], pb = plans[b];
+            const minA = pa ? pa[0] : Infinity;
+            const minB = pb ? pb[0] : Infinity;
+            return minA - minB;
+        });
 }
 
 function fmt(v) {
@@ -1024,13 +1029,14 @@ function renderCompareCards() {
     const src = getDataSource();
 
     let html = '';
+    let isFirst = true;
     slugs.forEach(slug => {
         const prices = src[vidas]?.[ak]?.[slug];
         if (!prices) return;
         const meta = P[slug];
         const menor = prices[0];
         const maior = prices[9];
-        const isDestaque = slug === 'efetivo-enf';
+        const isDestaque = isFirst;
 
         html += `<div class="compare-card${isDestaque ? ' destaque' : ''}" onclick="scrollTo('#tabelas')">
             ${isDestaque ? '<span class="card-tag badge-acessivel">Mais Acessível</span>' : ''}
@@ -1042,6 +1048,7 @@ function renderCompareCards() {
             <div class="card-detalhe">pessoa/mês · 0-18 anos</div>
             <div class="card-ate">Até <strong>${fmt(maior)}</strong> (59+)</div>
         </div>`;
+        isFirst = false;
     });
 
     if (!html) {
