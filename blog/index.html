@@ -144,11 +144,18 @@
         .cta-box h2 { margin-bottom: 10px; }
         .cta-box p { color: var(--cinza-700); margin-bottom: 20px; }
 
-        footer { background: var(--cinza-900); color: #ccc; padding: 50px 0 30px; font-size: .85rem; line-height: 1.8; }
-        footer .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
-        footer a { color: #ccc; }
+        footer { background: var(--cinza-900); color: var(--cinza-200); padding: 40px 0 30px; font-size: .85rem; }
+        footer .container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; }
+        footer a { color: var(--cinza-200); }
         footer a:hover { color: var(--branco); }
-        .footer-legal { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px; margin-top: 20px; text-align: center; font-size: .78rem; color: #999; }
+        footer img { height: 30px; width: auto; margin-bottom: 10px; }
+        .footer-social { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; }
+        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; }
+        .footer-social a:hover { color: var(--branco); text-decoration: none; }
+        .footer-trust-item { font-size: .75rem; display: inline-flex; align-items: center; gap: 4px; color: #888; }
+        .footer-legal { grid-column: 1 / -1; font-size: .75rem; color: #888; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--cinza-800); text-align: center; line-height: 1.65; }
+        @media (max-width: 768px) { footer .container { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { footer .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -267,6 +274,11 @@
             Corretora autorizada Bradesco Saúde.<br>
             Planos de saúde empresariais PME.<br>
             fortplanos.com.br
+            <div class="footer-social">
+                <a href="https://www.instagram.com/fortplanosdesaude/" target="_blank" rel="noopener" aria-label="Instagram FortPlanos">📷 Instagram</a>
+                <a href="https://www.facebook.com/fortplanos/" target="_blank" rel="noopener" aria-label="Facebook FortPlanos">👍 Facebook</a>
+                <a href="https://www.youtube.com/@fortplanos" target="_blank" rel="noopener" aria-label="YouTube FortPlanos">▶️ YouTube</a>
+            </div>
         </div>
         <div>
             <strong style="color:var(--branco);">Bradesco Saúde</strong><br>
@@ -279,19 +291,35 @@
         <div>
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
-            <a href="/cidades/">Todas as Cidades</a>
+            <a href="/cidades/">Todas as Cidades</a><br>
+            <span style="color:#999;">Campinas — em breve</span><br>
+            <span style="color:#999;">Baixada Santista — em breve</span><br>
+            <span style="color:#999;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#999;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#999;">Belo Horizonte — em breve</span>
         </div>
         <div>
             <strong style="color:var(--branco);">Institucional</strong><br>
             <a href="/quem-somos/">Quem Somos</a><br>
             <a href="/servicos/">Serviços</a><br>
-            <a href="/contato/">Contato</a><br><br>
+            <a href="/contato/">Contato</a><br>
+            <a href="/termos-de-uso/">Termos de Uso</a><br>
+            <a href="/politica-de-privacidade/">Política de Privacidade</a><br>
+            <a href="/lgpd/">Canal LGPD</a><br><br>
             contato@fortplanos.com.br
         </div>
         <div class="footer-legal">
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:12px;">
+                <span class="footer-trust-item">🔒 Site Seguro SSL</span>
+                <span class="footer-trust-item">🛡️ Operadoras registradas ANS</span>
+                <span class="footer-trust-item">✅ LGPD Compliant</span>
+                <span class="footer-trust-item">📋 Corretores habilitados SUSEP</span>
+            </div>
             <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
             Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
-            Não possui vínculo societário com a Bradesco Seguros S.A.
+            Não possui vínculo societário com a Bradesco Seguros S.A. Todos os dados são extraídos
+            da base CRM Saúde (atualizada em 04/03/2026 · conferido em 27/03/2026) e podem sofrer alterações sem aviso prévio.
+            Preços são mutáveis — confirme os valores atualizados com um corretor autorizado antes de contratar.
             Os planos de saúde citados são regulados pela <strong>ANS — Agência Nacional de Saúde Suplementar</strong>.<br>
             © 2024–2026 FortPlanos — Todos os direitos reservados.
         </div>
