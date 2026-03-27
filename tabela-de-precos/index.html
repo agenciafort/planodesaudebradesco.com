@@ -9,6 +9,7 @@
     <link rel="canonical" href="https://planodesaudebradesco.com/tabela-de-precos/">
 
     <link rel="preconnect" href="https://fortplanos.com.br" crossorigin>
+    <link rel="preconnect" href="https://flkyyghkhjcfzmpnkpbg.supabase.co" crossorigin>
 
     <!-- Open Graph -->
     <meta property="og:title" content="Tabela de Preços Bradesco Saúde 2026 — 48 Tabelas PME São Paulo">
@@ -487,7 +488,7 @@
 
 <!-- ═══════════ BARRA DE ATUALIZAÇÃO ═══════════ -->
 <div class="data-atualizacao">
-    Dados atualizados em <strong>21/02/2026</strong> · Fonte: <strong>API FortPlanos</strong> · Regulado pela <strong>ANS</strong> · <strong>2.320 registros em 48 tabelas</strong>
+    Dados atualizados em <strong>04/03/2026</strong> · Conferido em <strong>27/03/2026</strong> · Fonte: <strong>CRM Saúde</strong> · Regulado pela <strong>ANS</strong> · <strong>2.320 registros em 48 tabelas</strong>
 </div>
 
 <!-- ═══════════ HEADER ═══════════ -->
@@ -522,7 +523,7 @@
 <!-- ═══════════ PRINT HEADER ═══════════ -->
 <div class="print-header">
     <h1>Tabela de Preços — Bradesco Saúde 2026</h1>
-    <p>FortPlanos — Corretora Autorizada | planodesaudebradesco.com | contato@fortplanos.com.br | Atualizado em 22/02/2026 | São Paulo e Grande SP</p>
+    <p>FortPlanos — Corretora Autorizada | planodesaudebradesco.com | contato@fortplanos.com.br | Atualizado em 04/03/2026 | Conferido em 27/03/2026 | São Paulo e Grande SP</p>
 </div>
 
 <!-- ═══════════ HERO ═══════════ -->
@@ -545,7 +546,7 @@
     <div class="container" style="max-width:900px; text-align:center;">
         <p style="font-size:.95rem; color:var(--cinza-700); margin:0;">
             A <strong>tabela de preços do plano de saúde Bradesco</strong> é referência para empresas que buscam planos empresariais PME em <strong>São Paulo</strong>.
-            Nesta página você encontra <strong>2.320 registros de preços atualizados de fevereiro de 2026</strong> em <strong>48 tabelas</strong> da <a href="/planos/">Bradesco Saúde</a>:
+            Nesta página você encontra <strong>2.320 registros de preços</strong> (fonte <strong>CRM Saúde</strong>, base março/2026 · conferido 27/03/2026) em <strong>48 tabelas</strong> da <a href="/planos/">Bradesco Saúde</a>:
             desde o acessível <strong>Efetivo Enfermaria com Coparticipação Completa 30%</strong> (a partir de R$ 240,79/mês) até o exclusivo <strong>Premium 10</strong> (até R$ 15.632,54/mês).
             Os preços variam conforme 6 fatores: <strong>faixa etária</strong>, <strong>linha de produto</strong>, <strong>acomodação</strong>, <strong>modalidade de adesão</strong>, <strong>coparticipação</strong> e <strong>quantidade de vidas</strong> no grupo.
             Use os filtros abaixo para encontrar o plano ideal para sua empresa.
@@ -890,8 +891,8 @@
             <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
             Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
             Não possui vínculo societário com a Bradesco Seguros S.A. Todos os dados são extraídos
-            da base FortPlanos (atualizada em 06/02/2026) e podem sofrer alterações sem aviso prévio.
-            Consulte condições vigentes antes de contratar.
+            da base CRM Saúde (atualizada em 04/03/2026 · conferido em 27/03/2026) e podem sofrer alterações sem aviso prévio.
+            Preços são mutáveis — confirme os valores atualizados com um corretor autorizado antes de contratar.
             Os planos de saúde citados são regulados pela <strong>ANS — Agência Nacional de Saúde Suplementar</strong>.<br>
             © 2024–2026 FortPlanos — Todos os direitos reservados.
         </div>
@@ -900,17 +901,18 @@
 
 <!-- ═══════════ PRINT FOOTER ═══════════ -->
 <div class="print-footer">
-    Tabela de Preços Bradesco Saúde 2026 · Atualizada em 20/02/2026 · Fonte: API FortPlanos · São Paulo e Grande SP<br>
+    Tabela de Preços Bradesco Saúde 2026 · Atualizada em 04/03/2026 · Conferido em 27/03/2026 · Fonte: CRM Saúde · São Paulo e Grande SP<br>
     FortPlanos — Corretora Autorizada · planodesaudebradesco.com · contato@fortplanos.com.br<br>
-    Valores por pessoa/mês · Preços sujeitos a alteração · Regulado pela ANS
+    Valores por pessoa/mês · Preços mutáveis sem aviso prévio — confirme com corretor autorizado · Regulado pela ANS
 </div>
 
 <!-- ═══════════ SCRIPTS ═══════════ -->
+<script src="/js/crm-api.js"></script>
 <script>
 // ═════════════════════════════════════════════════════════════════
-// ═══════ BASE DE DADOS COMPLETA — BRADESCO SAÚDE 2026 ═══════
+// ═══════ BASE DE DADOS (FALLBACK ESTÁTICO) — BRADESCO SAÚDE 2026 ═══════
 // ═══════ 2.320 registros · 48 tabelas · 4 faixas de vidas ═══════
-// ═══════ Fonte: API FortPlanos · Atualizado 21/02/2026 ═══════
+// ═══════ Fonte: CRM Saúde · Atualizado 04/03/2026 ═══════
 // ═════════════════════════════════════════════════════════════════
 
 const FAIXAS = ['0-18','19-23','24-28','29-33','34-38','39-43','44-48','49-53','54-58','59+'];
@@ -940,7 +942,7 @@ const P = {
 };
 
 // Price data: D[vidas][adesao][planSlug] = [10 prices for each age bracket]
-const D={
+let D={
 '3-a-29':{
 comp:{'efetivo-enf':[403.86,476.55,576.62,691.95,788.82,812.48,989.24,1163.54,1384.61,2422.93],'efetivo-quarto':[436.17,514.68,622.76,747.32,851.94,877.5,1068.41,1256.66,1495.43,2616.85],'efetivo-plus-enf':[417.57,492.73,596.2,715.45,815.61,840.08,1022.85,1203.08,1431.67,2505.28],'efetivo-plus-quarto':[450.98,532.16,643.91,772.7,880.87,907.3,1104.69,1299.34,1546.21,2705.71],'saude-mais-enf':[513.84,606.33,733.65,880.39,1003.64,1033.75,1258.65,1480.42,1761.7,3082.8],'saude-mais-quarto':[525.74,620.37,750.64,900.78,1026.88,1057.69,1287.8,1514.71,1802.5,3154.19],'nacional-ii-enf':[547.54,646.1,781.77,938.13,1069.46,1101.54,1341.19,1577.51,1877.24,3284.98],'nacional-iii-quarto':[593.8,700.68,847.82,1017.39,1159.81,1194.6,1454.5,1710.78,2035.83,3562.5],'nacional-iii-2-quarto':[623.51,735.74,890.24,1068.3,1217.85,1254.39,1527.3,1796.41,2137.73,3740.81],'nacional-iii-3-quarto':[673.41,794.62,961.48,1153.79,1315.31,1354.77,1649.51,1940.15,2308.78,4040.13],'nacional-plus-4-quarto':[1289.84,1522.01,1841.62,2209.96,2519.33,2594.91,3159.46,3716.16,4422.23,7738.46],'nacional-plus-6-quarto':[1590.45,1876.73,2270.82,2725.01,3106.48,3199.67,3895.79,4582.23,5452.85,9541.94],'nacional-plus-8-quarto':[1833.65,2163.71,2618.07,3141.71,3581.52,3688.97,4491.54,5282.95,6286.71,11001.11],'premium-6-quarto':[1781.32,2101.96,2543.35,3052.05,3479.31,3583.69,4363.36,5132.18,6107.29,10687.15],'premium-8-quarto':[2053.68,2423.34,2932.22,3518.69,4011.27,4131.61,5030.48,5916.85,7041.05,12321.13],'premium-10-quarto':[2345.06,2767.17,3348.25,4017.93,4580.4,4717.81,5744.22,6756.35,8040.06,14069.3]},
 livre:{'efetivo-enf':[448.73,529.5,640.69,768.83,876.46,902.75,1099.15,1292.82,1538.46,2692.15],'efetivo-quarto':[484.63,571.86,691.94,830.33,946.57,974.97,1187.08,1396.24,1661.53,2907.51],'efetivo-plus-enf':[463.97,547.48,662.45,794.95,906.24,933.43,1136.51,1336.76,1590.74,2783.64],'efetivo-plus-quarto':[501.09,591.29,715.45,858.55,978.74,1008.1,1227.42,1443.69,1717.99,3006.31],'saude-mais-enf':[570.93,673.7,815.17,978.21,1115.15,1148.6,1398.49,1644.9,1957.43,3425.31],'saude-mais-quarto':[584.16,689.31,834.06,1000.88,1140.99,1175.22,1430.9,1683.02,2002.79,3504.68],'nacional-ii-enf':[608.38,717.89,868.64,1042.38,1188.3,1223.95,1490.23,1752.81,2085.84,3650.01],'nacional-iii-quarto':[659.78,778.54,942.03,1130.45,1288.7,1327.36,1616.14,1900.9,2262.07,3958.4],'nacional-iii-2-quarto':[692.79,817.49,989.15,1186.99,1353.16,1393.75,1696.97,1995.98,2375.22,4156.4],'nacional-iii-3-quarto':[748.23,882.91,1068.31,1281.98,1461.44,1505.28,1832.77,2155.7,2565.28,4488.98],'nacional-plus-4-quarto':[1433.16,1691.13,2046.25,2455.52,2799.27,2883.25,3510.53,4129.09,4913.62,8598.34],'nacional-plus-6-quarto':[1767.17,2085.26,2523.14,3027.79,3451.65,3555.2,4328.67,5091.38,6058.74,10602.19],'nacional-plus-8-quarto':[2037.39,2404.12,2908.96,3490.78,3979.45,4098.83,4990.57,5869.91,6985.19,12223.38],'premium-6-quarto':[1979.24,2335.5,2825.93,3391.14,3865.87,3981.85,4848.14,5702.38,6785.83,11874.52],'premium-8-quarto':[2281.87,2692.61,3258.03,3909.67,4456.98,4590.69,5589.44,6574.3,7823.42,13690.2],'premium-10-quarto':[2605.62,3074.63,3720.27,4464.36,5089.33,5242.01,6382.46,7507.05,8933.39,15632.54]}
@@ -963,7 +965,7 @@ livre:{'efetivo-enf':[369.31,435.79,527.3,632.77,721.35,742.99,904.63,1064.03,12
 // ═══════ COPARTICIPAÇÃO COMPLETA 30% — NÃO MEI ═══════
 // ═══════ 1.040 registros · 13 planos (sem Premium 6/8/10) ═══════
 // ══════════════════════════════════════════════════════════════════
-const D2={
+let D2={
 '3-a-29':{
 comp:{'efetivo-enf':[310.97,366.94,443.99,532.79,607.38,625.6,761.71,895.92,1066.14,1865.64],'efetivo-quarto':[335.85,396.3,479.52,575.43,655.98,675.66,822.66,967.61,1151.46,2014.94],'efetivo-plus-enf':[321.53,379.41,459.08,550.9,628.02,646.86,787.59,926.36,1102.37,1929.04],'efetivo-plus-quarto':[347.25,409.76,495.81,594.98,678.27,698.62,850.61,1000.49,1190.58,2083.4],'saude-mais-enf':[395.67,466.89,564.93,677.92,772.82,796.0,969.18,1139.95,1356.54,2373.81],'saude-mais-quarto':[404.82,477.69,578.0,693.61,790.71,814.43,991.62,1166.34,1387.94,2428.76],'nacional-ii-enf':[421.61,497.5,601.97,722.37,823.49,848.19,1032.72,1214.69,1445.48,2529.45],'nacional-iii-quarto':[457.23,539.53,652.83,783.4,893.07,919.86,1119.98,1317.32,1567.61,2743.16],'nacional-iii-2-quarto':[480.1,566.52,685.48,822.58,937.73,965.86,1175.99,1383.2,1646.01,2880.35],'nacional-iii-3-quarto':[518.53,611.87,740.36,888.44,1012.81,1043.19,1270.15,1493.95,1777.8,3110.97],'nacional-plus-4-quarto':[1031.87,1217.61,1473.3,1767.97,2015.47,2075.93,2527.57,2972.93,3537.79,6190.78],'nacional-plus-6-quarto':[1272.36,1501.38,1816.65,2180.0,2485.18,2559.74,3116.64,3665.79,4362.29,7633.57],'nacional-plus-8-quarto':[1466.92,1730.97,2094.46,2513.37,2865.22,2951.18,3593.24,4226.37,5029.38,8800.91]},
 livre:{'efetivo-enf':[345.52,407.71,493.33,592.0,674.87,695.12,846.35,995.48,1184.62,2072.97],'efetivo-quarto':[373.17,440.34,532.81,639.38,728.89,750.76,914.1,1075.16,1279.44,2238.89],'efetivo-plus-enf':[357.26,421.57,510.1,612.13,697.82,718.75,875.12,1029.32,1224.89,2143.44],'efetivo-plus-quarto':[385.84,455.29,550.9,661.09,753.64,776.25,945.13,1111.66,1322.88,2314.91],'saude-mais-enf':[439.62,518.75,627.68,753.22,858.66,884.42,1076.83,1266.57,1507.22,2637.48],'saude-mais-quarto':[449.8,530.76,642.21,770.66,878.54,904.9,1101.77,1295.9,1542.12,2698.56],'nacional-ii-enf':[468.45,552.77,668.85,802.63,914.99,942.44,1147.48,1349.67,1606.11,2810.53],'nacional-iii-quarto':[508.03,599.48,725.36,870.44,992.29,1022.06,1244.42,1463.69,1741.79,3047.96],'nacional-iii-2-quarto':[533.45,629.47,761.65,913.99,1041.94,1073.2,1306.69,1536.93,1828.95,3200.48],'nacional-iii-3-quarto':[576.14,679.85,822.61,987.14,1125.33,1159.09,1411.26,1659.92,1975.3,3456.58],'nacional-plus-4-quarto':[1146.53,1352.91,1637.01,1964.43,2239.43,2306.61,2808.44,3303.29,3930.92,6878.72],'nacional-plus-6-quarto':[1413.74,1668.21,2018.52,2422.24,2761.33,2844.17,3462.95,4073.12,4847.01,8481.78],'nacional-plus-8-quarto':[1629.91,1923.29,2327.16,2792.62,3183.56,3279.07,3992.46,4695.93,5588.16,9778.72]}
@@ -1169,7 +1171,7 @@ function buildTable(titulo, vidasKey, adesaoKey, slugs, activeAge, groupId) {
     }
 
     h += `</tbody></table></div>
-        <p class="tabela-nota">${titulo} · ${VIDAS_LABEL[vidasKey]} · ${ADESAO_LABEL[adesaoKey]} · ${COPART_LABEL[fCopart.value]} · Atualizada em 21/02/2026 · Fonte: API FortPlanos / Bradesco Saúde · São Paulo e Grande SP · Valores sujeitos a alteração</p>
+        <p class="tabela-nota">${titulo} · ${VIDAS_LABEL[vidasKey]} · ${ADESAO_LABEL[adesaoKey]} · ${COPART_LABEL[fCopart.value]} · Atualizada em 04/03/2026 · Conferido em 27/03/2026 · Fonte: CRM Saúde / Bradesco Saúde · São Paulo e Grande SP · Preços mutáveis — confirme com corretor autorizado</p>
     </div>`;
     return h;
 }
@@ -1252,6 +1254,18 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 // ═══════ INIT ═══════
 renderCompareCards();
 renderTables();
+
+// Carrega dados dinâmicos do Supabase e re-renderiza
+if (typeof FP_CRM !== 'undefined' && FP_CRM.loadAllPrices) {
+    FP_CRM.loadAllPrices().then(function (data) {
+        if (!data) return;
+        D = data.D;
+        D2 = data.D2;
+        renderCompareCards();
+        renderTables();
+        console.log('[FP_CRM] Tabela de preços atualizada com dados do Supabase');
+    });
+}
 </script>
 
 </body>

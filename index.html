@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fortplanos.com.br" crossorigin>
+    <link rel="preconnect" href="https://flkyyghkhjcfzmpnkpbg.supabase.co" crossorigin>
 
     <!-- Open Graph -->
     <meta property="og:title" content="Plano de Saúde Bradesco | Cotação Online Grátis 2026">
@@ -494,13 +495,47 @@
             .trust-bar .container { gap: 15px; }
             .trust-badge { font-size: .72rem; }
         }
+
+        /* ── Acessibilidade: Skip Link ── */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 16px;
+            background: var(--vermelho);
+            color: var(--branco);
+            padding: 12px 24px;
+            border-radius: 0 0 8px 8px;
+            font-weight: 700;
+            font-size: .95rem;
+            z-index: 200;
+            transition: top .2s;
+        }
+        .skip-link:focus {
+            top: 0;
+            outline: 3px solid var(--branco);
+            outline-offset: 2px;
+            text-decoration: none;
+        }
+
+        /* ── Acessibilidade: Focus Visible ── */
+        *:focus-visible {
+            outline: 3px solid var(--vermelho);
+            outline-offset: 2px;
+        }
+        .sec-dark *:focus-visible,
+        header *:focus-visible,
+        .trust-bar *:focus-visible {
+            outline-color: var(--branco);
+        }
     </style>
 </head>
 <body>
 
+<a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
 <!-- ═══════════════════ BARRA DE ATUALIZAÇÃO ═══════════════════ -->
 <div class="data-atualizacao">
-    Dados atualizados em 06/02/2026 · Fonte: <strong>Base FortPlanos</strong> · Regulado pela <strong>ANS</strong>
+    Dados atualizados em 04/03/2026 · Conferido em 27/03/2026 · Fonte: <strong>CRM Saúde</strong> · Regulado pela <strong>ANS</strong>
 </div>
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
@@ -510,9 +545,9 @@
             <img src="/img/logo-fortplanos.webp" alt="FortPlanos — Corretora de Planos de Saúde Bradesco" width="140" height="36" fetchpriority="high">
         </a>
 
-        <button class="menu-toggle" aria-label="Abrir menu de navegação">☰</button>
+        <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
 
-        <nav>
+        <nav aria-label="Menu principal">
             <a href="/quem-somos/">Sobre</a>
             <a href="/servicos/">Serviços</a>
             <a href="/planos/">Planos</a>
@@ -595,6 +630,9 @@
     </div>
 </nav>
 
+<!-- ═══════════════════ CONTEÚDO PRINCIPAL ═══════════════════ -->
+<main id="conteudo-principal">
+
 <!-- ═══════════════════ INTRO ═══════════════════ -->
 <section class="sec">
     <div class="container">
@@ -623,7 +661,7 @@
             <p>Do plano regional mais acessível ao ultra-premium com acesso a Einstein e Sírio-Libanês.</p>
         </div>
 
-        <div class="cards-grid cards-grid-5">
+        <div class="cards-grid cards-grid-5" id="planos-linhas-grid">
             <div class="card">
                 <span class="tag tag-regional">Regional</span>
                 <h3>Saúde +</h3>
@@ -642,7 +680,7 @@
                 <span class="tag tag-nacional">Nacional</span>
                 <h3>Nacional</h3>
                 <p>Rede ampliada, apartamento. Várias faixas de reembolso.</p>
-                <div class="preco">R$ 547</div>
+                <div class="preco">R$ 594</div>
                 <div class="preco-detalhe">a partir de / mês (apto.)</div>
             </div>
             <div class="card">
@@ -661,8 +699,8 @@
             </div>
         </div>
 
-        <p style="text-align:center; margin-top:25px; font-size:.85rem; color:var(--cinza-700);">
-            Preços referentes à faixa etária 0–18 anos, contratação compulsória, 3 a 29 vidas. Tabela atualizada em fevereiro/2026.
+        <p id="planos-data-nota" style="text-align:center; margin-top:25px; font-size:.85rem; color:var(--cinza-700);">
+            Preços referentes à faixa etária 0–18 anos, contratação compulsória, 3 a 29 vidas. Tabela atualizada em março/2026. Conferido em 27/03/2026. Fonte: CRM Saúde. Preços são mutáveis sem aviso prévio — confirme com um corretor autorizado.
         </p>
 
         <img src="/img/comparativo-5-linhas-bradesco-saude.webp"
@@ -684,7 +722,7 @@
             <div class="card" style="text-align:center;">
                 <h3>Planos Acessíveis</h3>
                 <p>Efetivo e Saúde+</p>
-                <div class="preco">R$ 403 – R$ 547</div>
+                <div class="preco">R$ 403 – R$ 594</div>
                 <div class="preco-detalhe">faixa 0-18 anos / mês</div>
                 <p style="font-size:.85rem; margin-top:10px;">Enfermaria e apartamento. Cobertura nacional (Efetivo) ou regional (Saúde+).</p>
             </div>
@@ -950,7 +988,7 @@
 
         <div style="max-width:780px; margin:30px auto 0;">
             <div class="faq-item">
-                <div class="faq-pergunta">O que é o plano de saúde Bradesco?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">O que é o plano de saúde Bradesco?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     O <strong>Bradesco Saúde</strong> é a operadora de planos de saúde do grupo Bradesco Seguros S.A.,
                     uma das maiores seguradoras da América Latina. Oferece planos empresariais (PME) com 5 linhas de produto
@@ -959,7 +997,7 @@
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">Quanto custa o plano de saúde Bradesco para empresas?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">Quanto custa o plano de saúde Bradesco para empresas?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     O plano mais acessível é o <strong>Efetivo Enfermaria</strong>, a partir de <strong>R$ 403,86/mês</strong>
                     por pessoa (faixa 0-18 anos, contratação compulsória, 3 a 29 vidas).
@@ -969,17 +1007,17 @@
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">Quais são as 5 linhas de produto do Bradesco Saúde?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">Quais são as 5 linhas de produto do Bradesco Saúde?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     <strong>1. Saúde+</strong> — Regional (Capital, Grande SP e Baixada Santista), a partir de R$ 513/mês.<br>
                     <strong>2. Efetivo</strong> — Nacional, mais acessível, enfermaria e apartamento, a partir de R$ 403/mês.<br>
-                    <strong>3. Nacional</strong> — Nacional, rede ampliada com apartamento, a partir de R$ 547/mês.<br>
+                    <strong>3. Nacional</strong> — Nacional, rede ampliada com apartamento, a partir de R$ 594/mês.<br>
                     <strong>4. Nacional Plus</strong> — Premium, reembolso amplo, a partir de R$ 1.289/mês.<br>
                     <strong>5. Premium</strong> — Ultra-premium, Einstein e Sírio-Libanês, a partir de R$ 1.781/mês.
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">MEI pode contratar plano de saúde Bradesco?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">MEI pode contratar plano de saúde Bradesco?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     Sim, o Bradesco Saúde aceita <strong>MEI</strong> (Microempreendedor Individual).
                     É necessário CNPJ com pelo menos <strong>6 meses de abertura</strong>, regularidade de FGTS
@@ -989,7 +1027,7 @@
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">O Bradesco Saúde tem coparticipação?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">O Bradesco Saúde tem coparticipação?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     Sim, a coparticipação é de <strong>30%</strong> sobre procedimentos de pequeno risco:
                     consultas eletivas, pronto-socorro, exames simples e especiais, procedimentos ambulatoriais e internações.
@@ -997,7 +1035,7 @@
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">Quantas vidas são necessárias para contratar?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">Quantas vidas são necessárias para contratar?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     O mínimo é de <strong>3 vidas</strong>. Para grupos de 3, é necessário ao menos 1 titular (até 3 titulares).
                     Para 4 a 29 vidas, mínimo 2 titulares e 2 dependentes.
@@ -1006,7 +1044,7 @@
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">O Bradesco Saúde tem cobertura nacional?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">O Bradesco Saúde tem cobertura nacional?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     Sim, <strong>4 das 5 linhas</strong> têm cobertura nacional: Efetivo, Nacional, Nacional Plus e Premium.
                     Apenas o <strong>Saúde+</strong> é regional, cobrindo Capital, Grande São Paulo e Baixada Santista.
@@ -1015,7 +1053,7 @@
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">Quais documentos preciso para contratar Bradesco Saúde?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">Quais documentos preciso para contratar Bradesco Saúde?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     <strong>Empresa:</strong> contrato social, CNPJ, comprovantes fiscais, relação de FGTS.<br>
                     <strong>Titulares:</strong> RG, CPF, comprovante de endereço, comprovação de vínculo trabalhista.<br>
@@ -1024,7 +1062,7 @@
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">Como solicitar cotação do plano Bradesco Saúde?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">Como solicitar cotação do plano Bradesco Saúde?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     Solicite cotação gratuita pela <strong>FortPlanos</strong>, corretora autorizada Bradesco Saúde.
                     Acesse <a href="/contato/">a página de contato</a>,
@@ -1033,7 +1071,7 @@
                 </div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-pergunta">Qual a diferença entre Bradesco Saúde e Bradesco Seguros?</div>
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">Qual a diferença entre Bradesco Saúde e Bradesco Seguros?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     A <strong>Bradesco Saúde</strong> é a operadora de planos de saúde do grupo <strong>Bradesco Seguros S.A.</strong>
                     Enquanto a Bradesco Seguros oferece diversos produtos (auto, vida, previdência, capitalização),
@@ -1102,6 +1140,8 @@
     </div>
 </section>
 
+</main>
+
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
     <div class="container">
@@ -1135,11 +1175,11 @@
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
             <a href="/cidades/">Todas as Cidades</a><br>
-            <span style="color:#666;">Campinas — em breve</span><br>
-            <span style="color:#666;">Baixada Santista — em breve</span><br>
-            <span style="color:#666;">Vale do Paraíba — em breve</span><br>
-            <span style="color:#666;">Rio de Janeiro — em breve</span><br>
-            <span style="color:#666;">Belo Horizonte — em breve</span>
+            <span style="color:#999;">Campinas — em breve</span><br>
+            <span style="color:#999;">Baixada Santista — em breve</span><br>
+            <span style="color:#999;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#999;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#999;">Belo Horizonte — em breve</span>
         </div>
 
         <!-- Coluna 4: Institucional + Contato -->
@@ -1165,8 +1205,8 @@
             <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
             Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
             Não possui vínculo societário com a Bradesco Seguros S.A. Todos os dados são extraídos
-            da base FortPlanos (atualizada em 06/02/2026) e podem sofrer alterações sem aviso prévio.
-            Consulte condições vigentes antes de contratar.
+            da base CRM Saúde (atualizada em 04/03/2026 · conferido em 27/03/2026) e podem sofrer alterações sem aviso prévio.
+            Preços são mutáveis — confirme os valores atualizados com um corretor autorizado antes de contratar.
             Os planos de saúde citados são regulados pela <strong>ANS — Agência Nacional de Saúde Suplementar</strong>.<br>
             © 2024–2026 FortPlanos — Todos os direitos reservados.
         </div>
@@ -1174,36 +1214,33 @@
 </footer>
 
 <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+<script src="/js/crm-api.js"></script>
 <script>
-    // ── API FortPlanos ──
-    const API_BASE = 'https://fortplanos.com.br';
-    const API_KEY = 'fp_live_7kX9mR2pQ4wB8nF3jL6vC5dT1yH0';
-
-    async function apiFetch(endpoint) {
-        try {
-            const response = await fetch(`${API_BASE}${endpoint}`, {
-                headers: { 'X-API-Key': API_KEY }
-            });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            return await response.json();
-        } catch (error) {
-            console.error(`Erro API ${endpoint}:`, error);
-            return { error: true, message: error.message };
-        }
-    }
-
-    // ── Menu Mobile ──
-    document.querySelector('.menu-toggle').addEventListener('click', () => {
-        document.querySelector('nav').classList.toggle('aberto');
+    // ── Menu Mobile (com aria-expanded) ──
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('header nav');
+    menuToggle.addEventListener('click', () => {
+        const aberto = navMenu.classList.toggle('aberto');
+        menuToggle.setAttribute('aria-expanded', aberto);
     });
 
-    // ── FAQ Accordion ──
+    // ── FAQ Accordion (com aria-expanded + teclado) ──
+    function toggleFaq(pergunta) {
+        const item = pergunta.parentElement;
+        const aberto = item.classList.contains('aberto');
+        document.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('aberto');
+            i.querySelector('.faq-pergunta').setAttribute('aria-expanded', 'false');
+        });
+        if (!aberto) {
+            item.classList.add('aberto');
+            pergunta.setAttribute('aria-expanded', 'true');
+        }
+    }
     document.querySelectorAll('.faq-pergunta').forEach(p => {
-        p.addEventListener('click', () => {
-            const item = p.parentElement;
-            const aberto = item.classList.contains('aberto');
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('aberto'));
-            if (!aberto) item.classList.add('aberto');
+        p.addEventListener('click', () => toggleFaq(p));
+        p.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFaq(p); }
         });
     });
 
@@ -1240,6 +1277,10 @@
         }, { rootMargin: '-130px 0px -60% 0px', threshold: 0 });
         sections.forEach(s => obs.observe(s.el));
     })();
+
+    if (window.FP_CRM && typeof FP_CRM.hydrateLinhasProduto === 'function') {
+        FP_CRM.hydrateLinhasProduto();
+    }
 </script>
 
 </body>

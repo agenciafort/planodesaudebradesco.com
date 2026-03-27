@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planos de Saúde Bradesco 2026 — 5 Linhas de Produto | FortPlanos</title>
-    <meta name="description" content="Conheça as 5 linhas de plano de saúde Bradesco para empresas: Saúde+, Efetivo, Nacional, Nacional Plus e Premium. Compare coberturas, rede credenciada e preços a partir de R$ 403/mês. Cotação grátis.">
+    <meta name="description" content="Conheça as 5 linhas Bradesco Saúde PME: Saúde+, Efetivo, Nacional (Nacional III apart. a partir de R$ 594), Nacional Plus e Premium. Compare coberturas e preços (Efetivo enf. a partir de R$ 403). Cotação grátis FortPlanos.">
     <link rel="canonical" href="https://planodesaudebradesco.com/planos/">
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fortplanos.com.br" crossorigin>
+    <link rel="preconnect" href="https://flkyyghkhjcfzmpnkpbg.supabase.co" crossorigin>
 
     <!-- Open Graph -->
     <meta property="og:title" content="Planos de Saúde Bradesco 2026 — 5 Linhas de Produto | FortPlanos">
-    <meta property="og:description" content="5 linhas de plano Bradesco Saúde PME: do regional ao ultra-premium. Compare coberturas e preços a partir de R$ 403/mês.">
+    <meta property="og:description" content="5 linhas Bradesco Saúde PME: Saúde+, Efetivo (a partir de R$ 403), Nacional III apart. (a partir de R$ 594), Nacional Plus e Premium. Compare coberturas. Cotação grátis.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://planodesaudebradesco.com/planos/">
     <meta property="og:locale" content="pt_BR">
@@ -24,7 +25,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Planos Bradesco Saúde 2026 — 5 Linhas | FortPlanos">
-    <meta name="twitter:description" content="Compare as 5 linhas de plano Bradesco Saúde PME. Preços a partir de R$ 403/mês. Cotação grátis.">
+    <meta name="twitter:description" content="5 linhas Bradesco PME: Efetivo a partir de R$ 403, linha Nacional apart. a partir de R$ 594, até Premium. Cotação grátis.">
     <meta name="twitter:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
 
     <!-- ══════ Schema.org: WebPage + BreadcrumbList ══════ -->
@@ -269,13 +270,21 @@
             .tabela-comparativa { font-size: .78rem; }
             .tabela-comparativa th, .tabela-comparativa td { padding: 8px 6px; }
         }
+
+        /* ── Acessibilidade: Skip Link ── */
+        .skip-link { position: absolute; top: -100%; left: 16px; background: var(--vermelho); color: var(--branco); padding: 12px 24px; border-radius: 0 0 8px 8px; font-weight: 700; font-size: .95rem; z-index: 200; transition: top .2s; }
+        .skip-link:focus { top: 0; outline: 3px solid var(--branco); outline-offset: 2px; text-decoration: none; }
+        *:focus-visible { outline: 3px solid var(--vermelho); outline-offset: 2px; }
+        .sec-dark *:focus-visible, header *:focus-visible { outline-color: var(--branco); }
     </style>
 </head>
 <body>
 
+<a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
 <!-- ═══════════════════ BARRA DE ATUALIZAÇÃO ═══════════════════ -->
 <div class="data-atualizacao">
-    Dados atualizados em 06/02/2026 · Fonte: <strong>Base FortPlanos</strong> · Regulado pela <strong>ANS</strong>
+    Dados atualizados em 04/03/2026 · Conferido em 27/03/2026 · Fonte: <strong>CRM Saúde</strong> · Regulado pela <strong>ANS</strong>
 </div>
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
@@ -285,9 +294,9 @@
             <img src="/img/logo-fortplanos.webp" alt="FortPlanos — Corretora de Planos de Saúde Bradesco" width="140" height="36" fetchpriority="high">
         </a>
 
-        <button class="menu-toggle" aria-label="Abrir menu de navegação">☰</button>
+        <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
 
-        <nav>
+        <nav aria-label="Menu principal">
             <a href="/quem-somos/">Sobre</a>
             <a href="/servicos/">Serviços</a>
             <a href="/planos/">Planos</a>
@@ -301,11 +310,13 @@
 </header>
 
 <!-- ═══════════════════ BREADCRUMB ═══════════════════ -->
-<div class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
     <div class="container">
-        <a href="/">Início</a> &rsaquo; <strong>Planos de Saúde Bradesco</strong>
+        <a href="/">Início</a> <span aria-hidden="true">›</span> <strong>Planos de Saúde Bradesco</strong>
     </div>
-</div>
+</nav>
+
+<main id="conteudo-principal">
 
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="sec-dark" style="text-align:center; padding:60px 0 50px;">
@@ -331,7 +342,7 @@
             <p>Cada linha atende um perfil diferente de empresa. Compare e escolha a ideal para sua equipe.</p>
         </div>
 
-        <div class="cards-grid cards-grid-5">
+        <div class="cards-grid cards-grid-5" id="planos-linhas-grid">
             <div class="card" style="text-align:center;">
                 <span class="tag tag-regional">Regional</span>
                 <h3>Saúde +</h3>
@@ -350,7 +361,7 @@
                 <span class="tag tag-nacional">Nacional</span>
                 <h3>Nacional</h3>
                 <p>Rede ampliada, apartamento. Várias faixas de reembolso.</p>
-                <div class="preco">R$ 547</div>
+                <div class="preco">R$ 594</div>
                 <div class="preco-detalhe">a partir de / mês (apto.)</div>
             </div>
             <div class="card" style="text-align:center;">
@@ -369,8 +380,8 @@
             </div>
         </div>
 
-        <p style="text-align:center; margin-top:25px; font-size:.85rem; color:var(--cinza-700);">
-            Preços referentes à faixa etária 0–18 anos, contratação compulsória, 3 a 29 vidas. Tabela atualizada em fevereiro/2026.
+        <p id="planos-data-nota" style="text-align:center; margin-top:25px; font-size:.85rem; color:var(--cinza-700);">
+            Preços referentes à faixa etária 0–18 anos, contratação compulsória, 3 a 29 vidas. Tabela atualizada em março/2026. Conferido em 27/03/2026. Fonte: CRM Saúde. Preços mutáveis — confirme com corretor autorizado.
         </p>
 
         <img src="/img/comparativo-5-linhas-bradesco-saude.webp"
@@ -445,7 +456,7 @@
                     <td><strong>Preço mínimo</strong></td>
                     <td>R$ 513</td>
                     <td>R$ 403</td>
-                    <td>R$ 547</td>
+                    <td>R$ 594</td>
                     <td>R$ 1.289</td>
                     <td>R$ 1.781</td>
                 </tr>
@@ -530,7 +541,7 @@
                 <h3>Cobertura e Abrangência</h3>
                 <p>O Nacional oferece <strong>cobertura nacional com acomodação em apartamento</strong> e rede credenciada
                 ampliada. Inclui faixas de reembolso básico para consultas e exames fora da rede.</p>
-                <p><strong>A partir de R$ 547/mês</strong> (faixa 0-18 anos, compulsória, 3-29 vidas).</p>
+                <p><strong>A partir de R$ 594/mês</strong> (faixa 0-18 anos, compulsória, 3-29 vidas).</p>
             </div>
             <div>
                 <h3>Para quem é indicado</h3>
@@ -659,6 +670,8 @@
     </div>
 </section>
 
+</main>
+
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
     <div class="container">
@@ -692,11 +705,11 @@
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
             <a href="/cidades/">Todas as Cidades</a><br>
-            <span style="color:#666;">Campinas — em breve</span><br>
-            <span style="color:#666;">Baixada Santista — em breve</span><br>
-            <span style="color:#666;">Vale do Paraíba — em breve</span><br>
-            <span style="color:#666;">Rio de Janeiro — em breve</span><br>
-            <span style="color:#666;">Belo Horizonte — em breve</span>
+            <span style="color:#999;">Campinas — em breve</span><br>
+            <span style="color:#999;">Baixada Santista — em breve</span><br>
+            <span style="color:#999;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#999;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#999;">Belo Horizonte — em breve</span>
         </div>
 
         <!-- Coluna 4: Institucional + Contato -->
@@ -722,14 +735,20 @@
             <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
             Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
             Não possui vínculo societário com a Bradesco Seguros S.A. Todos os dados são extraídos
-            da base FortPlanos (atualizada em 06/02/2026) e podem sofrer alterações sem aviso prévio.
-            Consulte condições vigentes antes de contratar.
+            da base CRM Saúde (atualizada em 04/03/2026 · conferido em 27/03/2026) e podem sofrer alterações sem aviso prévio.
+            Preços são mutáveis — confirme os valores atualizados com um corretor autorizado antes de contratar.
             Os planos de saúde citados são regulados pela <strong>ANS — Agência Nacional de Saúde Suplementar</strong>.<br>
             © 2024–2026 FortPlanos — Todos os direitos reservados.
         </div>
     </div>
 </footer>
 
+<script src="/js/crm-api.js"></script>
+<script>
+    if (window.FP_CRM && typeof FP_CRM.hydrateLinhasProduto === 'function') {
+        FP_CRM.hydrateLinhasProduto();
+    }
+</script>
 <script>
     // ── Menu Mobile ──
     document.querySelector('.menu-toggle').addEventListener('click', () => {

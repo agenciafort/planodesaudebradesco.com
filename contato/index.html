@@ -463,9 +463,17 @@
             .sec-dark { padding: 50px 0; }
             .hero-contato { padding: 40px 0 30px; }
         }
+
+        /* ── Acessibilidade: Skip Link ── */
+        .skip-link { position: absolute; top: -100%; left: 16px; background: var(--vermelho); color: var(--branco); padding: 12px 24px; border-radius: 0 0 8px 8px; font-weight: 700; font-size: .95rem; z-index: 200; transition: top .2s; }
+        .skip-link:focus { top: 0; outline: 3px solid var(--branco); outline-offset: 2px; text-decoration: none; }
+        *:focus-visible { outline: 3px solid var(--vermelho); outline-offset: 2px; }
+        .sec-dark *:focus-visible, header *:focus-visible { outline-color: var(--branco); }
     </style>
 </head>
 <body>
+
+<a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
 <header>
@@ -474,9 +482,9 @@
             <img src="/img/logo-fortplanos.webp" alt="FortPlanos — Corretora de Planos de Saúde Bradesco" width="140" height="36" fetchpriority="high">
         </a>
 
-        <button class="menu-toggle" aria-label="Abrir menu de navegação">☰</button>
+        <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
 
-        <nav>
+        <nav aria-label="Menu principal">
             <a href="/quem-somos/">Sobre</a>
             <a href="/servicos/">Serviços</a>
             <a href="/planos/">Planos</a>
@@ -490,11 +498,13 @@
 </header>
 
 <!-- ═══════════════════ BREADCRUMB ═══════════════════ -->
-<div class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
     <div class="container">
-        <a href="/">Início</a> <span>›</span> <strong>Contato</strong>
+        <a href="/">Início</a> <span aria-hidden="true">›</span> <strong>Contato</strong>
     </div>
-</div>
+</nav>
+
+<main id="conteudo-principal">
 
 <!-- ═══════════════════ HERO CONTATO ═══════════════════ -->
 <section class="sec-dark hero-contato">
@@ -775,6 +785,8 @@
     </div>
 </section>
 
+</main>
+
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
     <div class="container">
@@ -808,11 +820,11 @@
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
             <a href="/cidades/">Todas as Cidades</a><br>
-            <span style="color:#666;">Campinas — em breve</span><br>
-            <span style="color:#666;">Baixada Santista — em breve</span><br>
-            <span style="color:#666;">Vale do Paraíba — em breve</span><br>
-            <span style="color:#666;">Rio de Janeiro — em breve</span><br>
-            <span style="color:#666;">Belo Horizonte — em breve</span>
+            <span style="color:#999;">Campinas — em breve</span><br>
+            <span style="color:#999;">Baixada Santista — em breve</span><br>
+            <span style="color:#999;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#999;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#999;">Belo Horizonte — em breve</span>
         </div>
 
         <!-- Coluna 4: Institucional + Contato -->
@@ -838,8 +850,8 @@
             <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
             Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
             Não possui vínculo societário com a Bradesco Seguros S.A. Todos os dados são extraídos
-            da base FortPlanos (atualizada em 06/02/2026) e podem sofrer alterações sem aviso prévio.
-            Consulte condições vigentes antes de contratar.
+            da base CRM Saúde (atualizada em 04/03/2026 · conferido em 27/03/2026) e podem sofrer alterações sem aviso prévio.
+            Preços são mutáveis — confirme os valores atualizados com um corretor autorizado antes de contratar.
             Os planos de saúde citados são regulados pela <strong>ANS — Agência Nacional de Saúde Suplementar</strong>.<br>
             © 2024–2026 FortPlanos — Todos os direitos reservados.
         </div>
