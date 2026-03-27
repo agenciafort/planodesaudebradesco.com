@@ -23,7 +23,10 @@
     ];
 
     // tabela_id → { vidas, adesao, copart }
+    // Grupo A (planos 50/414-422: efetivo, saude+, nacional II/III)
+    // Grupo B (planos 408-413: nac plus, premium) — tabela_ids diferentes
     var TABELA_MAP = {
+        // Grupo A — sem copart
         77: { vidas: '3-a-29', adesao: 'comp', copart: 'sem' },
         76: { vidas: '3-a-29', adesao: 'livre', copart: 'sem' },
         81: { vidas: '4-a-6', adesao: 'comp', copart: 'sem' },
@@ -32,6 +35,7 @@
         84: { vidas: '7-a-29', adesao: 'livre', copart: 'sem' },
         89: { vidas: '30-a-99', adesao: 'comp', copart: 'sem' },
         88: { vidas: '30-a-99', adesao: 'livre', copart: 'sem' },
+        // Grupo A — copart 30%
         79: { vidas: '3-a-29', adesao: 'comp', copart: 'completa30' },
         78: { vidas: '3-a-29', adesao: 'livre', copart: 'completa30' },
         83: { vidas: '4-a-6', adesao: 'comp', copart: 'completa30' },
@@ -39,12 +43,31 @@
         87: { vidas: '7-a-29', adesao: 'comp', copart: 'completa30' },
         86: { vidas: '7-a-29', adesao: 'livre', copart: 'completa30' },
         91: { vidas: '30-a-99', adesao: 'comp', copart: 'completa30' },
-        90: { vidas: '30-a-99', adesao: 'livre', copart: 'completa30' }
+        90: { vidas: '30-a-99', adesao: 'livre', copart: 'completa30' },
+        // Grupo B (nac plus / premium) — sem copart
+        60: { vidas: '3-a-29', adesao: 'comp', copart: 'sem' },
+        62: { vidas: '3-a-29', adesao: 'livre', copart: 'sem' },
+        64: { vidas: '4-a-6', adesao: 'comp', copart: 'sem' },
+        66: { vidas: '4-a-6', adesao: 'livre', copart: 'sem' },
+        68: { vidas: '7-a-29', adesao: 'comp', copart: 'sem' },
+        70: { vidas: '7-a-29', adesao: 'livre', copart: 'sem' },
+        72: { vidas: '30-a-99', adesao: 'comp', copart: 'sem' },
+        74: { vidas: '30-a-99', adesao: 'livre', copart: 'sem' },
+        // Grupo B — copart 30% (ordem invertida: livre primeiro)
+        92: { vidas: '3-a-29', adesao: 'livre', copart: 'completa30' },
+        93: { vidas: '3-a-29', adesao: 'comp', copart: 'completa30' },
+        94: { vidas: '4-a-6', adesao: 'livre', copart: 'completa30' },
+        95: { vidas: '4-a-6', adesao: 'comp', copart: 'completa30' },
+        96: { vidas: '7-a-29', adesao: 'livre', copart: 'completa30' },
+        97: { vidas: '7-a-29', adesao: 'comp', copart: 'completa30' },
+        98: { vidas: '30-a-99', adesao: 'livre', copart: 'completa30' },
+        99: { vidas: '30-a-99', adesao: 'comp', copart: 'completa30' }
     };
 
     var TABELA_IDS = Object.keys(TABELA_MAP).map(Number);
 
     // slug do site → slug do Supabase
+    // IDs 408-422 usam slugs iguais ao site; ID 50 (efetivo-enf) também
     var SLUG_MAP = {
         'efetivo-enf': 'efetivo-enf',
         'efetivo-quarto': 'efetivo-quarto',
@@ -70,14 +93,30 @@
         }).join('&');
         var url = SUPABASE_URL + '/rest/v1/' + table + (qs ? '?' + qs : '');
         return fetch(url, {
-            headers: {
-                'apikey': SUPABASE_ANON_KEY,
-                'Accept': 'application/json'
-            }
+            headers: { 'apikey': SUPABASE_ANON_KEY, 'Accept': 'application/json' }
         }).then(function (r) {
             if (!r.ok) throw new Error('HTTP ' + r.status);
             return r.json();
         });
+    }
+
+    function restGetAll(table, params) {
+        var PAGE = 1000;
+        var all = [];
+        function fetchPage(offset) {
+            var p = {};
+            Object.keys(params || {}).forEach(function (k) { p[k] = params[k]; });
+            p.limit = String(PAGE);
+            p.offset = String(offset);
+            return restGet(table, p)
+                .then(function (rows) {
+                    if (!rows || !rows.length) return all;
+                    all = all.concat(rows);
+                    if (rows.length < PAGE) return all;
+                    return fetchPage(offset + PAGE);
+                });
+        }
+        return fetchPage(0);
     }
 
     function escapeHtml(str) {
@@ -121,21 +160,33 @@
             if (!planos || !planos.length) return;
 
             var slugToId = {};
-            planos.forEach(function (p) { slugToId[p.slug] = p.id; });
+            planos.forEach(function (p) {
+                if (SLUG_MAP[p.slug]) slugToId[p.slug] = p.id;
+            });
 
             var planoIds = LINHAS_RESUMO.map(function (L) { return slugToId[L.planoSlug]; }).filter(Boolean);
             if (!planoIds.length) return;
 
-            var precos = await restGet('precos', {
+            // Buscar preço faixa 1 comp sem-copart para cada plano
+            // Grupo A usa tabela 77, Grupo B usa tabela 60
+            var precosA = await restGet('precos', {
                 select: 'plano_id,preco',
                 faixa_id: 'eq.1',
                 tabela_id: 'eq.77',
                 plano_id: 'in.(' + planoIds.join(',') + ')'
             });
-            if (!precos || !precos.length) return;
+            var precosB = await restGet('precos', {
+                select: 'plano_id,preco',
+                faixa_id: 'eq.1',
+                tabela_id: 'eq.60',
+                plano_id: 'in.(' + planoIds.join(',') + ')'
+            });
+
+            var allPrecos = (precosA || []).concat(precosB || []);
+            if (!allPrecos.length) return;
 
             var precoMap = {};
-            precos.forEach(function (p) { precoMap[p.plano_id] = p.preco; });
+            allPrecos.forEach(function (p) { precoMap[p.plano_id] = p.preco; });
 
             var operadora = await restGet('operadoras', {
                 select: 'updated_at',
@@ -249,12 +300,11 @@
             var planoIds = Object.values(slugToId);
             if (!planoIds.length) return null;
 
-            var allPrecos = await restGet('precos', {
+            var allPrecos = await restGetAll('precos', {
                 select: 'tabela_id,plano_id,faixa_id,preco',
                 tabela_id: 'in.(' + TABELA_IDS.join(',') + ')',
                 plano_id: 'in.(' + planoIds.join(',') + ')',
-                order: 'tabela_id.asc,plano_id.asc,faixa_id.asc',
-                limit: '10000'
+                order: 'tabela_id.asc,plano_id.asc,faixa_id.asc'
             });
             if (!allPrecos || !allPrecos.length) return null;
 

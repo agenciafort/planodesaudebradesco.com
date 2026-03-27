@@ -1259,12 +1259,27 @@
     });
 
     // ── Carregar dados do Supabase ──
+    var dadosCarregados = false;
     if (typeof FP_CRM !== 'undefined' && FP_CRM.loadAllPrices) {
+        btnSimular.disabled = true;
+        btnSimular.textContent = 'Carregando dados…';
         FP_CRM.loadAllPrices().then(function (data) {
-            if (!data || !data.D) return;
+            if (!data || !data.D) {
+                console.warn('[FP_CRM] Nenhum dado retornado do Supabase');
+                btnSimular.textContent = 'Simular Preços';
+                btnSimular.disabled = false;
+                return;
+            }
             D = data.D;
             D2 = data.D2 || {};
-            console.log('[FP_CRM] Simulador carregou dados do Supabase');
+            dadosCarregados = true;
+            btnSimular.textContent = 'Simular Preços';
+            btnSimular.disabled = false;
+            console.log('[FP_CRM] Simulador: dados carregados', Object.keys(D));
+        }).catch(function (err) {
+            console.error('[FP_CRM] Erro ao carregar dados:', err);
+            btnSimular.textContent = 'Simular Preços';
+            btnSimular.disabled = false;
         });
     }
 })();
