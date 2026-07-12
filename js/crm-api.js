@@ -264,6 +264,42 @@
         return newTab;
     }
 
+    // ── selinho do rodapé: mostra se o site está LIGADO no cotador ─────────
+    // Verde aceso = a tomada respondeu AGORA (dados ao vivo, em dia).
+    // Cinza = tomada não respondeu; a página segue com a última publicação.
+    function selinhoRodape(dados) {
+        try {
+            var alvo = w.document.querySelector('footer .footer-bottom') || w.document.querySelector('footer');
+            if (!alvo || w.document.getElementById('fp-selinho')) return;
+            var on = !!dados;
+            var pill = w.document.createElement('div');
+            pill.id = 'fp-selinho';
+            pill.setAttribute('title', on
+                ? 'Preços conferidos ao vivo na fonte oficial agora'
+                : 'Mostrando a última publicação — nova conferência ao recarregar');
+            pill.style.cssText = 'display:inline-flex;align-items:center;gap:7px;margin:14px auto 0;' +
+                'padding:5px 14px;border-radius:99px;font-size:12px;line-height:1;' +
+                'border:1px solid rgba(128,128,128,.35);opacity:.9;';
+            var dot = '<span style="width:8px;height:8px;border-radius:50%;display:inline-block;' +
+                'background:' + (on ? '#22c55e;box-shadow:0 0 6px #22c55e' : '#9ca3af') + ';"></span>';
+            var texto = on
+                ? 'Tabelas e dados em dia — ao vivo' + (dados.updatedAt ? ' · preços de ' + formatData(dados.updatedAt) : '')
+                : 'Tabelas e dados da última publicação';
+            pill.innerHTML = dot + '<span>' + texto + '</span>';
+            var wrap = w.document.createElement('div');
+            wrap.style.textAlign = 'center';
+            wrap.appendChild(pill);
+            alvo.appendChild(wrap);
+        } catch (_) { /* selinho nunca pode quebrar a página */ }
+    }
+
+    // acende sozinho em qualquer página que carregue este script
+    function acenderSelinho() {
+        loadAllPrices().then(selinhoRodape, function () { selinhoRodape(null); });
+    }
+    if (w.document && w.document.readyState !== 'loading') acenderSelinho();
+    else if (w.document) w.document.addEventListener('DOMContentLoaded', acenderSelinho);
+
     w.FP_CRM = {
         VIVO_BASE: VIVO_BASE,
         vivoGet: vivoGet,
