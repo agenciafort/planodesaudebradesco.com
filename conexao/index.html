@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de conexão — planodesaudebradesco.com</title>
+<style>
+    :root { --ok:#15803d; --ok-bg:#e8f5ec; --erro:#b91c1c; --erro-bg:#fdeaea; --cinza:#5b6b66; --linha:#dde5e2; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#f6f9f8; color:#1c2b27; font:15px/1.6 "Segoe UI", system-ui, sans-serif; }
+    main { max-width:680px; margin:0 auto; padding:44px 20px 70px; }
+    h1 { font-size:1.35rem; margin:0 0 4px; }
+    .sub { color:var(--cinza); margin:0 0 26px; font-size:.9rem; }
+    .cartao { background:#fff; border:1px solid var(--linha); border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+    .selo { display:inline-block; font-size:.78rem; font-weight:700; padding:4px 14px; border-radius:99px; letter-spacing:.04em; }
+    .selo.ok { background:var(--ok-bg); color:var(--ok); }
+    .selo.erro { background:var(--erro-bg); color:var(--erro); }
+    .selo.aguarde { background:#eef2f0; color:var(--cinza); }
+    .linha { display:flex; justify-content:space-between; gap:14px; padding:7px 0; border-top:1px solid var(--linha); font-size:.88rem; }
+    .linha:first-of-type { border-top:0; }
+    .linha b { font-variant-numeric: tabular-nums; text-align:right; }
+    .nota { font-size:.78rem; color:var(--cinza); margin-top:18px; }
+    button { font:inherit; font-size:.82rem; font-weight:600; padding:7px 16px; border-radius:8px; border:1px solid var(--linha); background:#fff; cursor:pointer; }
+    button:hover { border-color:var(--cinza); }
+</style>
+</head>
+<body>
+<main>
+    <h1>🔌 Painel de conexão</h1>
+    <p class="sub">Ligação deste site com o cotador <strong>Tabelas (CRM Saúde)</strong> — a fonte única dos preços. O que aparece aqui é exatamente o que a home, a tabela de preços e o simulador estão recebendo agora.</p>
+
+    <div class="cartao">
+        <div id="selo" class="selo aguarde">testando a tomada…</div>
+        <div id="detalhes" style="margin-top:12px;"></div>
+        <div style="margin-top:14px;"><button onclick="location.reload()">↻ Testar de novo</button></div>
+    </div>
+
+    <p class="nota">Página interna (não indexada). A chave usada é pública e travada neste domínio — só serve para LER preços.
+    Se o selo estiver vermelho, as páginas continuam no ar com o último HTML publicado (com a data antiga visível no rodapé) — nada quebra, mas o preço pode envelhecer: avise o administrador do Tabelas.</p>
+</main>
+<script src="/js/crm-api.js"></script>
+<script>
+(function () {
+    var selo = document.getElementById('selo');
+    var det = document.getElementById('detalhes');
+    var t0 = performance.now();
+
+    function linha(rotulo, valor) {
+        return '<div class="linha"><span>' + rotulo + '</span><b>' + valor + '</b></div>';
+    }
+
+    FP_CRM.loadAllPrices().then(function (d) {
+        var ms = Math.round(performance.now() - t0);
+        if (!d) {
+            selo.className = 'selo erro';
+            selo.textContent = '🔴 SEM RESPOSTA DO COTADOR';
+            det.innerHTML = linha('O que isso significa', 'a tomada não devolveu preços para este site') +
+                linha('Efeito no visitante', 'páginas seguem com o último HTML publicado');
+            return;
+        }
+        function contar(T) {
+            var n = 0, planos = {};
+            Object.keys(T).forEach(function (v) {
+                Object.keys(T[v]).forEach(function (a) {
+                    Object.keys(T[v][a]).forEach(function (s) {
+                        planos[s] = 1;
+                        T[v][a][s].forEach(function (x) { if (x != null) n++; });
+                    });
+                });
+            });
+            return { n: n, planos: Object.keys(planos) };
+        }
+        var sem = contar(d.D), com = contar(d.D2);
+        selo.className = 'selo ok';
+        selo.textContent = '🟢 LIGADO AO TABELAS';
+        det.innerHTML =
+            linha('Tempo de resposta', ms + ' ms') +
+            linha('Preços recebidos agora', (sem.n + com.n).toLocaleString('pt-BR') + ' (' + sem.n + ' sem copart. + ' + com.n + ' com copart.)') +
+            linha('Planos vivos no cotador', sem.planos.length + ' → ' + sem.planos.join(', ')) +
+            linha('Fonte atualizada em', FP_CRM.formatData(d.updatedAt) || '—') +
+            linha('Conferido ao vivo em', FP_CRM.hoje());
+    }).catch(function (e) {
+        selo.className = 'selo erro';
+        selo.textContent = '🔴 ERRO NA TOMADA';
+        det.innerHTML = linha('Detalhe técnico', String(e && e.message || e));
+    });
+})();
+</script>
+</body>
+</html>

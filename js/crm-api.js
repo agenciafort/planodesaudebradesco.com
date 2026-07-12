@@ -1,18 +1,31 @@
 /**
- * Integração com Supabase — tabelas de preços Bradesco Saúde
+ * Ligação com o Tabelas (CRM Saúde) — tomada viva /api/v1/vivo
  *
- * Lê operadoras, planos e preços direto do Supabase (projeto crmsaude).
- * Funções: hydrateLinhasProduto (home), loadAllPrices (tabela/simulador).
- * Se a API falhar, o HTML estático permanece (fallback).
+ * A VERDADE ABSOLUTA é o cotador (Tabelas): o site mostra o que existe
+ * lá, nem mais nem menos. Nada de ids fixos — produtos, tabelas e planos
+ * são descobertos pelo que a tomada devolve; se o banco mudar por dentro,
+ * o site não sente.
+ *
+ * Contrato preservado com as páginas (home, tabela-de-precos, simulador):
+ *   FP_CRM.loadAllPrices() → { D, D2, slugToId, updatedAt } | null
+ *     D  [vidas][adesao][slugDoSite] = [10 preços, faixas 0-18 … 59+]
+ *     D2 = idem, com coparticipação
+ *   FP_CRM.hydrateLinhasProduto({gridId, notaId}) — cards da home
+ *   FP_CRM.buildSimuladorTabela(D) — inalterada
+ *
+ * Se a tomada falhar: devolve null e o HTML estático permanece (com a
+ * data antiga visível no rodapé). Nunca inventamos preço.
  */
 (function (w) {
     'use strict';
 
-    var SUPABASE_URL = 'https://flkyyghkhjcfzmpnkpbg.supabase.co';
-    var SUPABASE_ANON_KEY =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsa3l5Z2hraGpjZnptcG5rcGJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1OTA5OTIsImV4cCI6MjA4ODE2Njk5Mn0.OyJkR9Qp5R31qT8IovZjcr3-o7Rtd3BjErRDv53Q-DI';
+    var VIVO_BASE = 'https://crmsaude.agenciafort.com.br/api/v1/vivo';
+    // chave pública travada NESTE domínio (planodesaudebradesco.com)
+    var VIVO_KEY = 'fpk_live_bd28b61b354de068c3b5754a416b2e7cfefce2d82623addb';
+    var OPERADORA_PREFIXO = 'bradesco';  // slug da operadora no Tabelas
+    var REGIAO_DO_SITE = 'sao paulo';    // este site vende SP; produto de outra região não entra
 
-    var BRADESCO_OPERADORA_ID = 7;
+    var FAIXAS_ORDEM = ['00a18', '19a23', '24a28', '29a33', '34a38', '39a43', '44a48', '49a53', '54a58', '59mais'];
 
     var LINHAS_RESUMO = [
         { tag: 'Regional', tagClass: 'tag-regional', titulo: 'Saúde +', planoSlug: 'saude-mais-enf', acomod: '(enf.)', desc: 'Capital, Grande São Paulo e Baixada Santista.' },
@@ -22,102 +35,44 @@
         { tag: 'Ultra Premium', tagClass: 'tag-premium', titulo: 'Premium', planoSlug: 'premium-6-quarto', acomod: '', desc: 'O melhor plano: Einstein, Sírio-Libanês. Reembolso completo.' }
     ];
 
-    // tabela_id → { vidas, adesao, copart }
-    // Grupo A (planos 50/414-422: efetivo, saude+, nacional II/III)
-    // Grupo B (planos 408-413: nac plus, premium) — tabela_ids diferentes
-    var TABELA_MAP = {
-        // Grupo A — sem copart
-        77: { vidas: '3-a-29', adesao: 'comp', copart: 'sem' },
-        76: { vidas: '3-a-29', adesao: 'livre', copart: 'sem' },
-        81: { vidas: '4-a-6', adesao: 'comp', copart: 'sem' },
-        80: { vidas: '4-a-6', adesao: 'livre', copart: 'sem' },
-        85: { vidas: '7-a-29', adesao: 'comp', copart: 'sem' },
-        84: { vidas: '7-a-29', adesao: 'livre', copart: 'sem' },
-        89: { vidas: '30-a-99', adesao: 'comp', copart: 'sem' },
-        88: { vidas: '30-a-99', adesao: 'livre', copart: 'sem' },
-        // Grupo A — copart 30%
-        79: { vidas: '3-a-29', adesao: 'comp', copart: 'completa30' },
-        78: { vidas: '3-a-29', adesao: 'livre', copart: 'completa30' },
-        83: { vidas: '4-a-6', adesao: 'comp', copart: 'completa30' },
-        82: { vidas: '4-a-6', adesao: 'livre', copart: 'completa30' },
-        87: { vidas: '7-a-29', adesao: 'comp', copart: 'completa30' },
-        86: { vidas: '7-a-29', adesao: 'livre', copart: 'completa30' },
-        91: { vidas: '30-a-99', adesao: 'comp', copart: 'completa30' },
-        90: { vidas: '30-a-99', adesao: 'livre', copart: 'completa30' },
-        // Grupo B (nac plus / premium) — sem copart
-        60: { vidas: '3-a-29', adesao: 'comp', copart: 'sem' },
-        62: { vidas: '3-a-29', adesao: 'livre', copart: 'sem' },
-        64: { vidas: '4-a-6', adesao: 'comp', copart: 'sem' },
-        66: { vidas: '4-a-6', adesao: 'livre', copart: 'sem' },
-        68: { vidas: '7-a-29', adesao: 'comp', copart: 'sem' },
-        70: { vidas: '7-a-29', adesao: 'livre', copart: 'sem' },
-        72: { vidas: '30-a-99', adesao: 'comp', copart: 'sem' },
-        74: { vidas: '30-a-99', adesao: 'livre', copart: 'sem' },
-        // Grupo B — copart 30% (ordem invertida: livre primeiro)
-        92: { vidas: '3-a-29', adesao: 'livre', copart: 'completa30' },
-        93: { vidas: '3-a-29', adesao: 'comp', copart: 'completa30' },
-        94: { vidas: '4-a-6', adesao: 'livre', copart: 'completa30' },
-        95: { vidas: '4-a-6', adesao: 'comp', copart: 'completa30' },
-        96: { vidas: '7-a-29', adesao: 'livre', copart: 'completa30' },
-        97: { vidas: '7-a-29', adesao: 'comp', copart: 'completa30' },
-        98: { vidas: '30-a-99', adesao: 'livre', copart: 'completa30' },
-        99: { vidas: '30-a-99', adesao: 'comp', copart: 'completa30' }
-    };
-
-    var TABELA_IDS = Object.keys(TABELA_MAP).map(Number);
-
-    // slug do site → slug do Supabase
-    // IDs 408-422 usam slugs iguais ao site; ID 50 (efetivo-enf) também
-    var SLUG_MAP = {
-        'efetivo-enf': 'efetivo-enf',
-        'efetivo-quarto': 'efetivo-quarto',
-        'efetivo-plus-enf': 'efetivo-plus-enf',
-        'efetivo-plus-quarto': 'efetivo-plus-quarto',
-        'saude-mais-enf': 'saude-mais-enf',
-        'saude-mais-quarto': 'saude-mais-quarto',
-        'nacional-ii-enf': 'nacional-ii-enf',
-        'nacional-iii-quarto': 'nacional-iii-quarto',
-        'nacional-iii-2-quarto': 'nacional-iii-2-quarto',
-        'nacional-iii-3-quarto': 'nacional-iii-3-quarto',
-        'nacional-plus-4-quarto': 'nacional-plus-4-quarto',
-        'nacional-plus-6-quarto': 'nacional-plus-6-quarto',
-        'nacional-plus-8-quarto': 'nacional-plus-8-quarto',
-        'premium-6-quarto': 'premium-6-quarto',
-        'premium-8-quarto': 'premium-8-quarto',
-        'premium-10-quarto': 'premium-10-quarto'
-    };
-
-    function restGet(table, params) {
-        var qs = Object.keys(params || {}).map(function (k) {
-            return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
-        }).join('&');
-        var url = SUPABASE_URL + '/rest/v1/' + table + (qs ? '?' + qs : '');
-        return fetch(url, {
-            headers: { 'apikey': SUPABASE_ANON_KEY, 'Accept': 'application/json' }
-        }).then(function (r) {
-            if (!r.ok) throw new Error('HTTP ' + r.status);
-            return r.json();
+    // ── tomada ───────────────────────────────────────────────────────────────
+    function vivoGet(resource, params) {
+        var qs = 'resource=' + encodeURIComponent(resource);
+        Object.keys(params || {}).forEach(function (k) {
+            qs += '&' + encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+        });
+        var url = VIVO_BASE + '?' + qs;
+        function tentar() {
+            return fetch(url, { headers: { 'X-API-Key': VIVO_KEY, 'Accept': 'application/json' } })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json();
+                });
+        }
+        // falha passageira ganha uma segunda chance antes de desistir
+        return tentar().catch(function () {
+            return new Promise(function (res) { setTimeout(res, 800); }).then(tentar);
         });
     }
 
-    function restGetAll(table, params) {
-        var PAGE = 1000;
-        var all = [];
-        function fetchPage(offset) {
-            var p = {};
-            Object.keys(params || {}).forEach(function (k) { p[k] = params[k]; });
-            p.limit = String(PAGE);
-            p.offset = String(offset);
-            return restGet(table, p)
-                .then(function (rows) {
-                    if (!rows || !rows.length) return all;
-                    all = all.concat(rows);
-                    if (rows.length < PAGE) return all;
-                    return fetchPage(offset + PAGE);
-                });
-        }
-        return fetchPage(0);
+    // ── tradução Tabelas → chaves históricas do site ─────────────────────────
+    function normalizar(s) {
+        return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
     }
+
+    // "Saúde +" [Enfermaria] → 'saude-mais-enf' (mesmos slugs que as páginas conhecem)
+    function slugDoSite(planoNome, acomodacao) {
+        var base = normalizar(planoNome)
+            .replace(/\+/g, ' mais ')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+        var suf = normalizar(acomodacao).indexOf('enf') === 0 ? 'enf' : 'quarto';
+        return base + '-' + suf;
+    }
+
+    function chaveVidas(min, max) { return min + '-a-' + max; }          // 3,29 → '3-a-29'
+    function chaveAdesao(tipo) { return normalizar(tipo).indexOf('comp') === 0 ? 'comp' : 'livre'; }
+    function temCopart(cop) { var c = normalizar(cop); return c !== '' && c !== 'sem'; }
 
     function escapeHtml(str) {
         if (!str) return '';
@@ -144,6 +99,76 @@
             String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
     }
 
+    // ── carga única: tudo o que o cotador tem para este site ────────────────
+    var _promessa = null;
+
+    function loadAllPrices() {
+        if (_promessa) return _promessa;
+        _promessa = carregar().catch(function (err) {
+            console.error('[FP_CRM] Tomada do Tabelas indisponível:', err);
+            _promessa = null; // próxima chamada tenta de novo
+            return null;
+        });
+        return _promessa;
+    }
+
+    async function carregar() {
+        var produtos = await vivoGet('produtos');
+
+        // só os produtos DESTA operadora, DESTA região, fora de manutenção
+        var meus = (produtos || []).filter(function (p) {
+            if (normalizar(p.operadora_slug).indexOf(OPERADORA_PREFIXO) !== 0) return false;
+            if (p.precos_manutencao === true) return false; // preço não confiável não se mostra
+            var regioes = p.regioes || [];
+            return regioes.some(function (r) {
+                return normalizar(r && r.nome ? r.nome : r).indexOf(REGIAO_DO_SITE) !== -1;
+            });
+        });
+        if (!meus.length) return null;
+
+        var D = {};
+        var D2 = {};
+        var slugToId = {};
+        var updatedAt = null;
+        var totalPrecos = 0;
+
+        for (var i = 0; i < meus.length; i++) {
+            var p = meus[i];
+            if (p.updated_at && (!updatedAt || p.updated_at > updatedAt)) updatedAt = p.updated_at;
+
+            var rows = await vivoGet('precos', { produto: String(p.produto_id) });
+            (rows || []).forEach(function (r) {
+                if (normalizar(r.tipo_empresa) === 'mei') return; // site não vende MEI
+                var idx = FAIXAS_ORDEM.indexOf(r.faixa_codigo);
+                if (idx < 0) return;
+
+                var alvo = temCopart(r.coparticipacao) ? D2 : D;
+                var vidas = chaveVidas(r.vidas_min, r.vidas_max);
+                var adesao = chaveAdesao(r.tipo_adesao);
+                var slug = slugDoSite(r.plano_nome, r.acomodacao);
+
+                if (!alvo[vidas]) alvo[vidas] = {};
+                if (!alvo[vidas][adesao]) alvo[vidas][adesao] = {};
+                if (!alvo[vidas][adesao][slug]) alvo[vidas][adesao][slug] = [];
+
+                var cel = alvo[vidas][adesao][slug];
+                if (cel[idx] != null && cel[idx] !== r.preco) {
+                    // dois produtos disputando a mesma célula: fica o primeiro, e avisa
+                    console.warn('[FP_CRM] Conflito de preço ignorado:', slug, vidas, adesao, r.faixa_codigo, cel[idx], '≠', r.preco);
+                    return;
+                }
+                cel[idx] = r.preco;
+                if (slugToId[slug] == null) slugToId[slug] = r.plano_id;
+                totalPrecos++;
+            });
+        }
+
+        if (!totalPrecos) return null;
+        console.log('[FP_CRM] Tomada viva: ' + totalPrecos + ' preços de ' + meus.length + ' produto(s) do cotador.');
+        return { D: D, D2: D2, slugToId: slugToId, updatedAt: updatedAt };
+    }
+
+    // ── cards da home: só o que existe no cotador vira card ─────────────────
     async function hydrateLinhasProduto(opts) {
         var o = opts && typeof opts === 'object' ? opts : {};
         var gridId = o.gridId || 'planos-linhas-grid';
@@ -153,50 +178,14 @@
         if (!grid) return;
 
         try {
-            var planos = await restGet('planos', {
-                select: 'id,slug,nome',
-                operadora_id: 'eq.' + BRADESCO_OPERADORA_ID
-            });
-            if (!planos || !planos.length) return;
+            var dados = await loadAllPrices();
+            if (!dados) return; // tomada falhou: HTML estático fica (data antiga visível na nota)
 
-            var slugToId = {};
-            planos.forEach(function (p) {
-                if (SLUG_MAP[p.slug]) slugToId[p.slug] = p.id;
-            });
-
-            var planoIds = LINHAS_RESUMO.map(function (L) { return slugToId[L.planoSlug]; }).filter(Boolean);
-            if (!planoIds.length) return;
-
-            // Buscar preço faixa 1 comp sem-copart para cada plano
-            // Grupo A usa tabela 77, Grupo B usa tabela 60
-            var precosA = await restGet('precos', {
-                select: 'plano_id,preco',
-                faixa_id: 'eq.1',
-                tabela_id: 'eq.77',
-                plano_id: 'in.(' + planoIds.join(',') + ')'
-            });
-            var precosB = await restGet('precos', {
-                select: 'plano_id,preco',
-                faixa_id: 'eq.1',
-                tabela_id: 'eq.60',
-                plano_id: 'in.(' + planoIds.join(',') + ')'
-            });
-
-            var allPrecos = (precosA || []).concat(precosB || []);
-            if (!allPrecos.length) return;
-
-            var precoMap = {};
-            allPrecos.forEach(function (p) { precoMap[p.plano_id] = p.preco; });
-
-            var operadora = await restGet('operadoras', {
-                select: 'updated_at',
-                id: 'eq.' + BRADESCO_OPERADORA_ID
-            });
-
+            var bloco = (dados.D['3-a-29'] || {}).comp || {};
             var html = LINHAS_RESUMO.map(function (L) {
-                var pid = slugToId[L.planoSlug];
-                var valor = precoMap[pid];
-                if (valor == null) return '';
+                var precos = bloco[L.planoSlug];
+                var valor = precos ? precos[0] : null;
+                if (valor == null) return ''; // não está no cotador → não existe card
                 return '<div class="card">' +
                     '<span class="tag ' + escapeHtml(L.tagClass) + '">' + escapeHtml(L.tag) + '</span>' +
                     '<h3>' + escapeHtml(L.titulo) + '</h3>' +
@@ -208,10 +197,11 @@
 
             if (html) grid.innerHTML = html;
 
-            if (notaEl && operadora && operadora[0] && operadora[0].updated_at) {
-                var dataAtual = formatData(operadora[0].updated_at);
+            if (notaEl && dados.updatedAt) {
                 notaEl.textContent =
-                    'Preços referentes à faixa etária 0–18 anos, contratação compulsória, 3 a 29 vidas. Tabela atualizada em ' + dataAtual + '. Conferido em ' + hoje() + '. Fonte: CRM Saúde. Preços são mutáveis sem aviso prévio — confirme com um corretor autorizado.';
+                    'Preços referentes à faixa etária 0–18 anos, contratação compulsória, 3 a 29 vidas. Tabela atualizada em ' +
+                    formatData(dados.updatedAt) + '. Conferido ao vivo em ' + hoje() +
+                    '. Fonte: cotador Tabelas (CRM Saúde). Preços são mutáveis sem aviso prévio — confirme com um corretor autorizado.';
             }
         } catch (err) {
             console.error('[FP_CRM] Erro ao carregar linhas:', err);
@@ -220,6 +210,7 @@
 
     /**
      * Monta o objeto TABELA do simulador a partir de D['3-a-29'] (comp + livre).
+     * (inalterada — peça pura sobre o formato D)
      */
     function buildSimuladorTabela(Dblock) {
         if (!Dblock || !Dblock['3-a-29']) return null;
@@ -273,80 +264,13 @@
         return newTab;
     }
 
-    /**
-     * Carrega TODOS os preços do Supabase e monta as estruturas D e D2
-     * no mesmo formato usado pelas páginas tabela-de-precos e simulador.
-     * Retorna { D, D2, slugToId, updatedAt } ou null em caso de erro.
-     */
-    async function loadAllPrices() {
-        try {
-            var planos = await restGet('planos', {
-                select: 'id,slug,nome',
-                operadora_id: 'eq.' + BRADESCO_OPERADORA_ID
-            });
-            if (!planos || !planos.length) return null;
-
-            planos.sort(function (a, b) { return b.id - a.id; });
-
-            var slugToId = {};
-            var idToSlug = {};
-            planos.forEach(function (p) {
-                if (!SLUG_MAP[p.slug]) return;
-                if (slugToId[p.slug] != null) return;
-                slugToId[p.slug] = p.id;
-                idToSlug[p.id] = p.slug;
-            });
-
-            var planoIds = Object.values(slugToId);
-            if (!planoIds.length) return null;
-
-            var allPrecos = await restGetAll('precos', {
-                select: 'tabela_id,plano_id,faixa_id,preco',
-                tabela_id: 'in.(' + TABELA_IDS.join(',') + ')',
-                plano_id: 'in.(' + planoIds.join(',') + ')',
-                order: 'tabela_id.asc,plano_id.asc,faixa_id.asc'
-            });
-            if (!allPrecos || !allPrecos.length) return null;
-
-            var D = {};
-            var D2 = {};
-
-            allPrecos.forEach(function (row) {
-                var meta = TABELA_MAP[row.tabela_id];
-                if (!meta) return;
-                var slug = idToSlug[row.plano_id];
-                if (!slug) return;
-
-                var target = meta.copart === 'completa30' ? D2 : D;
-                if (!target[meta.vidas]) target[meta.vidas] = {};
-                if (!target[meta.vidas][meta.adesao]) target[meta.vidas][meta.adesao] = {};
-                if (!target[meta.vidas][meta.adesao][slug]) target[meta.vidas][meta.adesao][slug] = [];
-
-                target[meta.vidas][meta.adesao][slug][row.faixa_id - 1] = row.preco;
-            });
-
-            var operadora = await restGet('operadoras', {
-                select: 'updated_at',
-                id: 'eq.' + BRADESCO_OPERADORA_ID
-            });
-
-            var updatedAt = (operadora && operadora[0]) ? operadora[0].updated_at : null;
-
-            return { D: D, D2: D2, slugToId: slugToId, updatedAt: updatedAt };
-        } catch (err) {
-            console.error('[FP_CRM] Erro ao carregar preços completos:', err);
-            return null;
-        }
-    }
-
     w.FP_CRM = {
-        SUPABASE_URL: SUPABASE_URL,
-        restGet: restGet,
+        VIVO_BASE: VIVO_BASE,
+        vivoGet: vivoGet,
         hydrateLinhasProduto: hydrateLinhasProduto,
         loadAllPrices: loadAllPrices,
         buildSimuladorTabela: buildSimuladorTabela,
         formatData: formatData,
-        hoje: hoje,
-        TABELA_MAP: TABELA_MAP
+        hoje: hoje
     };
 })(typeof window !== 'undefined' ? window : globalThis);
