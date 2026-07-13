@@ -72,7 +72,7 @@
                 "name": "Os valores do simulador são os preços finais?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Os valores são estimativas baseadas na tabela vigente (atualizada em 04/03/2026, conferida em 27/03/2026, fonte CRM Saúde). Preços são mutáveis sem aviso prévio — o preço final pode variar conforme análise médica (DPS), tipo de adesão e condições comerciais. Confirme com um corretor autorizado."
+                    "text": "Os valores são estimativas baseadas na tabela vigente (atualizada em julho/2026, conferida ao vivo ao abrir esta página, fonte cotador Tabelas — CRM Saúde). Preços são mutáveis sem aviso prévio — o preço final pode variar conforme análise médica (DPS), tipo de adesão e condições comerciais. Confirme com um corretor autorizado."
                 }
             },
             {
@@ -559,7 +559,7 @@
 
 <!-- ═══════════════════ BARRA DE ATUALIZAÇÃO ═══════════════════ -->
 <div class="data-atualizacao">
-    Dados atualizados em 04/03/2026 · Conferido em 27/03/2026 · Fonte: <strong>CRM Saúde</strong> · Regulado pela <strong>ANS</strong>
+    Dados atualizados em julho/2026 · Conferido ao vivo · Fonte: <strong>cotador Tabelas (CRM Saúde)</strong> · Regulado pela <strong>ANS</strong>
 </div>
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
@@ -657,9 +657,6 @@
             <label for="f-linha">Linha</label>
             <select id="f-linha">
                 <option value="todos" selected>Todos os Planos</option>
-                <option value="efetivo">Efetivo</option>
-                <option value="efetivo-plus">Efetivo Plus</option>
-                <option value="saude-mais">Saúde+</option>
                 <option value="nacional">Nacional II/III</option>
                 <option value="nacional-plus">Nacional Plus</option>
                 <option value="premium">Premium</option>
@@ -702,7 +699,7 @@
             <div class="resultado-grid" id="resultado-grid"></div>
 
             <div class="resultado-disclaimer">
-                <strong>Valores estimados</strong> · Tabela vigente 04/03/2026, conferido em 27/03/2026,
+                <strong>Valores estimados</strong> · Tabela vigente julho/2026, conferida ao vivo ao abrir esta página,
                 fonte CRM Saúde. Preços são <strong>mutáveis sem aviso prévio</strong> —
                 confirme os valores atualizados com um <a href="/contato/">corretor autorizado</a>.
             </div>
@@ -755,7 +752,7 @@
         </div>
 
         <div class="highlight-box" style="margin-top:20px; max-width:700px; margin-left:auto; margin-right:auto;">
-            <strong>Importante:</strong> Os valores são estimativas baseadas na tabela vigente (CRM Saúde, 04/03/2026).
+            <strong>Importante:</strong> Os valores são estimativas baseadas na tabela vigente (cotador Tabelas — CRM Saúde, conferida ao vivo).
             Preços são mutáveis sem aviso prévio — confirme com um <a href="/contato/">corretor autorizado</a>.
             Veja a <a href="/tabela-de-precos/">tabela de preços completa</a> para detalhes de cada plano.
         </div>
@@ -782,7 +779,7 @@
             <div class="faq-item">
                 <div class="faq-pergunta">Os valores do simulador são os preços finais?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
-                    Os valores são <strong>estimativas</strong> baseadas na tabela vigente (atualizada em 04/03/2026, conferida em 27/03/2026).
+                    Os valores são <strong>estimativas</strong> baseadas na tabela vigente (atualizada em julho/2026, conferida ao vivo ao abrir esta página).
                     O preço final pode variar conforme análise médica (DPS), tipo de adesão e condições comerciais.
                     Preços são mutáveis sem aviso prévio — solicite uma cotação com um corretor autorizado para valores definitivos.
                 </div></div>
@@ -791,7 +788,7 @@
                 <div class="faq-pergunta">Posso comparar diferentes linhas ao mesmo tempo?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     Sim! O simulador mostra simultaneamente os preços de <strong>todos os planos disponíveis</strong> do Bradesco Saúde
-                    (até 16 variantes, incluindo Saúde+, Efetivo, Nacional, Nacional Plus e Premium) para facilitar a comparação.
+                    (8 planos: Nacional II e III, Nacional Plus 4, 6 e 8, e Premium 6, 8 e 10) para facilitar a comparação.
                     Use os filtros para refinar por acomodação, coparticipação ou linha específica.
                 </div></div>
             </div>
@@ -893,7 +890,7 @@
             <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
             Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
             Não possui vínculo societário com a Bradesco Seguros S.A. Todos os dados são extraídos
-            da base CRM Saúde (atualizada em 04/03/2026 · conferido em 27/03/2026) e podem sofrer alterações sem aviso prévio.
+            da base CRM Saúde (atualizada em julho/2026 · conferida ao vivo — o selinho neste rodapé mostra o estado da ligação) e podem sofrer alterações sem aviso prévio.
             Preços são mutáveis — confirme os valores atualizados com um corretor autorizado antes de contratar.
             Os planos de saúde citados são regulados pela <strong>ANS — Agência Nacional de Saúde Suplementar</strong>.<br>
             © 2024–2026 FortPlanos — Todos os direitos reservados.
@@ -932,16 +929,8 @@
     var FAIXAS_LABELS = ['0–18','19–23','24–28','29–33','34–38','39–43','44–48','49–53','54–58','59+'];
 
     var PLANOS_INFO = {
-        'saude-mais-enf':        { nome: 'Saúde+ Enf.',           tag: 'Regional',      tagClass: 'tag-regional', acomod: 'enf',    linha: 'saude-mais' },
-        'saude-mais-quarto':     { nome: 'Saúde+ Apto.',          tag: 'Regional',      tagClass: 'tag-regional', acomod: 'quarto', linha: 'saude-mais' },
-        'efetivo-enf':           { nome: 'Efetivo Enf.',          tag: 'Nacional',      tagClass: 'tag-nacional', acomod: 'enf',    linha: 'efetivo' },
-        'efetivo-quarto':        { nome: 'Efetivo Apto.',         tag: 'Nacional',      tagClass: 'tag-nacional', acomod: 'quarto', linha: 'efetivo' },
-        'efetivo-plus-enf':      { nome: 'Efetivo Plus Enf.',     tag: 'Nacional',      tagClass: 'tag-nacional', acomod: 'enf',    linha: 'efetivo-plus' },
-        'efetivo-plus-quarto':   { nome: 'Efetivo Plus Apto.',    tag: 'Nacional',      tagClass: 'tag-nacional', acomod: 'quarto', linha: 'efetivo-plus' },
         'nacional-ii-enf':       { nome: 'Nacional II Enf.',      tag: 'Nacional',      tagClass: 'tag-nacional', acomod: 'enf',    linha: 'nacional' },
         'nacional-iii-quarto':   { nome: 'Nacional III Apto.',    tag: 'Nacional',      tagClass: 'tag-nacional', acomod: 'quarto', linha: 'nacional' },
-        'nacional-iii-2-quarto': { nome: 'Nacional III-2 Apto.',  tag: 'Nacional',      tagClass: 'tag-nacional', acomod: 'quarto', linha: 'nacional' },
-        'nacional-iii-3-quarto': { nome: 'Nacional III-3 Apto.',  tag: 'Nacional',      tagClass: 'tag-nacional', acomod: 'quarto', linha: 'nacional' },
         'nacional-plus-4-quarto':{ nome: 'Nac. Plus 4 Apto.',    tag: 'Premium',       tagClass: 'tag-premium',  acomod: 'quarto', linha: 'nacional-plus' },
         'nacional-plus-6-quarto':{ nome: 'Nac. Plus 6 Apto.',    tag: 'Premium',       tagClass: 'tag-premium',  acomod: 'quarto', linha: 'nacional-plus' },
         'nacional-plus-8-quarto':{ nome: 'Nac. Plus 8 Apto.',    tag: 'Premium',       tagClass: 'tag-premium',  acomod: 'quarto', linha: 'nacional-plus' },
@@ -951,10 +940,7 @@
     };
 
     var SLUG_ORDER = [
-        'saude-mais-enf','saude-mais-quarto',
-        'efetivo-enf','efetivo-quarto',
-        'efetivo-plus-enf','efetivo-plus-quarto',
-        'nacional-ii-enf','nacional-iii-quarto','nacional-iii-2-quarto','nacional-iii-3-quarto',
+        'nacional-ii-enf','nacional-iii-quarto',
         'nacional-plus-4-quarto','nacional-plus-6-quarto','nacional-plus-8-quarto',
         'premium-6-quarto','premium-8-quarto','premium-10-quarto'
     ];
