@@ -27,9 +27,9 @@
 
     var FAIXAS_ORDEM = ['00a18', '19a23', '24a28', '29a33', '34a38', '39a43', '44a48', '49a53', '54a58', '59mais'];
 
+    // Só as linhas que o cotador ainda vende. Saúde + e Efetivo saíram do
+    // portfólio (continuam na rede credenciada, mas sem tabela de preço).
     var LINHAS_RESUMO = [
-        { tag: 'Regional', tagClass: 'tag-regional', titulo: 'Saúde +', planoSlug: 'saude-mais-enf', acomod: '(enf.)', desc: 'Capital, Grande São Paulo e Baixada Santista.' },
-        { tag: 'Nacional', tagClass: 'tag-nacional', titulo: 'Efetivo', planoSlug: 'efetivo-enf', acomod: '(enf.)', desc: 'Cobertura nacional. Enfermaria e apartamento. Linha mais acessível.' },
         { tag: 'Nacional', tagClass: 'tag-nacional', titulo: 'Nacional', planoSlug: 'nacional-iii-quarto', acomod: '(apto.)', desc: 'Rede ampliada, apartamento. Várias faixas de reembolso.' },
         { tag: 'Premium', tagClass: 'tag-premium', titulo: 'Nacional Plus', planoSlug: 'nacional-plus-4-quarto', acomod: '', desc: 'Rede premium, reembolso amplo. Hospitais de referência nacional.' },
         { tag: 'Ultra Premium', tagClass: 'tag-premium', titulo: 'Premium', planoSlug: 'premium-6-quarto', acomod: '', desc: 'O melhor plano: Einstein, Sírio-Libanês. Reembolso completo.' }

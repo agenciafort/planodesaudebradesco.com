@@ -488,7 +488,7 @@
 
 <!-- ═══════════ BARRA DE ATUALIZAÇÃO ═══════════ -->
 <div class="data-atualizacao">
-    Dados atualizados em <strong>julho/2026</strong> · Conferido ao vivo em <strong>12/07/2026</strong> · Fonte: <strong>cotador Tabelas (CRM Saúde)</strong> · Regulado pela <strong>ANS</strong> · <strong>880 registros em 24 tabelas</strong>
+    Dados atualizados em <strong>julho/2026</strong> · Conferido ao vivo em <strong>27/07/2026</strong> · Fonte: <strong>cotador Tabelas (CRM Saúde)</strong> · Regulado pela <strong>ANS</strong> · <strong>880 registros em 24 tabelas</strong>
 </div>
 
 <!-- ═══════════ HEADER ═══════════ -->
@@ -523,7 +523,7 @@
 <!-- ═══════════ PRINT HEADER ═══════════ -->
 <div class="print-header">
     <h1>Tabela de Preços — Bradesco Saúde 2026</h1>
-    <p>FortPlanos — Corretora Autorizada | planodesaudebradesco.com | contato@fortplanos.com.br | Atualizado em julho/2026 | Conferido ao vivo em 12/07/2026 | São Paulo e Grande SP</p>
+    <p>FortPlanos — Corretora Autorizada | planodesaudebradesco.com | contato@fortplanos.com.br | Atualizado em julho/2026 | Conferido ao vivo em 27/07/2026 | São Paulo e Grande SP</p>
 </div>
 
 <!-- ═══════════ HERO ═══════════ -->
@@ -546,7 +546,7 @@
     <div class="container" style="max-width:900px; text-align:center;">
         <p style="font-size:.95rem; color:var(--cinza-700); margin:0;">
             A <strong>tabela de preços do plano de saúde Bradesco</strong> é referência para empresas que buscam planos empresariais PME em <strong>São Paulo</strong>.
-            Nesta página você encontra <strong>880 registros de preços</strong> (fonte <strong>cotador Tabelas — CRM Saúde</strong>, base julho/2026 · conferido ao vivo em 12/07/2026) em <strong>24 tabelas</strong> da <a href="/planos/">Bradesco Saúde</a>:
+            Nesta página você encontra <strong>880 registros de preços</strong> (fonte <strong>cotador Tabelas — CRM Saúde</strong>, base julho/2026 · conferido ao vivo em 27/07/2026) em <strong>24 tabelas</strong> da <a href="/planos/">Bradesco Saúde</a>:
             desde o acessível <strong>Nacional II Enfermaria</strong> (a partir de R$ 280,60/mês) até o exclusivo <strong>Premium 10</strong> (até R$ 15.631,86/mês).
             Os preços variam conforme 6 fatores: <strong>faixa etária</strong>, <strong>linha de produto</strong>, <strong>acomodação</strong>, <strong>modalidade de adesão</strong>, <strong>coparticipação</strong> e <strong>quantidade de vidas</strong> no grupo.
             Use os filtros abaixo para encontrar o plano ideal para sua empresa.
@@ -624,11 +624,11 @@
 
         <!-- Stats -->
         <div class="stats-bar" id="stats-bar">
-            <div class="stat-card"><span class="stat-value" id="stat-planos">16</span><span class="stat-label">Planos Visíveis</span></div>
+            <div class="stat-card"><span class="stat-value" id="stat-planos">3</span><span class="stat-label">Planos Visíveis</span></div>
             <div class="stat-card"><span class="stat-value" id="stat-faixas">10</span><span class="stat-label">Faixas Etárias</span></div>
-            <div class="stat-card"><span class="stat-value" id="stat-menor">R$ 281</span><span class="stat-label">Menor Preço</span></div>
-            <div class="stat-card"><span class="stat-value" id="stat-maior">R$ 14,1k</span><span class="stat-label">Maior Preço</span></div>
-            <div class="stat-card"><span class="stat-value" id="stat-vidas">30–99</span><span class="stat-label">Faixa de Vidas</span></div>
+            <div class="stat-card"><span class="stat-value" id="stat-menor">R$ 815</span><span class="stat-label">Menor Preço</span></div>
+            <div class="stat-card"><span class="stat-value" id="stat-maior">R$ 7,0k</span><span class="stat-label">Maior Preço</span></div>
+            <div class="stat-card"><span class="stat-value" id="stat-vidas">30 a 99</span><span class="stat-label">Faixa de Vidas</span></div>
         </div>
 
         <!-- Compare -->
@@ -888,7 +888,7 @@
 
 <!-- ═══════════ PRINT FOOTER ═══════════ -->
 <div class="print-footer">
-    Tabela de Preços Bradesco Saúde 2026 · Atualizada em julho/2026 · Conferido ao vivo em 12/07/2026 · Fonte: cotador Tabelas (CRM Saúde) · São Paulo e Grande SP<br>
+    Tabela de Preços Bradesco Saúde 2026 · Atualizada em julho/2026 · Conferido ao vivo em 27/07/2026 · Fonte: cotador Tabelas (CRM Saúde) · São Paulo e Grande SP<br>
     FortPlanos — Corretora Autorizada · planodesaudebradesco.com · contato@fortplanos.com.br<br>
     Valores por pessoa/mês · Preços mutáveis sem aviso prévio — confirme com corretor autorizado · Regulado pela ANS
 </div>
@@ -910,22 +910,14 @@ const ADESAO_LABEL = {comp:'Compulsória',livre:'Livre Adesão'};
 
 // Plan metadata: n=nome, ac=acomodação, acl=label curto, g=grupo, b=badge class, bt=badge text, ord=ordem
 const P = {
-    'efetivo-enf':            {n:'Efetivo',ac:'enf',acl:'Enf.',g:'efetivo',b:'badge-acessivel',bt:'Mais Acessível',ord:1},
-    'efetivo-quarto':         {n:'Efetivo',ac:'quarto',acl:'Apto.',g:'efetivo',b:'badge-acessivel',bt:'Nacional',ord:2},
-    'efetivo-plus-enf':       {n:'Efetivo Plus',ac:'enf',acl:'Enf.',g:'efetivo-plus',b:'badge-nacional',bt:'Nacional',ord:3},
-    'efetivo-plus-quarto':    {n:'Efetivo Plus',ac:'quarto',acl:'Apto.',g:'efetivo-plus',b:'badge-nacional',bt:'Nacional',ord:4},
-    'saude-mais-enf':         {n:'Saúde+',ac:'enf',acl:'Enf.',g:'saude-mais',b:'badge-regional',bt:'Regional',ord:5},
-    'saude-mais-quarto':      {n:'Saúde+',ac:'quarto',acl:'Apto.',g:'saude-mais',b:'badge-regional',bt:'Regional',ord:6},
-    'nacional-ii-enf':        {n:'Nacional II',ac:'enf',acl:'Enf.',g:'nacional',b:'badge-nacional',bt:'Nacional',ord:7},
-    'nacional-iii-quarto':    {n:'Nacional III',ac:'quarto',acl:'Apto.',g:'nacional',b:'badge-nacional',bt:'Nacional',ord:8},
-    'nacional-iii-2-quarto':  {n:'Nacional III 2',ac:'quarto',acl:'Apto.',g:'nacional',b:'badge-nacional',bt:'Nacional',ord:9},
-    'nacional-iii-3-quarto':  {n:'Nacional III 3',ac:'quarto',acl:'Apto.',g:'nacional',b:'badge-nacional',bt:'Nacional',ord:10},
-    'nacional-plus-4-quarto': {n:'Nac. Plus 4',ac:'quarto',acl:'Apto.',g:'nacional-plus',b:'badge-premium',bt:'Premium',ord:11},
-    'nacional-plus-6-quarto': {n:'Nac. Plus 6',ac:'quarto',acl:'Apto.',g:'nacional-plus',b:'badge-premium',bt:'Premium',ord:12},
-    'nacional-plus-8-quarto': {n:'Nac. Plus 8',ac:'quarto',acl:'Apto.',g:'nacional-plus',b:'badge-premium',bt:'Premium',ord:13},
-    'premium-6-quarto':       {n:'Premium 6',ac:'quarto',acl:'Apto.',g:'premium',b:'badge-premium',bt:'Ultra Premium',ord:14},
-    'premium-8-quarto':       {n:'Premium 8',ac:'quarto',acl:'Apto.',g:'premium',b:'badge-premium',bt:'Ultra Premium',ord:15},
-    'premium-10-quarto':      {n:'Premium 10',ac:'quarto',acl:'Apto.',g:'premium',b:'badge-premium',bt:'Ultra Premium',ord:16}
+    'nacional-ii-enf':        {n:'Nacional II',ac:'enf',acl:'Enf.',g:'nacional',b:'badge-acessivel',bt:'Mais Acessível',ord:1},
+    'nacional-iii-quarto':    {n:'Nacional III',ac:'quarto',acl:'Apto.',g:'nacional',b:'badge-nacional',bt:'Nacional',ord:2},
+    'nacional-plus-4-quarto': {n:'Nac. Plus 4',ac:'quarto',acl:'Apto.',g:'nacional-plus',b:'badge-premium',bt:'Premium',ord:3},
+    'nacional-plus-6-quarto': {n:'Nac. Plus 6',ac:'quarto',acl:'Apto.',g:'nacional-plus',b:'badge-premium',bt:'Premium',ord:4},
+    'nacional-plus-8-quarto': {n:'Nac. Plus 8',ac:'quarto',acl:'Apto.',g:'nacional-plus',b:'badge-premium',bt:'Premium',ord:5},
+    'premium-6-quarto':       {n:'Premium 6',ac:'quarto',acl:'Apto.',g:'premium',b:'badge-premium',bt:'Ultra Premium',ord:6},
+    'premium-8-quarto':       {n:'Premium 8',ac:'quarto',acl:'Apto.',g:'premium',b:'badge-premium',bt:'Ultra Premium',ord:7},
+    'premium-10-quarto':      {n:'Premium 10',ac:'quarto',acl:'Apto.',g:'premium',b:'badge-premium',bt:'Ultra Premium',ord:8}
 };
 
 // Price data: D[vidas][adesao][planSlug] = [10 prices for each age bracket]
@@ -933,7 +925,7 @@ let D={"3-a-29":{"comp":{"nacional-plus-4-quarto":[1289.79,1521.95,1841.54,2209.
 
 // ══════════════════════════════════════════════════════════════════
 // ═══════ COPARTICIPAÇÃO COMPLETA 30% — NÃO MEI ═══════
-// ═══════ 1.040 registros · 13 planos (sem Premium 6/8/10) ═══════
+// ═══════ 240 registros · 3 planos (Nac. Plus 4, 6 e 8) ═══════
 // ══════════════════════════════════════════════════════════════════
 let D2={"3-a-29":{"livre":{"nacional-plus-4-quarto":[1146.48,1352.85,1636.93,1964.33,2239.32,2306.5,2808.3,3303.12,3930.71,6878.35],"nacional-plus-6-quarto":[1413.7,1668.17,2018.47,2422.18,2761.26,2844.1,3462.86,4073.02,4846.89,8481.57],"nacional-plus-8-quarto":[1629.84,1923.21,2327.06,2792.5,3183.42,3278.92,3992.28,4695.72,5587.91,9778.28]},"comp":{"nacional-plus-4-quarto":[1031.83,1217.56,1473.24,1767.9,2015.39,2075.85,2527.47,2972.81,3537.64,6190.52],"nacional-plus-6-quarto":[1272.33,1501.35,1816.62,2179.96,2485.13,2559.68,3116.56,3665.7,4362.18,7633.38],"nacional-plus-8-quarto":[1466.86,1730.89,2094.36,2513.25,2865.08,2951.03,3593.06,4226.16,5029.13,8800.47]}},"30-a-99":{"comp":{"nacional-plus-4-quarto":[814.97,961.66,1163.6,1396.33,1591.8,1639.55,1996.25,2347.99,2794.11,4889.41],"nacional-plus-6-quarto":[1004.91,1185.79,1434.79,1721.76,1962.79,2021.67,2461.5,2895.22,3445.31,6028.95],"nacional-plus-8-quarto":[1158.56,1367.1,1654.18,1985.03,2262.91,2330.8,2837.89,3337.93,3972.14,6950.85]},"livre":{"nacional-plus-4-quarto":[943.57,1113.41,1347.21,1616.67,1842.99,1898.28,2311.27,2718.52,3235.04,5661],"nacional-plus-6-quarto":[1163.49,1372.92,1661.22,1993.48,2272.55,2340.73,2849.98,3352.15,3989.06,6980.46],"nacional-plus-8-quarto":[1341.38,1582.83,1915.21,2298.27,2620,2698.6,3285.71,3864.65,4598.93,8047.67]}},"4-a-6":{"comp":{"nacional-plus-4-quarto":[913.13,1077.49,1303.75,1564.51,1783.53,1837.04,2236.71,2630.82,3130.68,5478.38],"nacional-plus-6-quarto":[1125.95,1328.62,1607.62,1929.16,2199.22,2265.2,2758.02,3243.98,3860.34,6755.21],"nacional-plus-8-quarto":[1298.1,1531.76,1853.41,2224.11,2535.46,2611.52,3179.68,3739.94,4450.53,7787.98]},"livre":{"nacional-plus-4-quarto":[1014.58,1197.2,1448.6,1738.33,1981.68,2041.13,2485.2,2923.09,3478.48,6086.99],"nacional-plus-6-quarto":[1251.06,1476.25,1786.25,2143.52,2443.59,2516.9,3064.48,3604.44,4289.28,7505.81],"nacional-plus-8-quarto":[1442.34,1701.96,2059.35,2471.24,2817.19,2901.71,3533.01,4155.53,4945.08,8653.4]}},"7-a-29":{"comp":{"nacional-plus-4-quarto":[849.21,1002.07,1212.49,1455,1658.69,1708.45,2080.14,2446.66,2911.53,5094.89],"nacional-plus-6-quarto":[1047.14,1235.63,1495.1,1794.13,2045.29,2106.65,2564.97,3016.92,3590.13,6282.37],"nacional-plus-8-quarto":[1207.24,1424.54,1723.68,2068.43,2357.99,2428.73,2957.12,3478.16,4139.01,7242.85]},"livre":{"nacional-plus-4-quarto":[943.57,1113.41,1347.21,1616.67,1842.99,1898.28,2311.27,2718.52,3235.04,5661],"nacional-plus-6-quarto":[1163.49,1372.92,1661.22,1993.48,2272.55,2340.73,2849.98,3352.15,3989.06,6980.46],"nacional-plus-8-quarto":[1341.38,1582.83,1915.21,2298.27,2620,2698.6,3285.71,3864.65,4598.93,8047.67]}}};
 
@@ -1066,7 +1058,7 @@ function renderTableGroup(titulo, vidasKey, adesaoKey, activeAge) {
     }
 
     // Split into essenciais and premium groups if both present
-    const essenciais = slugs.filter(s => ['efetivo','efetivo-plus','saude-mais','nacional'].includes(P[s].g));
+    const essenciais = slugs.filter(s => ['nacional'].includes(P[s].g));
     const premium = slugs.filter(s => ['nacional-plus','premium'].includes(P[s].g));
 
     let html = '';
@@ -1124,7 +1116,7 @@ function buildTable(titulo, vidasKey, adesaoKey, slugs, activeAge, groupId) {
     }
 
     h += `</tbody></table></div>
-        <p class="tabela-nota">${titulo} · ${VIDAS_LABEL[vidasKey]} · ${ADESAO_LABEL[adesaoKey]} · ${COPART_LABEL[fCopart.value]} · Atualizada em julho/2026 · Conferido ao vivo em 12/07/2026 · Fonte: cotador Tabelas (CRM Saúde / Bradesco Saúde) · São Paulo e Grande SP · Preços mutáveis — confirme com corretor autorizado</p>
+        <p class="tabela-nota">${titulo} · ${VIDAS_LABEL[vidasKey]} · ${ADESAO_LABEL[adesaoKey]} · ${COPART_LABEL[fCopart.value]} · Atualizada em julho/2026 · Conferido ao vivo em 27/07/2026 · Fonte: cotador Tabelas (CRM Saúde / Bradesco Saúde) · São Paulo e Grande SP · Preços mutáveis — confirme com corretor autorizado</p>
     </div>`;
     return h;
 }
