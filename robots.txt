@@ -1,5 +1,23 @@
 User-agent: *
 Allow: /
-Disallow: /img/og-*
+
+# ATENÇÃO: não volte a bloquear /img/og-*.
+# Essas são as imagens de og:image usadas em 10 páginas. Bloqueá-las impede
+# Google, Facebook e WhatsApp de buscá-las, e o preview de compartilhamento
+# quebra — o link aparece sem imagem. O ganho de "não ranquear sozinha" não
+# compensa perder o card visual em toda partilha do site.
+
+# /conexao/ e /conexao-b7x2k9/ NÃO entram aqui de propósito: as duas já têm
+# <meta name="robots" content="noindex, nofollow"> no HTML. Bloqueá-las neste
+# arquivo impediria o Google de rastrear e, portanto, de LER o noindex — as URLs
+# continuariam indexadas. Rastreamento liberado é o que faz o noindex funcionar.
+
+# Arquivos sem HTML (não aceitam meta noindex) — só o robots pode contê-los.
+# Regra: nunca citar aqui o nome de um arquivo específico que você quer esconder.
+# Este arquivo é público — listar um caminho aqui é anunciá-lo. Use padrões amplos
+# e, para o que é realmente privado, mantenha fora do repositório.
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
 
 Sitemap: https://planodesaudebradesco.com/sitemap.xml

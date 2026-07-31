@@ -1,69 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- ===== Institucional / hub ===== -->
     <url>
         <loc>https://planodesaudebradesco.com/</loc>
-        <lastmod>2026-02-20</lastmod>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
+
+    <!-- ===== Conversão e preço (maior volume de busca) ===== -->
     <url>
-        <loc>https://planodesaudebradesco.com/sao-paulo/</loc>
-        <lastmod>2026-02-20</lastmod>
+        <loc>https://planodesaudebradesco.com/tabela-de-precos/</loc>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://planodesaudebradesco.com/contato/</loc>
-        <lastmod>2026-02-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://planodesaudebradesco.com/quem-somos/</loc>
-        <lastmod>2026-02-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://planodesaudebradesco.com/servicos/</loc>
-        <lastmod>2026-02-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://planodesaudebradesco.com/planos/</loc>
-        <lastmod>2026-02-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://planodesaudebradesco.com/cidades/</loc>
-        <lastmod>2026-02-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://planodesaudebradesco.com/simulador-de-precos/</loc>
-        <lastmod>2026-02-20</lastmod>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://planodesaudebradesco.com/tabela-de-precos/</loc>
-        <lastmod>2026-02-20</lastmod>
+        <loc>https://planodesaudebradesco.com/planos/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- ===== Praças ===== -->
+    <url>
+        <loc>https://planodesaudebradesco.com/sao-paulo/</loc>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://planodesaudebradesco.com/sao-paulo/rede-credenciada.html</loc>
-        <lastmod>2026-02-21</lastmod>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
+        <loc>https://planodesaudebradesco.com/cidades/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== Institucional ===== -->
+    <url>
+        <loc>https://planodesaudebradesco.com/servicos/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/contato/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/quem-somos/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- ===== Blog (autoridade temática) ===== -->
+    <url>
         <loc>https://planodesaudebradesco.com/blog/</loc>
-        <lastmod>2026-02-20</lastmod>
+        <lastmod>2026-07-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/blog/plano-bradesco-saude-pme-como-funciona/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/blog/coparticipacao-plano-bradesco-saude-vale-a-pena/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/blog/rede-credenciada-bradesco-saude-sao-paulo/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/blog/como-escolher-plano-bradesco-saude-empresa/</loc>
+        <lastmod>2026-07-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!--
+      Fora do sitemap por decisão (já marcadas noindex,nofollow no HTML):
+        /conexao/            → redirecionamento legado
+        /conexao-b7x2k9/     → página operacional interna
+    -->
+
 </urlset>
