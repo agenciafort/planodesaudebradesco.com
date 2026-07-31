@@ -27,8 +27,11 @@
 
     var FAIXAS_ORDEM = ['00a18', '19a23', '24a28', '29a33', '34a38', '39a43', '44a48', '49a53', '54a58', '59mais'];
 
-    // Só as linhas que o cotador ainda vende. Saúde + e Efetivo saíram do
-    // portfólio (continuam na rede credenciada, mas sem tabela de preço).
+    // Cards do resumo da home. Saúde + e Efetivo voltaram a ter tabela no
+    // cotador em 28-29/07, mas os preços delas caem todos em células ambíguas
+    // (duas famílias de tabela em conflito na fonte) — enquanto isso não for
+    // resolvido no Tabelas, não há preço único para mostrar. Quando houver,
+    // basta reintroduzir a entrada aqui: o valor vem da tomada, não daqui.
     var LINHAS_RESUMO = [
         { tag: 'Nacional', tagClass: 'tag-nacional', titulo: 'Nacional', planoSlug: 'nacional-iii-quarto', acomod: '(apto.)', desc: 'Rede ampliada, apartamento. Várias faixas de reembolso.' },
         { tag: 'Premium', tagClass: 'tag-premium', titulo: 'Nacional Plus', planoSlug: 'nacional-plus-4-quarto', acomod: '', desc: 'Rede premium, reembolso amplo. Hospitais de referência nacional.' },
