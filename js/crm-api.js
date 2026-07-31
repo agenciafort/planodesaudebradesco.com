@@ -112,6 +112,10 @@
         return _promessa;
     }
 
+    // Guardado da última carga, para o painel /conexao contar a história.
+    var _diagnostico = null;
+    function diagnostico() { return _diagnostico; }
+
     async function carregar() {
         var produtos = await vivoGet('produtos');
 
@@ -126,11 +130,15 @@
         });
         if (!meus.length) return null;
 
-        var D = {};
-        var D2 = {};
+        // ── 1ª passada: junta TODOS os preços que a fonte dá para cada célula ──
+        // Uma célula é (copart, vidas, adesão, plano+acomodação, faixa). Se o
+        // cotador devolve mais de um preço para a mesma célula — como acontece
+        // quando duas famílias de tabela coexistem (ex.: "Saúde PME" e
+        // "… | Reembolso Específico") — não existe critério aqui para escolher.
+        // Escolher seria chutar. Então a gente se abstém.
+        var celulas = {};     // chave -> { precos: [], origens: [] }
         var slugToId = {};
         var updatedAt = null;
-        var totalPrecos = 0;
 
         for (var i = 0; i < meus.length; i++) {
             var p = meus[i];
@@ -142,28 +150,64 @@
                 var idx = FAIXAS_ORDEM.indexOf(r.faixa_codigo);
                 if (idx < 0) return;
 
-                var alvo = temCopart(r.coparticipacao) ? D2 : D;
-                var vidas = chaveVidas(r.vidas_min, r.vidas_max);
-                var adesao = chaveAdesao(r.tipo_adesao);
-                var slug = slugDoSite(r.plano_nome, r.acomodacao);
+                var chave = [
+                    temCopart(r.coparticipacao) ? 'D2' : 'D',
+                    chaveVidas(r.vidas_min, r.vidas_max),
+                    chaveAdesao(r.tipo_adesao),
+                    slugDoSite(r.plano_nome, r.acomodacao),
+                    idx
+                ].join('|');
 
-                if (!alvo[vidas]) alvo[vidas] = {};
-                if (!alvo[vidas][adesao]) alvo[vidas][adesao] = {};
-                if (!alvo[vidas][adesao][slug]) alvo[vidas][adesao][slug] = [];
-
-                var cel = alvo[vidas][adesao][slug];
-                if (cel[idx] != null && cel[idx] !== r.preco) {
-                    // dois produtos disputando a mesma célula: fica o primeiro, e avisa
-                    console.warn('[FP_CRM] Conflito de preço ignorado:', slug, vidas, adesao, r.faixa_codigo, cel[idx], '≠', r.preco);
-                    return;
+                var c = celulas[chave] || (celulas[chave] = { precos: [], origens: [] });
+                if (c.precos.indexOf(r.preco) === -1) {
+                    c.precos.push(r.preco);
+                    c.origens.push(r.tabela_nome || ('tabela ' + r.tabela_id));
                 }
-                cel[idx] = r.preco;
-                if (slugToId[slug] == null) slugToId[slug] = r.plano_id;
-                totalPrecos++;
+                var s = slugDoSite(r.plano_nome, r.acomodacao);
+                if (slugToId[s] == null) slugToId[s] = r.plano_id;
             });
         }
 
+        // ── 2ª passada: só entra no site a célula com UM preço, e um só ──
+        var D = {}, D2 = {};
+        var totalPrecos = 0;
+        var ambiguas = [];
+
+        Object.keys(celulas).forEach(function (chave) {
+            var c = celulas[chave];
+            var parte = chave.split('|');
+            if (c.precos.length > 1) {
+                ambiguas.push({ celula: chave, precos: c.precos.slice(), origens: c.origens.slice() });
+                return; // preço sem origem única não se mostra
+            }
+            var alvo = parte[0] === 'D2' ? D2 : D;
+            var vidas = parte[1], adesao = parte[2], slug = parte[3], idx = Number(parte[4]);
+            if (!alvo[vidas]) alvo[vidas] = {};
+            if (!alvo[vidas][adesao]) alvo[vidas][adesao] = {};
+            if (!alvo[vidas][adesao][slug]) alvo[vidas][adesao][slug] = [];
+            alvo[vidas][adesao][slug][idx] = c.precos[0];
+            totalPrecos++;
+        });
+
+        _diagnostico = {
+            produtos: meus.length,
+            celulas: Object.keys(celulas).length,
+            publicaveis: totalPrecos,
+            ambiguas: ambiguas,
+            updatedAt: updatedAt
+        };
+
         if (!totalPrecos) return null;
+
+        // Fonte em contradição: mantém o HTML publicado (que tem data visível)
+        // em vez de mostrar um preço decidido por ordem de chegada.
+        if (ambiguas.length) {
+            console.warn('[FP_CRM] Tomada AMBÍGUA: ' + ambiguas.length + ' de ' +
+                Object.keys(celulas).length + ' células têm mais de um preço na fonte. ' +
+                'O site segue com a última publicação. Exemplo:', ambiguas[0]);
+            return null;
+        }
+
         console.log('[FP_CRM] Tomada viva: ' + totalPrecos + ' preços de ' + meus.length + ' produto(s) do cotador.');
         return { D: D, D2: D2, slugToId: slugToId, updatedAt: updatedAt };
     }
@@ -272,19 +316,26 @@
             var alvo = w.document.querySelector('footer .footer-bottom') || w.document.querySelector('footer');
             if (!alvo || w.document.getElementById('fp-selinho')) return;
             var on = !!dados;
+            var d = diagnostico();
+            var ambiguo = !on && d && d.ambiguas && d.ambiguas.length > 0;
             var pill = w.document.createElement('div');
             pill.id = 'fp-selinho';
             pill.setAttribute('title', on
                 ? 'Preços conferidos ao vivo na fonte oficial agora'
-                : 'Mostrando a última publicação — nova conferência ao recarregar');
+                : ambiguo
+                    ? 'A fonte está com tabelas em revisão (mais de um preço para a mesma combinação). Mostrando a última publicação conferida.'
+                    : 'Mostrando a última publicação — nova conferência ao recarregar');
             pill.style.cssText = 'display:inline-flex;align-items:center;gap:7px;margin:14px auto 0;' +
                 'padding:5px 14px;border-radius:99px;font-size:12px;line-height:1;' +
                 'border:1px solid rgba(128,128,128,.35);opacity:.9;';
+            var cor = on ? '#22c55e;box-shadow:0 0 6px #22c55e' : (ambiguo ? '#f59e0b' : '#9ca3af');
             var dot = '<span style="width:8px;height:8px;border-radius:50%;display:inline-block;' +
-                'background:' + (on ? '#22c55e;box-shadow:0 0 6px #22c55e' : '#9ca3af') + ';"></span>';
+                'background:' + cor + ';"></span>';
             var texto = on
                 ? 'Tabelas e dados em dia — ao vivo' + (dados.updatedAt ? ' · preços de ' + formatData(dados.updatedAt) : '')
-                : 'Tabelas e dados da última publicação';
+                : ambiguo
+                    ? 'Tabelas em revisão na fonte — mostrando a última publicação conferida'
+                    : 'Tabelas e dados da última publicação';
             pill.innerHTML = dot + '<span>' + texto + '</span>';
             var wrap = w.document.createElement('div');
             wrap.style.textAlign = 'center';
@@ -305,6 +356,7 @@
         vivoGet: vivoGet,
         hydrateLinhasProduto: hydrateLinhasProduto,
         loadAllPrices: loadAllPrices,
+        diagnostico: diagnostico,
         buildSimuladorTabela: buildSimuladorTabela,
         formatData: formatData,
         hoje: hoje

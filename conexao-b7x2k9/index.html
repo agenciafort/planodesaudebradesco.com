@@ -16,6 +16,7 @@
     .selo { display:inline-block; font-size:.78rem; font-weight:700; padding:4px 14px; border-radius:99px; letter-spacing:.04em; }
     .selo.ok { background:var(--ok-bg); color:var(--ok); }
     .selo.erro { background:var(--erro-bg); color:var(--erro); }
+    .selo.alerta { background:#fff8ed; color:#b45309; }
     .selo.aguarde { background:#eef2f0; color:var(--cinza); }
     .linha { display:flex; justify-content:space-between; gap:14px; padding:7px 0; border-top:1px solid var(--linha); font-size:.88rem; }
     .linha:first-of-type { border-top:0; }
@@ -52,6 +53,34 @@
 
     FP_CRM.loadAllPrices().then(function (d) {
         var ms = Math.round(performance.now() - t0);
+        var diag = FP_CRM.diagnostico && FP_CRM.diagnostico();
+
+        // Fonte respondeu, mas com mais de um preço para a mesma combinação:
+        // não dá para escolher sem chutar, então o site não publica ao vivo.
+        if (!d && diag && diag.ambiguas && diag.ambiguas.length) {
+            selo.className = 'selo alerta';
+            selo.textContent = '🟠 TABELAS EM REVISÃO NA FONTE';
+            var a = diag.ambiguas[0];
+            var p = a.celula.split('|');
+            det.innerHTML =
+                linha('Tempo de resposta', ms + ' ms') +
+                linha('Células recebidas', diag.celulas.toLocaleString('pt-BR')) +
+                linha('Com preço único (publicáveis)', diag.publicaveis.toLocaleString('pt-BR')) +
+                linha('<b style="color:#b45309">Com mais de um preço</b>', '<b style="color:#b45309">' + diag.ambiguas.length.toLocaleString('pt-BR') + '</b>') +
+                linha('O que isso significa', 'o cotador devolve 2 preços para a mesma combinação') +
+                linha('Efeito no visitante', 'páginas seguem com o último HTML publicado e conferido') +
+                '<div style="margin-top:12px;padding:12px 14px;background:#fff8ed;border:1px solid #fcd9a4;border-radius:9px;font-size:.83rem;">' +
+                '<b>Exemplo de conflito</b><br>' +
+                (p[0] === 'D2' ? 'com coparticipação' : 'sem coparticipação') + ' · ' + p[1] + ' vidas · ' +
+                (p[2] === 'comp' ? 'compulsória' : 'livre') + ' · ' + p[3] + ' · faixa ' + (Number(p[4]) + 1) + 'ª<br>' +
+                a.precos.map(function (v, i) {
+                    return '<b>R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) + '</b> — ' + (a.origens[i] || '—');
+                }).join('<br>') +
+                '<br><br>Resolva no Tabelas: mantenha só a tabela que vale para este site.' +
+                '</div>';
+            return;
+        }
+
         if (!d) {
             selo.className = 'selo erro';
             selo.textContent = '🔴 SEM RESPOSTA DO COTADOR';
