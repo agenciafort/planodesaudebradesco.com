@@ -731,7 +731,7 @@
         </div>
         <div class="modal-body" id="modal-body"></div>
         <div class="modal-footer">
-            Rede completa com filtros avançados: <a href="/sao-paulo/rede-credenciada.html">Rede Credenciada SP</a>
+            Rede completa com filtros avançados: <a href="/sao-paulo/rede-credenciada/">Rede Credenciada SP</a>
         </div>
     </div>
 </div>
@@ -804,7 +804,7 @@
                 <div class="faq-pergunta">Como vejo os hospitais de cada plano?</div>
                 <div class="faq-resposta"><div class="faq-resposta-inner">
                     Nos cards de resultado, clique no botão <strong>"Ver Rede Credenciada"</strong>.
-                    Ele leva à página da <a href="/sao-paulo/rede-credenciada.html">rede credenciada em São Paulo</a>,
+                    Ele leva à página da <a href="/sao-paulo/rede-credenciada/">rede credenciada em São Paulo</a>,
                     onde você encontra hospitais, laboratórios e clínicas de cada linha do Bradesco Saúde.
                 </div></div>
             </div>
@@ -851,7 +851,7 @@
             <a href="/planos/">Planos</a><br>
             <a href="/tabela-de-precos/">Tabela de Preços</a><br>
             <a href="/simulador-de-precos/">Simulador de Preços</a><br>
-            <a href="/sao-paulo/rede-credenciada.html">Rede Credenciada SP</a><br>
+            <a href="/sao-paulo/rede-credenciada/">Rede Credenciada SP</a><br>
             <a href="/blog/">Blog</a>
         </div>
 
@@ -1148,7 +1148,7 @@
 
     function loadRedeData() {
         if (redeCache) return Promise.resolve(redeCache);
-        return fetch('/sao-paulo/rede-credenciada.html')
+        return fetch('/sao-paulo/rede-credenciada/')
             .then(function (r) { return r.text(); })
             .then(function (html) {
                 redeCache = parseRedeFromHtml(html);
@@ -1226,7 +1226,7 @@
             });
             body.innerHTML = html;
         }).catch(function () {
-            body.innerHTML = '<div style="text-align:center; padding:30px; color:var(--cinza-700);">Erro ao carregar. <a href="/sao-paulo/rede-credenciada.html">Ver página completa</a>.</div>';
+            body.innerHTML = '<div style="text-align:center; padding:30px; color:var(--cinza-700);">Erro ao carregar. <a href="/sao-paulo/rede-credenciada/">Ver página completa</a>.</div>';
         });
     }
 
