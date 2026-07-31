@@ -88,7 +88,7 @@
     }
     </script>
 
-    <!-- ══════ Schema.org: FAQPage (10 perguntas) ══════ -->
+    <!-- ══════ Schema.org: FAQPage (11 perguntas) ══════ -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -100,6 +100,14 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "O Bradesco Saúde é a operadora de planos de saúde do grupo Bradesco Seguros, uma das maiores e mais tradicionais do Brasil. Oferece planos empresariais (PME) com 3 linhas de produto — do essencial ao ultra-premium — com cobertura nacional, rede credenciada ampla e opções de reembolso. É regulado pela ANS e atende empresas a partir de 3 vidas."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "A Bradesco Saúde tem plano de saúde individual?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Não. A Bradesco Saúde não comercializa planos individuais ou familiares para novas contratações — trabalha apenas com planos coletivos. Quem procura um plano Bradesco como pessoa física tem dois caminhos: o coletivo empresarial (PME), para quem tem CNPJ, inclusive MEI, a partir de 3 vidas e com CNPJ de no mínimo 6 meses; e o coletivo por adesão, para quem pertence a uma entidade de classe, sindicato ou conselho profissional conveniado. Na prática, o plano empresarial costuma sair mais barato que um plano individual equivalente."
                 }
             },
             {
@@ -620,6 +628,7 @@
 <!-- ═══════════════════ NAVEGAÇÃO IN-PAGE ═══════════════════ -->
 <nav class="page-nav" aria-label="Navegação rápida desta página">
     <div class="container">
+        <a href="#individual">Tem Individual?</a>
         <a href="#planos">Linhas de Produto</a>
         <a href="#precos">Preços</a>
         <a href="#cidades">Cidades</a>
@@ -649,6 +658,29 @@
                 simulador de preços e cotação online gratuita.
             </p>
         </div>
+
+        <!-- ═══ Resposta direta: plano individual (maior duvida de quem chega pela busca) ═══ -->
+        <div id="individual" style="max-width:820px; margin:40px auto 0; padding:28px 30px; background:var(--cinza-100); border-left:4px solid var(--vermelho); border-radius:6px;">
+            <h2 style="font-size:1.45rem; margin:0 0 12px;">A Bradesco Saúde Tem Plano Individual?</h2>
+            <p style="margin:0 0 16px; font-size:1.05rem;">
+                <strong>Não.</strong> A Bradesco Saúde não comercializa planos individuais ou familiares para novas contratações —
+                trabalha apenas com planos coletivos. Quem procura um plano Bradesco como pessoa física tem
+                <strong>dois caminhos legítimos</strong>: o coletivo empresarial (PME) e o coletivo por adesão.
+            </p>
+            <p style="margin:0 0 14px;">
+                <strong>1. Coletivo empresarial (PME)</strong> — para quem tem CNPJ, inclusive
+                <strong>MEI</strong>. É o caminho mais usado e costuma sair mais barato que um plano individual equivalente.
+                O mínimo é de 3 vidas, e o CNPJ precisa ter pelo menos 6 meses de abertura.
+            </p>
+            <p style="margin:0 0 18px;">
+                <strong>2. Coletivo por adesão</strong> — para quem pertence a uma entidade de classe, sindicato ou
+                conselho profissional conveniado. A elegibilidade depende da profissão e da entidade.
+            </p>
+            <p style="margin:0; font-size:.92rem; color:var(--cinza-700);">
+                Se você não se enquadra em nenhum dos dois, um corretor autorizado pode indicar o caminho viável
+                para o seu caso — inclusive de outras operadoras. <a href="/contato/">Fale com a FortPlanos</a>.
+            </p>
+        </div>
     </div>
 </section>
 
@@ -657,8 +689,8 @@
     <div class="container">
         <div class="section-header">
             <span class="label">Linhas de Produto</span>
-            <h2>3 Linhas de Plano de Saúde Bradesco para Empresas</h2>
-            <p>Do essencial com cobertura nacional ao ultra-premium com acesso a Einstein e Sírio-Libanês.</p>
+            <h2>Qual Plano de Saúde Bradesco Escolher?</h2>
+            <p>São 3 linhas, do essencial com cobertura nacional ao ultra-premium com acesso a Einstein e Sírio-Libanês. Veja o resumo abaixo e, se quiser o comparativo item a item, abra a página das linhas.</p>
         </div>
 
         <div class="cards-grid cards-grid-3" id="planos-linhas-grid">
@@ -683,6 +715,10 @@
                 <div class="preco">R$ 1.781</div>
                 <div class="preco-detalhe">a partir de / mês</div>
             </div>
+        </div>
+
+        <div style="text-align:center; margin-top:30px;">
+            <a href="/planos/" class="btn btn-vermelho">Comparar as 3 linhas em detalhe</a>
         </div>
 
         <p id="planos-data-nota" style="text-align:center; margin-top:25px; font-size:.85rem; color:var(--cinza-700);">
@@ -976,6 +1012,16 @@
                     uma das maiores seguradoras da América Latina. Oferece planos empresariais (PME) com 3 linhas de produto
                     — do essencial ao ultra-premium — com cobertura nacional, rede credenciada ampla com hospitais de referência
                     e opções de reembolso. É regulado pela <strong>ANS</strong> e atende empresas a partir de 3 vidas.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pergunta" role="button" tabindex="0" aria-expanded="false">A Bradesco Saúde tem plano de saúde individual?</div>
+                <div class="faq-resposta"><div class="faq-resposta-inner">
+                    Não. A Bradesco Saúde <strong>não comercializa planos individuais ou familiares</strong> para novas contratações —
+                    trabalha apenas com planos coletivos. Há dois caminhos para pessoa física:
+                    o <strong>coletivo empresarial (PME)</strong>, para quem tem CNPJ, inclusive MEI, a partir de 3 vidas; e o
+                    <strong>coletivo por adesão</strong>, para quem pertence a uma entidade de classe ou conselho profissional conveniado.
+                    <a href="/#individual">Entenda os dois caminhos</a>.
                 </div></div>
             </div>
             <div class="faq-item">
