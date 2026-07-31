@@ -1,0 +1,25 @@
+# Tudo neste repositório é publicado em planodesaudebradesco.com.
+# O host não remove arquivos apagados (ver commit 8092e25) — o que sobe, sobe para sempre.
+# Por isso, nada de dados internos aqui dentro.
+
+# Pesquisa de palavras-chave e exportações de ferramentas (SEMrush, GSC, Ahrefs...)
+# Os CSVs de origem vivem em: c:\projetos\_dados-seo-planodesaudebradesco\
+*.csv
+*.tsv
+*.xlsx
+*.xls
+
+# Planejamento interno — estratégia de SEO não vai para repositório publicado.
+# Fica na raiz por conveniência de edição, mas nunca é commitado nem servido.
+# Backup automático em _dados-seo-planodesaudebradesco\ ao fim de cada sessão.
+proximo-dia.md
+
+# Planilhas de cotação e material interno
+*.bak
+*.tmp
+~$*
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
