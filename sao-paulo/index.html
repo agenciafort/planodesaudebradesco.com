@@ -224,22 +224,10 @@
     }
     </script>
 
-    <!-- ══════ Schema.org: HowTo ══════ -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "Como contratar plano Bradesco Saúde para empresas em São Paulo",
-        "description": "Passo a passo para contratar o plano de saúde Bradesco Saúde PME em São Paulo e Grande SP.",
-        "step": [
-            { "@type": "HowToStep", "position": 1, "name": "Solicite cotação gratuita", "text": "Entre em contato com a FortPlanos informando CNPJ, número de beneficiários e dados básicos da empresa." },
-            { "@type": "HowToStep", "position": 2, "name": "Compare planos e preços", "text": "Receba a cotação personalizada com as 3 linhas de produto e 24 tabelas de preços disponíveis para São Paulo." },
-            { "@type": "HowToStep", "position": 3, "name": "Envie a documentação", "text": "Envie contrato social, CNPJ, documentos dos beneficiários e Declaração Pessoal de Saúde (DPS)." },
-            { "@type": "HowToStep", "position": 4, "name": "Análise e aprovação", "text": "A Bradesco Saúde realiza análise médica e emite a proposta para assinatura eletrônica." },
-            { "@type": "HowToStep", "position": 5, "name": "Ativação do plano", "text": "Após pagamento do primeiro boleto, o plano é ativado com vigência de 12 meses em São Paulo e Grande SP." }
-        ]
-    }
-    </script>
+    <!-- HowTo removido em 2026-07-31: era o mesmo passo a passo de /como-contratar/,
+         apenas com 'em Sao Paulo' no nome. Paginas de praca NAO devem repetir este schema —
+         com 34 pracas na Fase 3, seriam 35 copias competindo pelo mesmo assunto.
+         O passo a passo canonico vive em /como-contratar/; a praca so encaminha. -->
 
     <style>
         :root {
@@ -1110,6 +1098,10 @@
                 <p>Boleto pago = plano ativado para toda a equipe em SP.</p>
             </div>
         </div>
+
+        <div style="text-align:center; margin-top:28px;">
+            <a href="/como-contratar/" class="btn btn-vermelho">Ver o Passo a Passo Completo</a>
+        </div>
     </div>
 </section>
 
@@ -1367,6 +1359,7 @@
         <div>
             <strong style="color:var(--branco);">Bradesco Saúde</strong><br>
             <a href="/individual/">Plano Individual</a><br>
+            <a href="/como-contratar/">Como Contratar</a><br>
             <a href="/planos/">Planos</a><br>
             <a href="/tabela-de-precos/">Tabela de Preços</a><br>
             <a href="/simulador-de-precos/">Simulador de Preços</a><br>
