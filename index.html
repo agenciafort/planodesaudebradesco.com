@@ -29,14 +29,23 @@
     <meta name="twitter:description" content="Plano de saúde Bradesco: preços por faixa etária, rede credenciada e cotação grátis. A partir de R$ 355/mês. FortPlanos, corretora autorizada.">
     <meta name="twitter:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
 
-    <!-- ══════ Schema.org: InsuranceAgency ══════ -->
+    <!-- ══════ Schema.org: RAIZ DO GRAFO DE ENTIDADES ══════
+         Esta é a definição canônica da FortPlanos e do site. Todas as outras
+         páginas apenas REFERENCIAM estes dois @id — nenhuma redefine a empresa.
+         Antes da fase 4.3 cada página declarava a organização por conta própria,
+         e o Google via várias entidades soltas em vez de uma só.
+         Se precisar mudar dado da empresa (nome, CNPJ, logo, redes), mude AQUI.
+    -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "InsuranceAgency",
+        "@id": "https://planodesaudebradesco.com/#organization",
         "name": "FortPlanos",
+        "legalName": "A Clebio Costa Bispo Publicidade LTDA - ME",
         "url": "https://fortplanos.com.br",
         "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+        "image": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
         "description": "Corretora autorizada especializada em planos de saúde empresariais Bradesco Saúde. Cotação online, comparação de planos e atendimento personalizado.",
         "email": "contato@fortplanos.com.br",
         "taxID": "53.290.346/0001-38",
@@ -46,6 +55,14 @@
             "addressRegion": "SP",
             "addressCountry": "BR"
         },
+        "areaServed": { "@type": "Country", "name": "Brasil" },
+        "knowsAbout": [
+            "Plano de saúde empresarial",
+            "Bradesco Saúde",
+            "Plano de saúde PME",
+            "Rede credenciada",
+            "Reembolso de plano de saúde"
+        ],
         "sameAs": [
             "https://fortplanos.com.br",
             "https://www.instagram.com/fortplanosdesaude/",
@@ -55,21 +72,32 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://planodesaudebradesco.com/#website",
+        "url": "https://planodesaudebradesco.com/",
+        "name": "Plano de Saúde Bradesco — FortPlanos",
+        "description": "Informação verificável sobre planos de saúde Bradesco Saúde: preços com data e origem, rede credenciada, coberturas e contratação.",
+        "inLanguage": "pt-BR",
+        "publisher": { "@id": "https://planodesaudebradesco.com/#organization" }
+    }
+    </script>
+
     <!-- ══════ Schema.org: WebPage + BreadcrumbList ══════ -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
+        "@id": "https://planodesaudebradesco.com/#webpage",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "name": "Plano de Saúde Bradesco — Cotação Online Grátis 2026",
         "description": "Compare planos de saúde Bradesco para empresas. 3 linhas de produto, cobertura nacional, cotação online grátis pela FortPlanos.",
         "url": "https://planodesaudebradesco.com/",
-        "dateModified": "2026-02-20",
-        "publisher": {
-            "@type": "Organization",
-            "name": "FortPlanos",
-            "url": "https://fortplanos.com.br",
-            "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp"
-        },
+        "inLanguage": "pt-BR",
+        "dateModified": "2026-08-02",
+        "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
         "about": {
             "@type": "Product",
             "name": "Bradesco Saúde",

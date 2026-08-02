@@ -27,6 +27,52 @@
     <meta name="twitter:description" content="Regras de uso do site planodesaudebradesco.com: natureza das informações, preços referenciais, papel da corretora FortPlanos e limites de responsabilidade.">
     <meta name="twitter:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
 
+    <!-- ══════ Schema.org: entidades do grafo ══════
+         Cópia compacta da organização e do site, repetida em todas as páginas
+         de propósito: buscador processa uma página por vez, então sem este bloco
+         as referências "@id" desta página apontariam para um nó que ela não contém.
+         A definição completa (description, knowsAbout, areaServed) vive na home.
+         Ao mudar dado da empresa, mude na home E aqui.
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "InsuranceAgency",
+                "@id": "https://planodesaudebradesco.com/#organization",
+                "name": "FortPlanos",
+                "legalName": "A Clebio Costa Bispo Publicidade LTDA - ME",
+                "url": "https://fortplanos.com.br",
+                "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "image": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "email": "contato@fortplanos.com.br",
+                "taxID": "53.290.346/0001-38",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "São Paulo",
+                    "addressRegion": "SP",
+                    "addressCountry": "BR"
+                },
+                "sameAs": [
+                    "https://fortplanos.com.br",
+                    "https://www.instagram.com/fortplanosdesaude/",
+                    "https://www.facebook.com/fortplanos/",
+                    "https://www.youtube.com/@fortplanos"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://planodesaudebradesco.com/#website",
+                "url": "https://planodesaudebradesco.com/",
+                "name": "Plano de Saúde Bradesco — FortPlanos",
+                "inLanguage": "pt-BR",
+                "publisher": { "@id": "https://planodesaudebradesco.com/#organization" }
+            }
+        ]
+    }
+    </script>
+
     <!--
       NOTA DE SCHEMA (regra 4 do plano): sem FAQPage aqui, pelo mesmo motivo da
       política de privacidade — documento jurídico corrido não é pergunta-e-resposta.
@@ -36,21 +82,15 @@
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
+        "@id": "https://planodesaudebradesco.com/termos-de-uso/#webpage",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "name": "Termos de Uso — planodesaudebradesco.com",
         "description": "Termos e condições de uso do site planodesaudebradesco.com, operado pela corretora FortPlanos.",
         "url": "https://planodesaudebradesco.com/termos-de-uso/",
         "inLanguage": "pt-BR",
         "datePublished": "2026-08-02",
         "dateModified": "2026-08-02",
-        "publisher": {
-            "@type": "Organization",
-            "name": "FortPlanos",
-            "legalName": "A Clebio Costa Bispo Publicidade LTDA - ME",
-            "taxID": "53.290.346/0001-38",
-            "url": "https://fortplanos.com.br",
-            "email": "contato@fortplanos.com.br",
-            "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp"
-        },
+        "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [

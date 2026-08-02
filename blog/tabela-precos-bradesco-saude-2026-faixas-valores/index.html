@@ -22,23 +22,66 @@
     <meta name="twitter:description" content="As 10 faixas etárias da ANS na tabela Bradesco Saúde 2026, como o preço muda conforme o número de vidas e o efeito da coparticipação.">
     <meta name="twitter:image" content="https://planodesaudebradesco.com/img/blog/tabela-precos-bradesco-2026.webp">
 
+        <!-- ══════ Schema.org: entidades do grafo ══════
+         Cópia compacta da organização e do site, repetida em todas as páginas
+         de propósito: buscador processa uma página por vez, então sem este bloco
+         as referências "@id" desta página apontariam para um nó que ela não contém.
+         A definição completa (description, knowsAbout, areaServed) vive na home.
+         Ao mudar dado da empresa, mude na home E aqui.
+    -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "InsuranceAgency",
+                "@id": "https://planodesaudebradesco.com/#organization",
+                "name": "FortPlanos",
+                "legalName": "A Clebio Costa Bispo Publicidade LTDA - ME",
+                "url": "https://fortplanos.com.br",
+                "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "image": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "email": "contato@fortplanos.com.br",
+                "taxID": "53.290.346/0001-38",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "São Paulo",
+                    "addressRegion": "SP",
+                    "addressCountry": "BR"
+                },
+                "sameAs": [
+                    "https://fortplanos.com.br",
+                    "https://www.instagram.com/fortplanosdesaude/",
+                    "https://www.facebook.com/fortplanos/",
+                    "https://www.youtube.com/@fortplanos"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://planodesaudebradesco.com/#website",
+                "url": "https://planodesaudebradesco.com/",
+                "name": "Plano de Saúde Bradesco — FortPlanos",
+                "inLanguage": "pt-BR",
+                "publisher": { "@id": "https://planodesaudebradesco.com/#organization" }
+            }
+        ]
+    }
+    </script>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
         "@type": "BlogPosting",
+        "@id": "https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/#article",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "headline": "Tabela de Preços Bradesco Saúde 2026: Entenda as Faixas e Valores",
         "description": "Como funciona a tabela de preços Bradesco Saúde para PME: faixas etárias ANS, número de vidas, adesão compulsória ou livre, coparticipação e linhas do plano, com valores de referência e dicas práticas.",
         "url": "https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/",
         "datePublished": "2026-03-27",
         "dateModified": "2026-03-27",
         "author": { "@type": "Organization", "name": "FortPlanos", "url": "https://fortplanos.com.br" },
-        "publisher": {
-            "@type": "Organization",
-            "name": "FortPlanos",
-            "url": "https://fortplanos.com.br",
-            "logo": { "@type": "ImageObject", "url": "https://planodesaudebradesco.com/img/logo-fortplanos.webp" }
-        },
-        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/" },
+        "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/#webpage", "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" } },
         "inLanguage": "pt-BR",
         "keywords": "tabela de preços bradesco saúde 2026, preço plano bradesco saúde, faixa etária bradesco saúde, quanto custa bradesco saúde empresa"
     }
@@ -48,6 +91,8 @@
     {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": "https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/#breadcrumb",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/#webpage" },
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://planodesaudebradesco.com/" },
             { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://planodesaudebradesco.com/blog/" },
@@ -60,6 +105,8 @@
     {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "@id": "https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/#faq",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/blog/tabela-precos-bradesco-saude-2026-faixas-valores/#webpage" },
         "mainEntity": [
             {
                 "@type": "Question",

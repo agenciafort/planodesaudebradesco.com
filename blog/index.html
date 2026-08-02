@@ -21,18 +21,62 @@
     <meta name="twitter:description" content="Guias sobre plano de saúde Bradesco: preços 2026, rede credenciada, coparticipação e PME. Conteúdo da FortPlanos, corretora autorizada.">
     <meta name="twitter:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
 
+        <!-- ══════ Schema.org: entidades do grafo ══════
+         Cópia compacta da organização e do site, repetida em todas as páginas
+         de propósito: buscador processa uma página por vez, então sem este bloco
+         as referências "@id" desta página apontariam para um nó que ela não contém.
+         A definição completa (description, knowsAbout, areaServed) vive na home.
+         Ao mudar dado da empresa, mude na home E aqui.
+    -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "InsuranceAgency",
+                "@id": "https://planodesaudebradesco.com/#organization",
+                "name": "FortPlanos",
+                "legalName": "A Clebio Costa Bispo Publicidade LTDA - ME",
+                "url": "https://fortplanos.com.br",
+                "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "image": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "email": "contato@fortplanos.com.br",
+                "taxID": "53.290.346/0001-38",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "São Paulo",
+                    "addressRegion": "SP",
+                    "addressCountry": "BR"
+                },
+                "sameAs": [
+                    "https://fortplanos.com.br",
+                    "https://www.instagram.com/fortplanosdesaude/",
+                    "https://www.facebook.com/fortplanos/",
+                    "https://www.youtube.com/@fortplanos"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://planodesaudebradesco.com/#website",
+                "url": "https://planodesaudebradesco.com/",
+                "name": "Plano de Saúde Bradesco — FortPlanos",
+                "inLanguage": "pt-BR",
+                "publisher": { "@id": "https://planodesaudebradesco.com/#organization" }
+            }
+        ]
+    }
+    </script>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
         "@type": "Blog",
+        "@id": "https://planodesaudebradesco.com/blog/#webpage",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "name": "Blog — Plano de Saúde Bradesco",
         "url": "https://planodesaudebradesco.com/blog/",
         "description": "Artigos e guias sobre plano de saúde Bradesco para empresas PME.",
-        "publisher": {
-            "@type": "Organization",
-            "name": "FortPlanos",
-            "url": "https://fortplanos.com.br"
-        },
+        "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
         "blogPost": [
             {
                 "@type": "BlogPosting",

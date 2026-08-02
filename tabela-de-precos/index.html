@@ -28,25 +28,66 @@
     <meta name="twitter:description" content="Tabela de preços Bradesco Saúde 2026: 880 valores em 24 tabelas, com e sem coparticipação. Filtre por vidas, faixa etária e acomodação.">
     <meta name="twitter:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
 
+    <!-- ══════ Schema.org: entidades do grafo ══════
+         Cópia compacta da organização e do site, repetida em todas as páginas
+         de propósito: buscador processa uma página por vez, então sem este bloco
+         as referências "@id" desta página apontariam para um nó que ela não contém.
+         A definição completa (description, knowsAbout, areaServed) vive na home.
+         Ao mudar dado da empresa, mude na home E aqui.
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "InsuranceAgency",
+                "@id": "https://planodesaudebradesco.com/#organization",
+                "name": "FortPlanos",
+                "legalName": "A Clebio Costa Bispo Publicidade LTDA - ME",
+                "url": "https://fortplanos.com.br",
+                "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "image": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "email": "contato@fortplanos.com.br",
+                "taxID": "53.290.346/0001-38",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "São Paulo",
+                    "addressRegion": "SP",
+                    "addressCountry": "BR"
+                },
+                "sameAs": [
+                    "https://fortplanos.com.br",
+                    "https://www.instagram.com/fortplanosdesaude/",
+                    "https://www.facebook.com/fortplanos/",
+                    "https://www.youtube.com/@fortplanos"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://planodesaudebradesco.com/#website",
+                "url": "https://planodesaudebradesco.com/",
+                "name": "Plano de Saúde Bradesco — FortPlanos",
+                "inLanguage": "pt-BR",
+                "publisher": { "@id": "https://planodesaudebradesco.com/#organization" }
+            }
+        ]
+    }
+    </script>
+
     <!-- Schema.org: WebPage + BreadcrumbList -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
+        "@id": "https://planodesaudebradesco.com/tabela-de-precos/#webpage",
         "name": "Tabela de Preços Bradesco Saúde 2026 — São Paulo",
         "description": "Tabela completa de preços do plano de saúde Bradesco 2026 com 24 tabelas, 880 registros, filtros interativos incluindo coparticipação, comparação e impressão PDF para São Paulo e Grande SP.",
         "url": "https://planodesaudebradesco.com/tabela-de-precos/",
         "dateModified": "2026-02-21",
         "inLanguage": "pt-BR",
-        "isPartOf": { "@type": "WebSite", "name": "Plano de Saúde Bradesco", "url": "https://planodesaudebradesco.com/" },
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "about": { "@type": "Product", "name": "Bradesco Saúde PME", "brand": { "@type": "Brand", "name": "Bradesco Saúde" } },
-        "publisher": {
-            "@type": "Organization",
-            "name": "FortPlanos",
-            "url": "https://fortplanos.com.br",
-            "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
-            "contactPoint": { "@type": "ContactPoint", "email": "contato@fortplanos.com.br", "contactType": "sales", "areaServed": "BR", "availableLanguage": "Portuguese" }
-        },
+        "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -62,6 +103,8 @@
     {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "@id": "https://planodesaudebradesco.com/tabela-de-precos/#faq",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/tabela-de-precos/#webpage" },
         "mainEntity": [
             {
                 "@type": "Question",

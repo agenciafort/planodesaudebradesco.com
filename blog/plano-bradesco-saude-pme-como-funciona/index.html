@@ -21,10 +21,58 @@
     <meta name="twitter:description" content="Como funciona o plano Bradesco Saúde PME: regras da ANS, mínimo de vidas, documentação, carência, DPS e o passo a passo para contratar.">
     <meta name="twitter:image" content="https://planodesaudebradesco.com/img/blog/plano-bradesco-pme-como-funciona.webp">
 
+        <!-- ══════ Schema.org: entidades do grafo ══════
+         Cópia compacta da organização e do site, repetida em todas as páginas
+         de propósito: buscador processa uma página por vez, então sem este bloco
+         as referências "@id" desta página apontariam para um nó que ela não contém.
+         A definição completa (description, knowsAbout, areaServed) vive na home.
+         Ao mudar dado da empresa, mude na home E aqui.
+    -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "InsuranceAgency",
+                "@id": "https://planodesaudebradesco.com/#organization",
+                "name": "FortPlanos",
+                "legalName": "A Clebio Costa Bispo Publicidade LTDA - ME",
+                "url": "https://fortplanos.com.br",
+                "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "image": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "email": "contato@fortplanos.com.br",
+                "taxID": "53.290.346/0001-38",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "São Paulo",
+                    "addressRegion": "SP",
+                    "addressCountry": "BR"
+                },
+                "sameAs": [
+                    "https://fortplanos.com.br",
+                    "https://www.instagram.com/fortplanosdesaude/",
+                    "https://www.facebook.com/fortplanos/",
+                    "https://www.youtube.com/@fortplanos"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://planodesaudebradesco.com/#website",
+                "url": "https://planodesaudebradesco.com/",
+                "name": "Plano de Saúde Bradesco — FortPlanos",
+                "inLanguage": "pt-BR",
+                "publisher": { "@id": "https://planodesaudebradesco.com/#organization" }
+            }
+        ]
+    }
+    </script>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": "https://planodesaudebradesco.com/blog/plano-bradesco-saude-pme-como-funciona/#breadcrumb",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/blog/plano-bradesco-saude-pme-como-funciona/#webpage" },
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Início", "item": "https://planodesaudebradesco.com/"},
             {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://planodesaudebradesco.com/blog/"},
@@ -36,16 +84,14 @@
     {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
+        "@id": "https://planodesaudebradesco.com/blog/plano-bradesco-saude-pme-como-funciona/#article",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "headline": "Plano Bradesco Saúde PME: O Que É, Como Funciona e Quem Pode Contratar",
         "datePublished": "2026-03-27",
         "dateModified": "2026-03-27",
         "author": {"@type": "Organization", "name": "FortPlanos"},
-        "publisher": {
-            "@type": "Organization",
-            "name": "FortPlanos",
-            "url": "https://fortplanos.com.br"
-        },
-        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://planodesaudebradesco.com/blog/plano-bradesco-saude-pme-como-funciona/"},
+        "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://planodesaudebradesco.com/blog/plano-bradesco-saude-pme-como-funciona/#webpage", "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" }},
         "description": "Guia sobre plano Bradesco Saúde PME para empresas: regras, linhas de produto, contratação, carência e DPS."
     }
     </script>
@@ -53,6 +99,8 @@
     {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "@id": "https://planodesaudebradesco.com/blog/plano-bradesco-saude-pme-como-funciona/#faq",
+        "isPartOf": { "@id": "https://planodesaudebradesco.com/blog/plano-bradesco-saude-pme-como-funciona/#webpage" },
         "mainEntity": [
             {
                 "@type": "Question",
