@@ -138,6 +138,29 @@
         <priority>0.6</priority>
     </url>
 
+    <!-- ===== Confiança e compliance (YMYL) =====
+         Prioridade baixa de propósito: não competem por termo de busca, mas precisam
+         estar indexáveis. Em site de saúde que coleta dados, são as páginas que o
+         Google usa para aferir E-E-A-T — e a lei exige que existam. -->
+    <url>
+        <loc>https://planodesaudebradesco.com/politica-de-privacidade/</loc>
+        <lastmod>2026-08-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/termos-de-uso/</loc>
+        <lastmod>2026-08-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://planodesaudebradesco.com/lgpd/</loc>
+        <lastmod>2026-08-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
     <!--
       Fora do sitemap por decisão (já marcadas noindex,nofollow no HTML):
         /conexao/            → redirecionamento legado

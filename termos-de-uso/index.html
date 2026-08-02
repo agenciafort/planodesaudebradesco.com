@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Uso | Plano de Saúde Bradesco</title>
+    <meta name="description" content="Regras de uso do site planodesaudebradesco.com: natureza das informações, preços referenciais, papel da corretora FortPlanos e limites de responsabilidade.">
+    <link rel="canonical" href="https://planodesaudebradesco.com/termos-de-uso/">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fortplanos.com.br" crossorigin>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Termos de Uso | Plano de Saúde Bradesco">
+    <meta property="og:description" content="Regras de uso do site planodesaudebradesco.com: natureza das informações, preços referenciais, papel da corretora FortPlanos e limites de responsabilidade.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://planodesaudebradesco.com/termos-de-uso/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Plano de Saúde Bradesco — FortPlanos">
+    <meta property="og:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Termos de Uso | Plano de Saúde Bradesco">
+    <meta name="twitter:description" content="Regras de uso do site planodesaudebradesco.com: natureza das informações, preços referenciais, papel da corretora FortPlanos e limites de responsabilidade.">
+    <meta name="twitter:image" content="https://planodesaudebradesco.com/img/og-plano-saude-bradesco.webp">
+
+    <!--
+      NOTA DE SCHEMA (regra 4 do plano): sem FAQPage aqui, pelo mesmo motivo da
+      política de privacidade — documento jurídico corrido não é pergunta-e-resposta.
+      O FAQPage do bloco legal vive em /lgpd/.
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Termos de Uso — planodesaudebradesco.com",
+        "description": "Termos e condições de uso do site planodesaudebradesco.com, operado pela corretora FortPlanos.",
+        "url": "https://planodesaudebradesco.com/termos-de-uso/",
+        "inLanguage": "pt-BR",
+        "datePublished": "2026-08-02",
+        "dateModified": "2026-08-02",
+        "publisher": {
+            "@type": "Organization",
+            "name": "FortPlanos",
+            "legalName": "A Clebio Costa Bispo Publicidade LTDA - ME",
+            "taxID": "53.290.346/0001-38",
+            "url": "https://fortplanos.com.br",
+            "email": "contato@fortplanos.com.br",
+            "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://planodesaudebradesco.com/" },
+                { "@type": "ListItem", "position": 2, "name": "Termos de Uso", "item": "https://planodesaudebradesco.com/termos-de-uso/" }
+            ]
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --vermelho: #CC092F;
+            --vermelho-escuro: #A00725;
+            --cinza-900: #1a1a2e;
+            --cinza-800: #2d2d44;
+            --cinza-700: #3d3d5c;
+            --cinza-200: #e8e8ef;
+            --cinza-100: #f4f4f8;
+            --branco: #ffffff;
+            --verde: #0a8f3c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--cinza-900);
+            line-height: 1.7;
+            background: var(--branco);
+        }
+
+        h1, h2, h3, h4 { line-height: 1.25; }
+        h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+        h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 0.5em; }
+        h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+        p { margin-bottom: 1em; }
+        a { color: var(--vermelho); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .sec { padding: 60px 0; }
+        .sec-alt { padding: 60px 0; background: var(--cinza-100); }
+        .sec-dark {
+            padding: 70px 0;
+            background: linear-gradient(135deg, var(--cinza-900) 0%, var(--cinza-800) 50%, var(--vermelho-escuro) 100%);
+            color: var(--branco);
+        }
+
+        /* ── Header ── */
+        header {
+            background: var(--cinza-900);
+            color: var(--branco);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,.25);
+        }
+        header .container { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .header-brand { display: flex; align-items: center; gap: 10px; }
+        .header-brand img { height: 36px; width: auto; }
+
+        nav { display: flex; align-items: center; gap: 4px; }
+        header nav a { color: var(--cinza-200); padding: 6px 12px; font-size: .85rem; font-weight: 500; transition: color .2s; border-radius: 6px; }
+        header nav a:hover { color: var(--branco); text-decoration: none; background: rgba(255,255,255,.08); }
+
+        .menu-toggle { display: none; background: none; border: none; color: var(--branco); font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            header nav {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--cinza-900); flex-direction: column;
+                padding: 10px 20px 20px; box-shadow: 0 8px 20px rgba(0,0,0,.3);
+            }
+            header nav.aberto { display: flex; }
+            header nav a { padding: 10px 0; font-size: 1rem; }
+            header nav .nav-cta { margin-top: 6px; text-align: center; }
+        }
+
+        /* ── Breadcrumb ── */
+        .breadcrumb { padding: 12px 0; font-size: .82rem; color: var(--cinza-700); background: var(--cinza-100); border-bottom: 1px solid var(--cinza-200); }
+        .breadcrumb a { color: var(--cinza-700); }
+        .breadcrumb a:hover { color: var(--vermelho); }
+
+        /* ── Botões ── */
+        .btn { display: inline-block; padding: 14px 36px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all .2s; border: none; text-decoration: none; }
+        .btn:hover { text-decoration: none; transform: translateY(-1px); }
+        .btn-vermelho { background: var(--vermelho); color: var(--branco); }
+        .btn-vermelho:hover { background: var(--vermelho-escuro); }
+        .btn-branco { background: var(--branco); color: var(--cinza-900); }
+        .btn-branco:hover { background: var(--cinza-100); }
+        .btn-sm { padding: 10px 22px; font-size: .9rem; }
+
+        /* ── Data atualização ── */
+        .data-atualizacao { text-align: center; font-size: .78rem; color: var(--cinza-700); padding: 10px 0; background: var(--cinza-100); border-bottom: 1px solid var(--cinza-200); }
+
+        /* ── Resposta direta ── */
+        .resposta-direta {
+            background: linear-gradient(135deg, #fdf0f3, #fff);
+            border-left: 5px solid var(--vermelho);
+            padding: 26px 30px; border-radius: 0 12px 12px 0; margin: 0 auto 10px;
+            max-width: 860px; box-shadow: 0 2px 14px rgba(0,0,0,.05);
+        }
+        .resposta-direta p:last-child { margin-bottom: 0; }
+        .resposta-direta strong { color: var(--vermelho-escuro); }
+
+        /* ── Índice ── */
+        .indice { background: var(--branco); border: 1px solid var(--cinza-200); border-radius: 12px; padding: 22px 26px; max-width: 860px; margin: 0 auto; }
+        .indice h2 { font-size: 1.05rem; margin-bottom: 12px; }
+        .indice ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 30px; }
+        .indice li { font-size: .9rem; margin-bottom: 6px; break-inside: avoid; }
+        @media (max-width: 600px) { .indice ol { columns: 1; } }
+
+        /* ── Texto legal ── */
+        .legal { max-width: 860px; margin: 0 auto; }
+        .legal section { margin-bottom: 46px; scroll-margin-top: 90px; }
+        .legal h2 { display: flex; gap: 12px; align-items: baseline; border-bottom: 2px solid var(--cinza-200); padding-bottom: 10px; margin-bottom: 18px; }
+        .legal h2 .num { color: var(--vermelho); font-size: .8em; font-weight: 800; flex-shrink: 0; }
+        .legal h3 { margin: 24px 0 8px; color: var(--cinza-800); }
+        .legal p, .legal li { font-size: .97rem; color: var(--cinza-800); }
+        .legal ul, .legal ol { margin: 0 0 1em 22px; }
+        .legal li { margin-bottom: 8px; }
+        .legal .lei { font-size: .85rem; color: var(--cinza-700); font-style: italic; }
+
+        /* ── Tabela ── */
+        .tabela-wrap { overflow-x: auto; margin: 22px 0; border-radius: 10px; border: 1px solid var(--cinza-200); }
+        table { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 560px; background: var(--branco); }
+        thead { background: var(--cinza-900); color: var(--branco); }
+        th, td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--cinza-200); }
+        th { font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .4px; }
+        tbody tr:nth-child(even) { background: var(--cinza-100); }
+        tbody tr:last-child td { border-bottom: none; }
+        td strong { color: var(--cinza-900); }
+
+        /* ── Caixas ── */
+        .highlight-box { background: linear-gradient(135deg, #fdf0f3, #fff); border-left: 4px solid var(--vermelho); padding: 20px 24px; border-radius: 0 10px 10px 0; margin: 25px 0; }
+        .highlight-box strong { color: var(--vermelho); }
+        .box-ok { background: #f2fbf5; border-left: 4px solid var(--verde); padding: 20px 24px; border-radius: 0 10px 10px 0; margin: 25px 0; }
+        .box-ok strong { color: var(--verde); }
+        .box-ok ul, .box-ok p:last-child { margin-bottom: 0; }
+
+        /* ── CTA Dark ── */
+        .sec-dark h2 { color: var(--branco); margin-bottom: 12px; }
+        .sec-dark p { color: var(--cinza-200); max-width: 640px; margin: 0 auto 30px; }
+
+        /* ── Footer ── */
+        footer { background: var(--cinza-900); color: var(--cinza-200); padding: 40px 0 30px; font-size: .85rem; }
+        footer .container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; }
+        footer a { color: var(--cinza-200); }
+        footer a:hover { color: var(--branco); }
+        footer img { height: 30px; width: auto; margin-bottom: 10px; }
+        .footer-social { display: flex; gap: 14px; margin-top: 12px; }
+        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; }
+        .footer-social a:hover { color: var(--branco); text-decoration: none; }
+        .footer-legal { grid-column: 1 / -1; font-size: .75rem; color: #888; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--cinza-800); text-align: center; }
+
+        @media (max-width: 768px) { footer .container { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { footer .container { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) {
+            .sec, .sec-alt { padding: 40px 0; }
+            .sec-dark { padding: 50px 0; }
+            .resposta-direta { padding: 20px; }
+        }
+
+        .skip-link { position: absolute; left: -9999px; }
+        .skip-link:focus { left: 10px; top: 10px; z-index: 200; background: var(--branco); color: var(--cinza-900); padding: 10px 16px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+<a href="#conteudo-principal" class="skip-link">Ir para o conteúdo</a>
+
+<!-- ═══════════════════ BARRA DE ATUALIZAÇÃO ═══════════════════ -->
+<div class="data-atualizacao">
+    Última atualização: <strong>2 de agosto de 2026</strong> · Versão 1.0 · Vigente a partir da data de publicação
+</div>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+    <div class="container">
+        <a href="/" class="header-brand">
+            <img src="/img/logo-fortplanos.webp" alt="FortPlanos — Corretora de Planos de Saúde Bradesco" width="140" height="36" fetchpriority="high">
+        </a>
+
+        <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
+
+        <nav aria-label="Menu principal">
+            <a href="/quem-somos/">Sobre</a>
+            <a href="/servicos/">Serviços</a>
+            <a href="/planos/">Planos</a>
+            <a href="/cidades/">Cidades</a>
+            <a href="/blog/">Blog</a>
+            <a href="/contato/">Contato</a>
+            <a href="/tabela-de-precos/" class="btn btn-branco nav-cta" style="padding:8px 20px; font-size:.85rem;">Tabela de Preços</a>
+            <a href="/simulador-de-precos/" class="btn btn-vermelho nav-cta" style="padding:8px 20px; font-size:.85rem;">Simulador de Preços</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ═══════════════════ BREADCRUMB ═══════════════════ -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+        <a href="/">Início</a> <span aria-hidden="true">›</span> <strong>Termos de Uso</strong>
+    </div>
+</nav>
+
+<main id="conteudo-principal">
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="sec-dark" style="text-align:center; padding:56px 0 46px;">
+    <div class="container">
+        <h1>Termos de <span style="color:#ff8fa3;">Uso</span></h1>
+        <p style="color:var(--cinza-200); max-width:720px; margin:16px auto 0; font-size:1.05rem;">
+            As regras de uso deste site e, principalmente, o que as informações publicadas aqui significam —
+            e o que elas não significam.
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════ RESUMO DIRETO ═══════════════════ -->
+<section class="sec" style="padding-bottom:30px;">
+    <div class="container">
+        <div class="resposta-direta">
+            <h2 style="font-size:1.15rem; margin-bottom:12px;">O essencial, sem juridiquês</h2>
+            <p>
+                Este é um <strong>site de informação operado por uma corretora autorizada</strong>, a FortPlanos.
+                <strong>Não é o site oficial da Bradesco Seguros</strong> e não substitui o contrato do plano.
+            </p>
+            <p>
+                Os preços publicados são <strong>referenciais, por pessoa/mês, sem IOF</strong>, extraídos do cotador
+                na data indicada em cada página. Preço de plano de saúde muda — o valor que vale é o da proposta
+                formal emitida na data da contratação.
+            </p>
+            <p style="margin-bottom:0;">
+                Quem define cobertura, rede e reajuste é a <strong>operadora</strong>, dentro das regras da ANS.
+                A corretora orienta, cota e intermedeia — <strong>sem custo adicional para você</strong>.
+                O que o contrato disser prevalece sobre o que este site disser.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ ÍNDICE ═══════════════════ -->
+<section style="padding-bottom:50px;">
+    <div class="container">
+        <div class="indice">
+            <h2>Nesta página</h2>
+            <ol>
+                <li><a href="#objeto">Quem opera este site</a></li>
+                <li><a href="#aceitacao">Aceitação destes termos</a></li>
+                <li><a href="#informacao">A natureza da informação publicada</a></li>
+                <li><a href="#precos">Preços: como ler os valores</a></li>
+                <li><a href="#saude">Não é orientação médica nem garantia de cobertura</a></li>
+                <li><a href="#rede">Rede credenciada</a></li>
+                <li><a href="#corretagem">O serviço de corretagem</a></li>
+                <li><a href="#marcas">Marcas e propriedade intelectual</a></li>
+                <li><a href="#uso">Uso permitido e proibido</a></li>
+                <li><a href="#terceiros">Links e serviços de terceiros</a></li>
+                <li><a href="#responsabilidade">Limitação de responsabilidade</a></li>
+                <li><a href="#disponibilidade">Disponibilidade do site</a></li>
+                <li><a href="#alteracoes">Alterações destes termos</a></li>
+                <li><a href="#lei">Lei aplicável e foro</a></li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ TEXTO ═══════════════════ -->
+<section class="sec" style="padding-top:0;">
+    <div class="container">
+    <div class="legal">
+
+        <section id="objeto">
+            <h2><span class="num">1</span> Quem opera este site</h2>
+            <p>
+                O site <strong>planodesaudebradesco.com</strong> é mantido pela <strong>FortPlanos</strong>, nome fantasia de
+                <strong>A Clebio Costa Bispo Publicidade LTDA - ME</strong>, CNPJ <strong>53.290.346/0001-38</strong>,
+                sediada em São Paulo — SP, corretora de seguros com corretores habilitados pela SUSEP.
+            </p>
+            <p>
+                Sua finalidade é <strong>informar sobre planos de saúde Bradesco Saúde</strong> — produtos, preços de referência,
+                rede credenciada, coberturas, reembolso e processo de contratação — e oferecer cotação a quem tiver interesse.
+            </p>
+            <div class="highlight-box">
+                <strong>Este site não é operado pela Bradesco Seguros S.A.</strong> Não há vínculo societário entre a FortPlanos e a
+                seguradora. As menções à marca Bradesco Saúde são <strong>nominativas</strong>, para identificar o produto
+                comercializado — como faz qualquer corretora autorizada. Se você procura o canal oficial da operadora,
+                acesse diretamente o site da Bradesco Seguros.
+            </div>
+        </section>
+
+        <section id="aceitacao">
+            <h2><span class="num">2</span> Aceitação destes termos</h2>
+            <p>
+                Ao navegar neste site, usar o simulador, enviar o formulário de cotação ou iniciar uma conversa no atendimento,
+                você declara que <strong>leu, entendeu e concorda</strong> com estes Termos de Uso e com a
+                <a href="/politica-de-privacidade/">Política de Privacidade</a>.
+            </p>
+            <p>
+                Se você não concorda com algum ponto, a orientação é simples e sem prejuízo algum: não utilize o site.
+                Nenhum recurso aqui exige cadastro prévio.
+            </p>
+        </section>
+
+        <section id="informacao">
+            <h2><span class="num">3</span> A natureza da informação publicada</h2>
+            <p>
+                O conteúdo deste site tem <strong>caráter informativo</strong>. Ele é produzido a partir de fontes que identificamos
+                em cada página — o cotador de tabelas (CRM Saúde), materiais da operadora, o Rol de Procedimentos da ANS e a
+                legislação aplicável, sobretudo a <span class="lei">Lei nº 9.656/1998</span>.
+            </p>
+            <p>
+                Trabalhamos para manter tudo correto e atualizado, e datamos o que publicamos justamente para que você saiba a
+                idade da informação. Ainda assim:
+            </p>
+            <ul>
+                <li>produtos, preços, rede e condições <strong>mudam sem aviso prévio</strong> por decisão da operadora ou da ANS;</li>
+                <li>uma página atualizada em determinada data pode não refletir uma alteração ocorrida depois;</li>
+                <li><strong>o documento que vale é o contrato</strong> — proposta, condições gerais e aditivos assinados entre você e a operadora.</li>
+            </ul>
+            <p>
+                Havendo divergência entre o que está publicado aqui e o que consta no contrato ou nos canais oficiais da
+                Bradesco Seguros e da ANS, <strong>prevalecem o contrato e os canais oficiais</strong>.
+            </p>
+        </section>
+
+        <section id="precos">
+            <h2><span class="num">4</span> Preços: como ler os valores deste site</h2>
+            <p>Para não haver dúvida sobre o que cada número significa:</p>
+            <div class="tabela-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Característica</th>
+                            <th scope="col">O que isso quer dizer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Por pessoa, por mês</strong></td>
+                            <td>Os valores são unitários. O custo total da empresa é a soma das pessoas, cada uma na sua faixa etária.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sem IOF</strong></td>
+                            <td>Conforme o cotador, a cotação final acrescenta <strong>2,38% de IOF</strong>, incidente inclusive sobre as taxas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Faixa, não valor único</strong></td>
+                            <td>O preço varia por faixa etária, número de vidas, linha do produto, coparticipação e região.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Com data e origem</strong></td>
+                            <td>Cada página informa a data de apuração e a fonte. Fora dessa data, trate como referência histórica.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Região de referência</strong></td>
+                            <td>Os valores publicados são os da região de São Paulo e Grande SP, salvo quando a página disser outra coisa. Outras regiões têm tabela própria.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                O <a href="/simulador-de-precos/">simulador</a> produz <strong>estimativa</strong>, não proposta.
+                Nenhum valor exibido neste site constitui oferta vinculante nos termos do
+                <span class="lei">art. 30 do Código de Defesa do Consumidor</span> — a oferta vinculante é a
+                <strong>proposta formal emitida pela operadora</strong>, com validade expressa. É ela que garante preço.
+            </p>
+        </section>
+
+        <section id="saude">
+            <h2><span class="num">5</span> Não é orientação médica nem garantia de cobertura</h2>
+            <p>
+                Este site trata de <strong>planos de saúde</strong>, não de saúde. Nada do que está publicado aqui é
+                orientação médica, diagnóstico, indicação de tratamento ou substituto da avaliação de um profissional de saúde.
+            </p>
+            <p>
+                As páginas sobre <a href="/coberturas/">coberturas</a>, <a href="/reembolso/">reembolso</a> e carências explicam
+                <strong>como as regras funcionam em geral</strong> — com base no Rol da ANS e na legislação. Elas
+                <strong>não garantem que um procedimento específico será coberto ou reembolsado no seu caso</strong>.
+                A autorização depende do seu contrato, da linha contratada, do cumprimento de carências, da indicação clínica
+                e da análise da operadora.
+            </p>
+            <div class="highlight-box">
+                <strong>Antes de contar com uma cobertura, confirme com a operadora.</strong> Vale principalmente para procedimento
+                caro, cirurgia eletiva ou tratamento continuado. A confirmação por escrito no canal oficial do plano é o que
+                protege você — não uma página de site, inclusive esta.
+            </div>
+        </section>
+
+        <section id="rede">
+            <h2><span class="num">6</span> Rede credenciada</h2>
+            <p>
+                As listas de hospitais, clínicas e laboratórios publicadas neste site são um <strong>retrato de um momento</strong>.
+                Credenciamentos e descredenciamentos ocorrem continuamente, e a rede também <strong>varia conforme a linha do
+                produto</strong> — um hospital pode atender uma linha e não atender outra.
+            </p>
+            <p>
+                Por isso mantemos a mesma postura em toda página de rede: <strong>nenhuma lista de terceiros, inclusive a deste
+                site, substitui o guia médico oficial da operadora consultado na data do atendimento</strong>.
+                Antes de marcar um procedimento, confirme no canal oficial.
+            </p>
+        </section>
+
+        <section id="corretagem">
+            <h2><span class="num">7</span> O serviço de corretagem</h2>
+            <p>Quando você solicita cotação, o que a FortPlanos faz — e o que não faz:</p>
+            <div class="box-ok">
+                <ul>
+                    <li><strong>Faz:</strong> apresentar as opções, comparar linhas e valores, esclarecer regras, montar a cotação, apoiar a documentação e acompanhar a implantação.</li>
+                    <li><strong>Não faz:</strong> aprovar propostas, autorizar procedimentos, definir carências, alterar reajustes ou decidir sobre reembolso. Isso é da operadora.</li>
+                </ul>
+            </div>
+            <p>
+                <strong>A corretagem não tem custo adicional para você.</strong> A remuneração do corretor é paga pela seguradora e
+                já está embutida no preço do produto — contratar por corretora autorizada não deixa o plano mais caro do que
+                contratar direto.
+            </p>
+            <p>
+                O contrato de plano de saúde é celebrado <strong>entre você (ou sua empresa) e a operadora</strong>.
+                A FortPlanos atua como intermediária, nos termos da regulamentação da SUSEP e da ANS.
+                Solicitar cotação <strong>não gera obrigação de contratar</strong>, e você pode interromper o processo a qualquer momento.
+            </p>
+        </section>
+
+        <section id="marcas">
+            <h2><span class="num">8</span> Marcas e propriedade intelectual</h2>
+            <p>
+                Os textos, tabelas comparativas, análises, organização das páginas e o simulador deste site são de autoria da
+                FortPlanos e protegidos pela <span class="lei">Lei nº 9.610/1998</span>.
+            </p>
+            <p>
+                <strong>"Bradesco", "Bradesco Saúde" e demais marcas citadas pertencem aos seus respectivos titulares.</strong>
+                O uso neste site é exclusivamente nominativo — identificar o produto intermediado — e não implica autorização de
+                uso de marca, representação exclusiva nem vínculo institucional.
+            </p>
+            <p>
+                Você pode citar trechos com <strong>indicação da fonte e link para a página original</strong>. Não é permitida a
+                reprodução integral de páginas, a cópia do simulador ou o uso comercial do conteúdo sem autorização por escrito.
+            </p>
+        </section>
+
+        <section id="uso">
+            <h2><span class="num">9</span> Uso permitido e proibido</h2>
+            <p>O site é aberto e gratuito. Ao usá-lo, você concorda em <strong>não</strong>:</p>
+            <ul>
+                <li>fornecer dados falsos ou de terceiros sem autorização no formulário ou no atendimento;</li>
+                <li>usar robôs, scrapers ou automações que sobrecarreguem o servidor ou extraiam o conteúdo em massa;</li>
+                <li>tentar acessar áreas restritas, burlar mecanismos de segurança ou explorar vulnerabilidades;</li>
+                <li>reproduzir o site, no todo ou em parte, de modo a fazer parecer que é a Bradesco Seguros ou outro canal oficial;</li>
+                <li>utilizar o conteúdo para fins ilícitos, enganosos ou que violem direitos de terceiros.</li>
+            </ul>
+            <p>
+                Identificado o uso indevido, podemos <strong>bloquear o acesso</strong> e adotar as medidas legais cabíveis.
+            </p>
+        </section>
+
+        <section id="terceiros">
+            <h2><span class="num">10</span> Links e serviços de terceiros</h2>
+            <p>
+                O site contém links para páginas externas — operadora, ANS, redes sociais — e utiliza uma plataforma de terceiro
+                para o atendimento por chat. <strong>Não controlamos o conteúdo nem as políticas desses terceiros</strong>, e a
+                inclusão de um link não significa endosso de tudo o que está do outro lado.
+            </p>
+            <p>
+                Ao seguir um link externo, você passa a se sujeitar aos termos e à política de privacidade daquele site.
+                O tratamento de dados feito pela plataforma de atendimento está descrito no item 4 da
+                <a href="/politica-de-privacidade/">Política de Privacidade</a>.
+            </p>
+        </section>
+
+        <section id="responsabilidade">
+            <h2><span class="num">11</span> Limitação de responsabilidade</h2>
+            <p>
+                A FortPlanos responde pelos serviços de corretagem que presta e pelas informações que publica, com a diligência
+                que a atividade exige. Dentro dos limites da lei — <strong>e sem prejuízo dos direitos assegurados ao consumidor
+                pelo Código de Defesa do Consumidor</strong> —, não nos responsabilizamos por:
+            </p>
+            <ul>
+                <li>decisões tomadas exclusivamente com base em informação de caráter geral deste site, sem confirmação no contrato ou nos canais oficiais;</li>
+                <li>alterações de preço, rede, cobertura ou condições feitas pela operadora ou pela ANS após a data de atualização indicada na página;</li>
+                <li>negativa de cobertura, de autorização ou de reembolso pela operadora — decisões que não nos cabem;</li>
+                <li>indisponibilidade temporária do site, do simulador ou do atendimento por falha técnica, de hospedagem ou de conexão;</li>
+                <li>conteúdo, disponibilidade ou práticas de sites de terceiros acessados por links daqui.</li>
+            </ul>
+            <p class="lei">
+                Nenhuma cláusula destes Termos exclui ou limita responsabilidade nos casos em que a lei brasileira não admite exclusão.
+            </p>
+        </section>
+
+        <section id="disponibilidade">
+            <h2><span class="num">12</span> Disponibilidade do site</h2>
+            <p>
+                Trabalhamos para manter o site sempre no ar, mas <strong>não garantimos disponibilidade ininterrupta</strong>.
+                Podem ocorrer paradas para manutenção, atualização de conteúdo ou por causas fora do nosso controle.
+                Podemos, ainda, alterar, suspender ou descontinuar páginas e funcionalidades — inclusive o simulador — a qualquer
+                tempo, sem que isso gere direito a indenização.
+            </p>
+        </section>
+
+        <section id="alteracoes">
+            <h2><span class="num">13</span> Alterações destes termos</h2>
+            <p>
+                Estes Termos podem ser revisados a qualquer momento. A <strong>data de última atualização e a versão ficam visíveis
+                no topo desta página</strong>, e a versão vigente é sempre a publicada aqui. O uso do site após uma alteração
+                significa concordância com o texto novo.
+            </p>
+        </section>
+
+        <section id="lei">
+            <h2><span class="num">14</span> Lei aplicável e foro</h2>
+            <p>
+                Estes Termos são regidos pela <strong>legislação brasileira</strong>, em especial o Código Civil, o
+                <strong>Código de Defesa do Consumidor</strong>, o Marco Civil da Internet
+                (<span class="lei">Lei nº 12.965/2014</span>) e a LGPD (<span class="lei">Lei nº 13.709/2018</span>).
+            </p>
+            <p>
+                Nas relações de consumo, fica assegurado ao consumidor o direito de ajuizar demanda no
+                <strong>foro do seu próprio domicílio</strong>, nos termos do <span class="lei">art. 101, I, do CDC</span>.
+                Antes disso, porém, o caminho mais rápido costuma ser falar com a gente:
+                <a href="mailto:contato@fortplanos.com.br">contato@fortplanos.com.br</a>.
+            </p>
+            <p style="margin-top:26px;">
+                Veja também a <a href="/politica-de-privacidade/">Política de Privacidade</a> e o
+                <a href="/lgpd/">Canal LGPD</a>.
+            </p>
+        </section>
+
+    </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ CTA FINAL ═══════════════════ -->
+<section class="sec-dark" style="text-align:center;">
+    <div class="container">
+        <h2>Preço com data, origem e sem letra miúda</h2>
+        <p>
+            É esse o compromisso do site: dizer de onde vem cada número e o que ele não cobre.
+            Simule o valor para a sua empresa ou fale com um corretor autorizado.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <a href="/simulador-de-precos/" class="btn btn-vermelho">Simular Preço Agora</a>
+            <a href="/tabela-de-precos/" class="btn btn-branco">Ver Tabela de Preços</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+    <div class="container">
+        <!-- Coluna 1: FortPlanos -->
+        <div>
+            <img src="/img/logo-fortplanos.webp" alt="FortPlanos" width="120" height="30" loading="lazy"><br>
+            <strong style="color:var(--branco);">FortPlanos</strong><br>
+            Corretora autorizada Bradesco Saúde.<br>
+            Planos de saúde empresariais PME.<br>
+            fortplanos.com.br
+
+            <div class="footer-social">
+                <a href="https://www.instagram.com/fortplanosdesaude/" target="_blank" rel="noopener" aria-label="Instagram FortPlanos">📷 Instagram</a>
+                <a href="https://www.facebook.com/fortplanos/" target="_blank" rel="noopener" aria-label="Facebook FortPlanos">👍 Facebook</a>
+                <a href="https://www.youtube.com/@fortplanos" target="_blank" rel="noopener" aria-label="YouTube FortPlanos">▶️ YouTube</a>
+            </div>
+        </div>
+
+        <!-- Coluna 2: Bradesco Saúde -->
+        <div>
+            <strong style="color:var(--branco);">Bradesco Saúde</strong><br>
+            <a href="/individual/">Plano Individual</a><br>
+            <a href="/como-contratar/">Como Contratar</a><br>
+            <a href="/planos/">Planos</a><br>
+            <a href="/tabela-de-precos/">Tabela de Preços</a><br>
+            <a href="/simulador-de-precos/">Simulador de Preços</a><br>
+            <a href="/rede-credenciada/">Rede Credenciada</a><br>
+            <a href="/coberturas/">O Que Cobre</a><br>
+            <a href="/reembolso/">Reembolso</a><br>
+            <a href="/blog/">Blog</a>
+        </div>
+
+        <!-- Coluna 3: Cidades -->
+        <div>
+            <strong style="color:var(--branco);">Cidades</strong><br>
+            <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
+            <a href="/cidades/">Todas as Cidades</a><br>
+            <span style="color:#666;">Campinas — em breve</span><br>
+            <span style="color:#666;">Baixada Santista — em breve</span><br>
+            <span style="color:#666;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#666;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#666;">Belo Horizonte — em breve</span>
+        </div>
+
+        <!-- Coluna 4: Institucional + Contato -->
+        <div>
+            <strong style="color:var(--branco);">Institucional</strong><br>
+            <a href="/quem-somos/">Quem Somos</a><br>
+            <a href="/servicos/">Serviços</a><br>
+            <a href="/contato/">Contato</a><br>
+            <a href="/termos-de-uso/">Termos de Uso</a><br>
+            <a href="/politica-de-privacidade/">Política de Privacidade</a><br>
+            <a href="/lgpd/">Canal LGPD</a><br><br>
+            contato@fortplanos.com.br
+        </div>
+
+        <!-- Legal -->
+        <div class="footer-legal">
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:12px;">
+                <span class="footer-trust-item">🔒 Site Seguro SSL</span>
+                <span class="footer-trust-item">🛡️ Operadoras registradas ANS</span>
+                <span class="footer-trust-item">✅ LGPD Compliant</span>
+                <span class="footer-trust-item">📋 Corretores habilitados SUSEP</span>
+            </div>
+            <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
+            Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
+            Não possui vínculo societário com a Bradesco Seguros S.A. Todos os dados são extraídos
+            da base CRM Saúde (atualizada em julho/2026) e podem sofrer alterações sem aviso prévio.
+            Preços são mutáveis — confirme os valores atualizados com um corretor autorizado antes de contratar.
+            Valores por pessoa/mês <strong>sem IOF</strong> — conforme o cotador, a cotação final acrescenta <strong>2,38% de IOF</strong>, inclusive sobre as taxas.
+            Os planos de saúde citados são regulados pela <strong>ANS — Agência Nacional de Saúde Suplementar</strong>.<br>
+            © 2024–2026 FortPlanos — Todos os direitos reservados.
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ── Menu Mobile ──
+    (function () {
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('header nav');
+        toggle.addEventListener('click', () => {
+            const aberto = nav.classList.toggle('aberto');
+            toggle.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+        });
+    })();
+</script>
+
+<script src="https://crmsaude.agenciafort.com.br/api/widget/embed?t=fortplanos"></script>
+</body>
+</html>
