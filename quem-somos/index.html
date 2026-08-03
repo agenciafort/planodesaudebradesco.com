@@ -83,6 +83,11 @@
         "name": "Quem Somos — FortPlanos Corretora Bradesco Saúde",
         "description": "Página institucional da FortPlanos, corretora autorizada especializada em planos de saúde empresariais Bradesco Saúde.",
         "url": "https://planodesaudebradesco.com/quem-somos/",
+        "dateModified": "2026-08-03",
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".resposta-direta"]
+        },
         "mainEntity": {
             "@type": "InsuranceAgency",
             "name": "FortPlanos",
@@ -449,10 +454,23 @@
             <div>
                 <div class="section-header" style="text-align:left;">
                     <span class="label">Quem Somos</span>
-                    <h2>FortPlanos — Sua Corretora Especializada em Bradesco Saúde</h2>
+                </div>
+                <!-- Resposta direta (fase 4.4): a pergunta aqui e de confianca -
+                     quem publica este site e qual e a relacao dele com a Bradesco.
+                     A resposta separa corretora de operadora de propósito: e o ponto
+                     que uma IA costuma confundir ao citar o site como fonte oficial. -->
+                <div class="resposta-direta">
+                    <h2 style="margin:8px 0 14px;">Quem É a FortPlanos e Qual a Relação Dela com a Bradesco Saúde?</h2>
+                    <p style="font-size:1.08rem; line-height:1.75;">
+                        A <strong>FortPlanos</strong> (A Clebio Costa Bispo Publicidade LTDA - ME, CNPJ 53.290.346/0001-38,
+                        São Paulo — SP) é uma <strong>corretora autorizada</strong> a comercializar os planos Bradesco Saúde —
+                        <strong>não é a operadora</strong>. Quem define produto, preço, rede credenciada e regras de contrato é a
+                        <strong>Bradesco Saúde</strong>; a corretora intermedeia a contratação, sem custo para o cliente, e
+                        acompanha o contrato depois da assinatura. Este site é informativo e não é canal oficial da operadora.
+                    </p>
                 </div>
                 <p>
-                    A <strong>FortPlanos</strong> é uma corretora de planos de saúde fundada com o propósito de
+                    A corretora foi fundada com o propósito de
                     <strong>simplificar a contratação de planos empresariais</strong>. Somos autorizados a comercializar
                     todos os planos <strong>Bradesco Saúde</strong> e trabalhamos com mais de 40 operadoras
                     registradas na ANS.

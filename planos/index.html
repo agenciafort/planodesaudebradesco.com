@@ -84,8 +84,12 @@
         "name": "Planos de Saúde Bradesco — 3 Linhas de Produto 2026",
         "description": "Compare as 3 linhas de plano de saúde Bradesco para empresas: Nacional, Nacional Plus e Premium.",
         "url": "https://planodesaudebradesco.com/planos/",
-        "dateModified": "2026-02-20",
+        "dateModified": "2026-08-03",
         "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".resposta-direta"]
+        },
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -381,10 +385,29 @@
 <!-- ═══════════════════ 5 LINHAS DE PRODUTO ═══════════════════ -->
 <section class="sec" id="linhas">
     <div class="container">
-        <div class="section-header">
+        <!-- Resposta direta (fase 4.4): cluster "tipos de plano" = 550 buscas/mes.
+             A resposta abre com o erro mais comum do assunto - achar que a linha
+             mais cara cobre mais procedimentos - porque e o que a IA responde errado. -->
+        <div class="section-header" style="margin-bottom:10px;">
             <span class="label">Linhas de Produto</span>
-            <h2>3 Linhas de Plano de Saúde Bradesco Saúde</h2>
-            <p>Cada linha atende um perfil diferente de empresa. Compare e escolha a ideal para sua equipe.</p>
+        </div>
+        <div class="resposta-direta" style="max-width:860px; margin:0 auto 40px;">
+            <h2 style="margin:0 0 14px;">Quais São os Tipos de Plano de Saúde Bradesco?</h2>
+            <p style="font-size:1.08rem; line-height:1.75; margin:0 0 16px;">
+                São <strong>3 linhas de produto</strong>, todas na modalidade coletiva: <strong>Nacional</strong> (rede ampliada,
+                a partir de R$ 385/mês), <strong>Nacional Plus</strong> (rede premium e reembolso mais amplo, a partir de R$ 1.290/mês)
+                e <strong>Premium</strong> (acesso a hospitais como Einstein e Sírio-Libanês, a partir de R$ 1.781/mês).
+                O que muda entre elas é a <strong>rede credenciada, a acomodação e o nível de reembolso</strong> —
+                <strong>não</strong> a lista de procedimentos cobertos, que segue o mesmo Rol da ANS em todas.
+            </p>
+            <p style="margin:0 0 14px;">
+                Ou seja: pagar mais não faz o plano cobrir uma cirurgia que o mais barato não cobriria. Faz você ser atendido
+                em outros hospitais, em apartamento em vez de enfermaria, e receber de volta uma parcela maior quando escolhe
+                um médico fora da rede. <a href="/coberturas/">Veja o que é coberto em qualquer linha</a>.
+            </p>
+            <p style="margin:0; font-size:.95rem; color:var(--cinza-700);">
+                Cada linha atende um perfil diferente de empresa. Compare o resumo abaixo e, na sequência, o comparativo item a item.
+            </p>
         </div>
 
         <div class="cards-grid cards-grid-3" id="planos-linhas-grid">

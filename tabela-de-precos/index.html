@@ -83,11 +83,15 @@
         "name": "Tabela de Preços Bradesco Saúde 2026 — São Paulo",
         "description": "Tabela completa de preços do plano de saúde Bradesco 2026 com 24 tabelas, 880 registros, filtros interativos incluindo coparticipação, comparação e impressão PDF para São Paulo e Grande SP.",
         "url": "https://planodesaudebradesco.com/tabela-de-precos/",
-        "dateModified": "2026-02-21",
+        "dateModified": "2026-08-03",
         "inLanguage": "pt-BR",
         "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "about": { "@type": "Product", "name": "Bradesco Saúde PME", "brand": { "@type": "Brand", "name": "Bradesco Saúde" } },
         "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".resposta-direta"]
+        },
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -584,16 +588,36 @@
     </div>
 </section>
 
-<!-- ═══════════ INTRO SEO ═══════════ -->
-<section class="sec-alt" style="padding:30px 0;">
-    <div class="container" style="max-width:900px; text-align:center;">
-        <p style="font-size:.95rem; color:var(--cinza-700); margin:0;">
-            A <strong>tabela de preços do plano de saúde Bradesco</strong> é referência para empresas que buscam planos empresariais PME em <strong>São Paulo</strong>.
-            Nesta página você encontra <strong>880 registros de preços</strong> (fonte <strong>cotador Tabelas — CRM Saúde</strong>, base julho/2026 · conferido ao vivo em 30/07/2026) em <strong>24 tabelas</strong> da <a href="/planos/">Bradesco Saúde</a>:
-            desde o acessível <strong>Nacional II Enfermaria</strong> (a partir de R$ 280,60/mês) até o exclusivo <strong>Premium 10</strong> (até R$ 15.631,86/mês).
-            Os preços variam conforme 6 fatores: <strong>faixa etária</strong>, <strong>linha de produto</strong>, <strong>acomodação</strong>, <strong>modalidade de adesão</strong>, <strong>coparticipação</strong> e <strong>quantidade de vidas</strong> no grupo.
-            Use os filtros abaixo para encontrar o plano ideal para sua empresa.
-        </p>
+<!-- ═══════════ RESPOSTA DIRETA ═══════════
+     Formato pergunta → resposta autocontida → desenvolvimento (fase 4.4).
+     Cluster medido nos CSVs: 388 termos com "tabela", 3.260 buscas/mes.
+     A resposta precisa ser lida isolada do resto da pagina: quem cita
+     so este paragrafo (IA ou snippet) tem que sair com a informacao certa,
+     inclusive a ressalva de que a tabela publicada aqui e de SP/Grande SP.
+-->
+<section class="sec-alt" style="padding:34px 0;">
+    <div class="container">
+        <div class="resposta-direta" style="max-width:860px; margin:0 auto;">
+            <h2 style="font-size:1.5rem; margin:0 0 14px;">Qual É a Tabela de Preços do Plano de Saúde Bradesco em 2026?</h2>
+            <p style="font-size:1.08rem; line-height:1.75; margin:0 0 16px;">
+                <strong>Não existe uma tabela única.</strong> A Bradesco Saúde vende apenas planos coletivos, e o valor muda
+                conforme seis fatores: faixa etária, linha de produto, acomodação, modalidade de adesão, coparticipação e
+                quantidade de vidas no grupo. Nas <strong>24 tabelas conferidas para São Paulo e Grande SP</strong>, a mensalidade
+                por pessoa vai de <strong>R$ 280,60</strong> (Nacional II Enfermaria, 30 a 99 vidas, adesão compulsória)
+                a <strong>R$ 15.631,86</strong> (Premium 10, faixa 59+). Para o grupo mínimo, de <strong>3 vidas</strong>,
+                a entrada é <strong>R$ 355,27</strong> por pessoa/mês.
+            </p>
+            <p style="margin:0 0 14px;">
+                São <strong>880 registros de preços</strong> em 24 tabelas — fonte: cotador Tabelas (CRM Saúde), base julho/2026,
+                conferida ao vivo em 30/07/2026. Os valores são <strong>por pessoa/mês e sem IOF</strong>; a cotação final acrescenta
+                <strong>2,38% de IOF</strong>, inclusive sobre as taxas. Use os filtros abaixo para chegar à tabela do seu caso.
+            </p>
+            <p style="margin:0; font-size:.95rem; color:var(--cinza-700);">
+                Estas tabelas valem para <strong>São Paulo e Grande SP</strong> — o preço do mesmo plano muda em outras praças.
+                Procurando preço de plano <strong>familiar ou individual</strong>? A Bradesco não comercializa essa modalidade;
+                <a href="/individual/">veja os dois caminhos reais para pessoa física</a>.
+            </p>
+        </div>
     </div>
 </section>
 

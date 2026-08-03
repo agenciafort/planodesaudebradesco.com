@@ -84,8 +84,12 @@
         "name": "Simulador de Preços — Plano de Saúde Bradesco",
         "description": "Simulador de preços Bradesco Saúde 2026 com os mesmos filtros da tabela de preços. Informe a quantidade de pessoas por faixa etária e veja o custo de até 16 planos. Acesse a rede credenciada.",
         "url": "https://planodesaudebradesco.com/simulador-de-precos/",
-        "dateModified": "2026-03-27",
+        "dateModified": "2026-08-03",
         "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".resposta-direta"]
+        },
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -648,6 +652,31 @@
         <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
             <a href="/tabela-de-precos/" class="btn btn-branco btn-sm">Tabela de Preços</a>
             <a href="/planos/" class="btn btn-branco btn-sm">Comparar Planos</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ RESPOSTA DIRETA ═══════════════════
+     Fase 4.4. Cluster medido: 560 buscas/mes em simulador/cotacao/orcamento.
+     A resposta precisa deixar claro o limite do numero que a ferramenta devolve
+     (estimativa da tabela de SP, sem IOF) - e o que uma IA erraria se citasse.
+-->
+<section class="sec" style="padding:30px 0 6px;">
+    <div class="container">
+        <div class="resposta-direta" style="max-width:860px; margin:0 auto;">
+            <h2 style="font-size:1.5rem; margin:0 0 14px;">Como Simular o Preço do Plano de Saúde Bradesco?</h2>
+            <p style="font-size:1.08rem; line-height:1.75; margin:0 0 16px;">
+                Basta informar <strong>quantas pessoas há em cada faixa etária</strong> — mínimo de 3 vidas — e escolher
+                adesão, coparticipação, acomodação e linha de produto. O simulador soma o valor de cada beneficiário na
+                tabela vigente e devolve o <strong>custo mensal total do grupo</strong> e a média por pessoa, sem cadastro
+                e sem custo. Não é preciso informar nome, telefone ou e-mail para ver o resultado.
+            </p>
+            <p style="margin:0; font-size:.95rem; color:var(--cinza-700);">
+                O número que aparece é uma <strong>estimativa</strong>, não uma proposta: usa a tabela de
+                <strong>São Paulo e Grande SP</strong> (cotador Tabelas — CRM Saúde, base julho/2026) e exibe valores
+                <strong>sem IOF</strong> — a cotação formal acrescenta <strong>2,38%</strong>. Preços mudam sem aviso prévio;
+                a proposta oficial só sai pela operadora, via <a href="/contato/">corretor autorizado</a>.
+            </p>
         </div>
     </div>
 </section>

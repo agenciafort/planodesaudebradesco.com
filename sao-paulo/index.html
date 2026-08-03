@@ -121,10 +121,14 @@
         "name": "Bradesco Saúde São Paulo — Planos, Preços e Rede Credenciada 2026",
         "description": "Guia completo do plano de saúde Bradesco Saúde em São Paulo e Grande SP. Preços atualizados, rede credenciada, elegibilidade e cotação online.",
         "url": "https://planodesaudebradesco.com/sao-paulo/",
-        "dateModified": "2026-02-22",
+        "dateModified": "2026-08-03",
         "inLanguage": "pt-BR",
         "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".resposta-direta"]
+        },
         "about": {
             "@type": "Product",
             "name": "Bradesco Saúde PME São Paulo",
@@ -596,28 +600,37 @@
 <!-- ═══════════════════ INTRO — Conteúdo Principal ═══════════════════ -->
 <section class="sec">
     <div class="container">
-        <div class="intro-text">
-            <h2 style="text-align:center; margin-bottom:20px;">Plano de Saúde Bradesco em São Paulo: Guia Completo 2026</h2>
-            <p>
-                O <strong>Bradesco Saúde</strong> é uma das maiores e mais tradicionais operadoras de planos de saúde do Brasil,
-                com forte presença na cidade de <strong>São Paulo e Grande São Paulo</strong>. Para empresas que buscam
-                um <strong>plano de saúde empresarial em SP</strong>, a Bradesco Saúde oferece 3 linhas de produto que vão
-                do plano regional mais acessível ao ultra-premium com acesso a hospitais como
-                <strong>Einstein</strong> e <strong>Sírio-Libanês</strong>.
+        <!-- Resposta direta (fase 4.4): pergunta -> resposta autocontida -> desenvolvimento.
+             Esta e a pagina de praca mais forte do site; o paragrafo precisa entregar
+             preco de entrada, minimo de vidas e tamanho da rede sem depender do resto. -->
+        <div class="resposta-direta intro-text">
+            <h2 style="margin-bottom:16px;">Plano de Saúde Bradesco em São Paulo: Quanto Custa e Onde Atende?</h2>
+            <p style="font-size:1.08rem; line-height:1.75;">
+                Em São Paulo e Grande SP, o plano de saúde Bradesco parte de <strong>R$ 355,27 por pessoa/mês</strong>
+                (Nacional II Enfermaria, grupo de 3 vidas, adesão compulsória, base julho/2026, sem IOF) e é contratado
+                na <strong>modalidade coletiva empresarial (PME), a partir de 3 vidas</strong>, por empresa com CNPJ ativo —
+                inclusive MEI. A rede na região reúne <strong>128 hospitais</strong> e <strong>166 laboratórios</strong>
+                credenciados em <strong>22 municípios</strong>, incluindo referências como
+                <strong>Einstein</strong> e <strong>Sírio-Libanês</strong> nas linhas mais altas.
             </p>
             <p>
-                A contratação do <strong>plano de saúde Bradesco para empresas em São Paulo</strong> começa a partir de
-                <strong>3 vidas</strong> (PME — Pequenas e Médias Empresas), com vigência contratual de <strong>12 meses</strong>
-                e opções de adesão <strong>Compulsória</strong> (todos aderem, preço mais baixo) ou <strong>Opcional</strong>
-                (livre adesão). São <strong>24 tabelas de preços</strong> publicadas aqui, que variam conforme a quantidade de vidas,
-                tipo de adesão e linha de produto — ideal para empresas de todos os portes em São Paulo.
+                O passo a passo da contratação, com prazos e documentos, está em
+                <a href="/como-contratar/">como contratar o plano Bradesco</a>. Esta página trata do que é específico
+                de São Paulo: preço da praça, rede local e regiões atendidas.
             </p>
             <p>
-                Com <strong>128 hospitais credenciados</strong> distribuídos em <strong>9 regiões</strong> de São Paulo e Grande SP,
-                mais <strong>166 laboratórios</strong>, a rede credenciada Bradesco Saúde cobre desde a Capital
-                até cidades como <strong>Guarulhos, Santo André, São Bernardo, Osasco, Barueri</strong> e
-                <strong>Mogi das Cruzes</strong>. Confira abaixo todos os detalhes sobre planos, preços, rede credenciada
-                e como contratar.
+                O que faz o preço mudar dentro de São Paulo é a combinação de <strong>quantidade de vidas</strong>,
+                <strong>tipo de adesão</strong> — Compulsória, em que todos aderem e o valor é mais baixo, ou Opcional
+                (livre adesão) — e <strong>linha de produto</strong>. São <strong>24 tabelas</strong> publicadas aqui
+                justamente por causa dessas combinações: não há um preço único de "plano Bradesco em SP".
+            </p>
+            <p>
+                Os <strong>128 hospitais credenciados</strong> estão distribuídos em <strong>9 regiões</strong> de São Paulo e
+                Grande SP, mais <strong>166 laboratórios</strong>, cobrindo da Capital a cidades como
+                <strong>Guarulhos, Santo André, São Bernardo, Osasco, Barueri</strong> e <strong>Mogi das Cruzes</strong>.
+                Atenção a um ponto que costuma passar despercebido: <strong>a rede varia conforme a linha contratada</strong> —
+                um hospital pode atender o Premium e não o Nacional. Confira abaixo os detalhes de planos, preços, rede
+                credenciada e contratação.
             </p>
             <p style="text-align:center;">
                 <a href="/contato/"><strong>Faça sua cotação gratuita na FortPlanos →</strong></a>

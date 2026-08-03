@@ -83,8 +83,12 @@
         "name": "Plano de Saúde Bradesco por Cidade — Cidades Disponíveis",
         "description": "Hub de cidades com plano de saúde Bradesco Saúde. Rede credenciada, tabela de preços e cotação por região.",
         "url": "https://planodesaudebradesco.com/cidades/",
-        "dateModified": "2026-02-20",
+        "dateModified": "2026-08-03",
         "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".resposta-direta"]
+        },
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -343,6 +347,31 @@
         <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
             <a href="/tabela-de-precos/" class="btn btn-vermelho">Tabela de Preços</a>
             <a href="/simulador-de-precos/" class="btn btn-branco">Simulador de Preços</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ RESPOSTA DIRETA ═══════════════════
+     Fase 4.4. A pergunta desta pagina e "atende a minha cidade?".
+     A resposta separa duas coisas que se confundem: onde o plano vale (nacional)
+     e onde ESTE SITE publica rede e preco detalhados (SP e Grande SP).
+-->
+<section class="sec" style="padding:34px 0 10px;">
+    <div class="container">
+        <div class="resposta-direta" style="max-width:860px; margin:0 auto;">
+            <h2 style="font-size:1.5rem; margin:0 0 14px;">O Plano de Saúde Bradesco Atende a Minha Cidade?</h2>
+            <p style="font-size:1.08rem; line-height:1.75; margin:0 0 16px;">
+                As três linhas do Bradesco Saúde têm <strong>abrangência nacional</strong>: o beneficiário é atendido pela
+                rede credenciada em qualquer estado, não apenas onde a empresa contratante fica. O que muda de cidade para
+                cidade é <strong>quais prestadores existem ali</strong> e <strong>quanto custa a mensalidade</strong> —
+                a tabela é regional, não há preço único para o Brasil inteiro.
+            </p>
+            <p style="margin:0; font-size:.95rem; color:var(--cinza-700);">
+                Neste site, a rede e a tabela publicadas em detalhe são as de <strong>São Paulo e Grande SP</strong>
+                (128 hospitais e 166 laboratórios). Para as demais praças, a consulta de rede e o preço da sua região
+                saem pelo <a href="/contato/">corretor autorizado</a>. Entenda antes como a rede funciona no
+                <a href="/rede-credenciada/">hub nacional da rede credenciada</a>.
+            </p>
         </div>
     </div>
 </section>

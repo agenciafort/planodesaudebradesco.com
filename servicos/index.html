@@ -83,7 +83,11 @@
         "name": "Serviços — Corretor de Plano de Saúde Bradesco",
         "description": "Serviços oferecidos pela FortPlanos como corretora de plano de saúde Bradesco Saúde: cotação, comparação, contratação e pós-venda.",
         "url": "https://planodesaudebradesco.com/servicos/",
-        "dateModified": "2026-02-20",
+        "dateModified": "2026-08-03",
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".resposta-direta"]
+        },
         "provider": {
             "@type": "InsuranceAgency",
             "name": "FortPlanos",
@@ -438,17 +442,21 @@
 <!-- ═══════════════════ INTRO ═══════════════════ -->
 <section class="sec">
     <div class="container">
-        <div style="max-width:800px; margin:0 auto; text-align:center;">
-            <p style="font-size:1.05rem;">
-                Muitas empresas não sabem, mas <strong>contratar um plano de saúde pelo corretor tem o mesmo preço</strong>
-                que contratar direto com a operadora. A diferença é que, com o corretor, você ganha um
-                <strong>consultor especializado</strong> que trabalha a seu favor em todas as etapas — da cotação
-                à renovação anual — sem nenhum custo adicional.
+        <!-- Resposta direta (fase 4.4): a pergunta real por tras deste cluster e
+             "vale a pena usar corretor / quanto ele cobra". A resposta abre pelo preco. -->
+        <div class="resposta-direta" style="max-width:840px; margin:0 auto;">
+            <h2 style="font-size:1.5rem; margin:0 0 14px;">O Que Faz um Corretor de Plano de Saúde Bradesco — e Quanto Ele Cobra?</h2>
+            <p style="font-size:1.08rem; line-height:1.75; margin:0 0 16px;">
+                <strong>O corretor não cobra nada do cliente.</strong> A remuneração é paga pela seguradora, e
+                <strong>contratar pelo corretor tem exatamente o mesmo preço</strong> de contratar direto com a operadora —
+                a tabela é a mesma. O que muda é que você passa a ter um consultor que compara as linhas, monta a
+                documentação, acompanha a análise da proposta e continua responsável pelo contrato depois da assinatura:
+                inclusão e exclusão de vidas, uso da rede, reembolso e reajuste anual.
             </p>
-            <p style="font-size:1.05rem;">
-                A <strong>FortPlanos</strong> é corretora autorizada <strong>Bradesco Saúde</strong> e oferece
-                uma gama completa de serviços divididos em 3 fases: <strong>Pré-Venda</strong>,
-                <strong>Contratação</strong> e <strong>Pós-Venda</strong>.
+            <p style="margin:0;">
+                A <strong>FortPlanos</strong> é corretora autorizada <strong>Bradesco Saúde</strong> e organiza esse
+                trabalho em 3 fases: <strong>Pré-Venda</strong>, <strong>Contratação</strong> e <strong>Pós-Venda</strong> —
+                detalhadas abaixo.
             </p>
         </div>
     </div>

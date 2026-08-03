@@ -92,8 +92,12 @@
         "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "name": "Rede Credenciada Bradesco Saúde — São Paulo e Grande SP",
         "description": "Lista completa de hospitais, laboratórios e clínicas credenciadas pelo Bradesco Saúde na região de São Paulo e Grande SP.",
-        "dateModified": "2026-02-21",
+        "dateModified": "2026-08-03",
         "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".resposta-direta"]
+        },
         "about": {
             "@type": "MedicalOrganization",
             "name": "Bradesco Saúde — Rede Credenciada SP",
@@ -922,6 +926,30 @@
                 <div class="stat-number">16</div>
                 <div class="stat-label">Planos</div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════ RESPOSTA DIRETA ═══════════════════
+     Fase 4.4. Esta pagina e a ferramenta de busca; a resposta acima do filtro
+     existe para quem chega pela pergunta "onde aceita" e para IA que cita a pagina
+     sem executar o JavaScript da lista. Precisa carregar os numeros e a ressalva.
+-->
+<section class="sec" style="padding:34px 0 10px;">
+    <div class="container">
+        <div class="resposta-direta" style="max-width:860px; margin:0 auto;">
+            <h2 style="font-size:1.5rem; margin:0 0 14px;">Quais Hospitais Aceitam o Plano de Saúde Bradesco em São Paulo?</h2>
+            <p style="font-size:1.08rem; line-height:1.75; margin:0 0 16px;">
+                Na Capital e na Grande SP são <strong>128 hospitais</strong> e <strong>166 laboratórios</strong> credenciados,
+                distribuídos por <strong>9 regiões</strong> e <strong>22 municípios</strong>. Mas não existe uma resposta única
+                para "qual hospital aceita Bradesco": <strong>a rede muda conforme a linha contratada</strong> — um hospital pode
+                atender o Premium e não o Nacional. Por isso a busca abaixo filtra por plano, e não só por cidade.
+            </p>
+            <p style="margin:0; font-size:.95rem; color:var(--cinza-700);">
+                Credenciamentos entram e saem sem aviso. Nenhuma lista de terceiros — <strong>inclusive esta</strong> —
+                substitui a consulta ao guia médico oficial da operadora na data do atendimento.
+                Para entender a rede fora de São Paulo, veja o <a href="/rede-credenciada/">hub nacional da rede credenciada</a>.
+            </p>
         </div>
     </div>
 </section>
