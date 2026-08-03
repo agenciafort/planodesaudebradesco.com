@@ -20,4 +20,113 @@ Disallow: /*.csv$
 Disallow: /*.tsv$
 Disallow: /*.xlsx$
 
+
+# ══════════════════════════════════════════════════════════════════════════════
+# CRAWLERS DE IA — liberados de propósito (decisão do responsável, 2026-08-03)
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# POR QUE ESTES GRUPOS EXISTEM, SE O "*" ACIMA JÁ LIBERA TUDO:
+# tecnicamente o efeito é o mesmo. Estão aqui como declaração intencional — o
+# objetivo do site é ser lido e citado corretamente por IA (ver /llms.txt), e
+# deixar isso explícito evita que alguém "endureça" o robots no futuro sem saber
+# que estaria desligando a estratégia inteira.
+#
+# ⚠️ REGRA DO PROTOCOLO QUE PEGA TODO MUNDO:
+# um crawler obedece a UM ÚNICO grupo — o mais específico que casa com o nome
+# dele. Ao nomear "GPTBot" abaixo, esse bot passa a IGNORAR o grupo "*" inteiro,
+# inclusive os "Disallow" de CSV/TSV/XLSX. Por isso cada grupo repete os três
+# Disallow. Se um dia entrar um novo Disallow no grupo "*", ELE PRECISA SER
+# REPETIDO AQUI EMBAIXO — senão passa a valer só para buscador tradicional.
+#
+# Dois papéis diferentes, ambos permitidos:
+#   • treinamento/indexação (GPTBot, ClaudeBot, Google-Extended, PerplexityBot,
+#     Applebot-Extended, CCBot): alimentam o que o modelo "sabe".
+#   • busca ao vivo (ChatGPT-User, Claude-User, Claude-SearchBot, Perplexity-User,
+#     OAI-SearchBot): abrem a página na hora de responder a alguém.
+# Bloquear os de treinamento não impede a citação, mas reduz a chance de o modelo
+# conhecer o site fora da busca ao vivo — daí a escolha de liberar os dois papéis.
+
+# ── OpenAI ──
+User-agent: GPTBot
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+# ── Anthropic ──
+User-agent: ClaudeBot
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+User-agent: Claude-User
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+# ── Google (Gemini / Vertex AI) ──
+# Google-Extended NÃO controla rastreamento nem indexação na Busca — isso é do
+# Googlebot. Ele controla só o uso do conteúdo para IA generativa. Liberar aqui
+# é o que permite a citação no AI Overview e no Gemini.
+User-agent: Google-Extended
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+# ── Perplexity ──
+User-agent: PerplexityBot
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+# ── Microsoft / Bing (Copilot usa o índice do Bing) ──
+User-agent: Bingbot
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+# ── Apple ──
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+# ── Common Crawl (base pública usada por vários modelos) ──
+User-agent: CCBot
+Allow: /
+Disallow: /*.csv$
+Disallow: /*.tsv$
+Disallow: /*.xlsx$
+
+
 Sitemap: https://planodesaudebradesco.com/sitemap.xml

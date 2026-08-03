@@ -74,6 +74,15 @@
     }
     </script>
 
+    <!-- ══════ Schema.org: WebPage + Product/AggregateOffer + BreadcrumbList ══════
+         Sobre o "priceValidUntil" do bloco de preços (fase 4.6, 2026-08-03):
+         a data NÃO é uma promessa de que o preço vai durar — a própria página diz
+         que os valores são mutáveis sem aviso. Ela existe porque o schema exige um
+         horizonte de validade, e foi fixada no fim do ano de referência da tabela
+         (base julho/2026). AO REVALIDAR A TABELA NO COTADOR, atualize junto:
+         validFrom, priceValidUntil, lowPrice/highPrice e a data visível na página.
+         Data vencida faz o buscador descartar o bloco de preço.
+    -->
     <!-- Schema.org: WebPage + BreadcrumbList -->
     <script type="application/ld+json">
     {
@@ -86,7 +95,30 @@
         "dateModified": "2026-08-03",
         "inLanguage": "pt-BR",
         "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
-        "about": { "@type": "Product", "name": "Bradesco Saúde PME", "brand": { "@type": "Brand", "name": "Bradesco Saúde" } },
+        "about": {
+            "@type": "Product",
+            "@id": "https://planodesaudebradesco.com/tabela-de-precos/#product",
+            "name": "Bradesco Saúde PME",
+            "brand": { "@type": "Brand", "name": "Bradesco Saúde" },
+            "category": "Plano de Saúde Empresarial",
+            "description": "Plano de saúde coletivo empresarial Bradesco Saúde para grupos a partir de 3 vidas. Preço por pessoa/mês, variável conforme faixa etária, linha de produto, acomodação, modalidade de adesão, coparticipação e quantidade de vidas.",
+            "offers": {
+                "@type": "AggregateOffer",
+                "@id": "https://planodesaudebradesco.com/tabela-de-precos/#offer",
+                "priceCurrency": "BRL",
+                "lowPrice": "280.60",
+                "highPrice": "15631.86",
+                "offerCount": 880,
+                "availability": "https://schema.org/InStock",
+                "url": "https://planodesaudebradesco.com/tabela-de-precos/",
+                "validFrom": "2026-07-01",
+                "priceValidUntil": "2026-12-31",
+                "seller": { "@id": "https://planodesaudebradesco.com/#organization" },
+                "areaServed": { "@type": "City", "name": "São Paulo", "containedInPlace": { "@type": "State", "name": "SP" } },
+                "eligibleQuantity": { "@type": "QuantitativeValue", "minValue": 3, "unitText": "vidas" },
+                "description": "Faixa por pessoa/mês, sem IOF (a cotação final acrescenta 2,38%). Mínimo: Nacional II Enfermaria, 30 a 99 vidas, adesão compulsória. Máximo: Premium 10, faixa 59+, 3 vidas, livre adesão. 880 registros em 24 tabelas para São Paulo e Grande SP. Fonte: cotador Tabelas (CRM Saúde), base julho/2026, conferida em 30/07/2026."
+            }
+        },
         "publisher": { "@id": "https://planodesaudebradesco.com/#organization" },
         "speakable": {
             "@type": "SpeakableSpecification",
