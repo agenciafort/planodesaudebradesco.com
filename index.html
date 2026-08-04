@@ -57,12 +57,15 @@
         "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
         "image": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
         "description": "Corretora autorizada especializada em planos de saúde empresariais Bradesco Saúde. Cotação online, comparação de planos e atendimento personalizado.",
+        "telephone": "+551151920609",
         "email": "contato@fortplanos.com.br",
         "taxID": "53.290.346/0001-38",
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "Rua Brigadeiro Brito Delamare, 222 - Vila Santa Teresa",
             "addressLocality": "São Paulo",
             "addressRegion": "SP",
+            "postalCode": "03566-030",
             "addressCountry": "BR"
         },
         "areaServed": { "@type": "Country", "name": "Brasil" },
@@ -95,12 +98,37 @@
     }
     </script>
 
+    <!-- ══════ Schema.org: corretora responsável pelo conteúdo ══════
+         Conteúdo sobre saúde e contrato é YMYL: o Google espera pessoa real,
+         identificável e com credencial verificável — não só o nome da empresa.
+         Este nó é referenciado por "reviewedBy" nas páginas e por "author" nos
+         posts. Como as outras páginas processam sozinhas, cada uma carrega uma
+         cópia deste nó (mesma decisão de arquitetura da fase 4.3).
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://planodesaudebradesco.com/#sara",
+        "name": "Sara Santana de Souza",
+        "jobTitle": "Corretora de planos de saúde",
+        "worksFor": { "@id": "https://planodesaudebradesco.com/#organization" },
+        "url": "https://planodesaudebradesco.com/quem-somos/",
+        "identifier": {
+            "@type": "PropertyValue",
+            "name": "Registro SUSEP",
+            "value": "201046889"
+        }
+    }
+    </script>
+
     <!-- ══════ Schema.org: WebPage + BreadcrumbList ══════ -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "@id": "https://planodesaudebradesco.com/#webpage",
+        "reviewedBy": { "@id": "https://planodesaudebradesco.com/#sara" },
         "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "name": "Plano de Saúde Bradesco — Cotação Online Grátis 2026",
         "description": "Compare planos de saúde Bradesco para empresas. 3 linhas de produto, cobertura nacional, cotação online grátis pela FortPlanos.",
@@ -622,7 +650,7 @@
 <div class="trust-bar">
     <div class="container">
         <div class="trust-badge"><span class="icon">🛡️</span> Regulado pela ANS</div>
-        <div class="trust-badge"><span class="icon">📋</span> Corretores SUSEP</div>
+        <div class="trust-badge"><span class="icon">📋</span> SUSEP 201046889</div>
         <div class="trust-badge"><span class="icon">🔒</span> Site Seguro SSL</div>
         <div class="trust-badge"><span class="icon">✅</span> LGPD Compliant</div>
         <div class="trust-badge"><span class="icon">🏢</span> CNPJ Ativo</div>
@@ -1241,7 +1269,10 @@
             <a href="/termos-de-uso/">Termos de Uso</a><br>
             <a href="/politica-de-privacidade/">Política de Privacidade</a><br>
             <a href="/lgpd/">Canal LGPD</a><br><br>
-            contato@fortplanos.com.br
+            <a href="tel:+551151920609">(11) 5192-0609</a><br>
+            <a href="mailto:contato@fortplanos.com.br">contato@fortplanos.com.br</a><br><br>
+            Rua Brigadeiro Brito Delamare, 222 - Vila Santa Teresa<br>
+            São Paulo — SP · CEP 03566-030
         </div>
 
         <!-- Legal -->
@@ -1250,7 +1281,7 @@
                 <span class="footer-trust-item">🔒 Site Seguro SSL</span>
                 <span class="footer-trust-item">🛡️ Operadoras registradas ANS</span>
                 <span class="footer-trust-item">✅ LGPD Compliant</span>
-                <span class="footer-trust-item">📋 Corretores habilitados SUSEP</span>
+                <span class="footer-trust-item">📋 Corretora responsável: Sara Santana de Souza — SUSEP 201046889</span>
             </div>
             <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
             Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.

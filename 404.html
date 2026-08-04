@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada | Plano de Saúde Bradesco</title>
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Icones do site. -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#CC092F">
+
+    <!-- Sem canonical de propósito: canonical numa página de erro apontaria
+         sinal para uma URL que não deveria existir. "noindex, follow" mantém
+         os links desta página rastreáveis, que é como o visitante e o robô
+         voltam ao conteúdo bom. -->
+
+    <style>
+        :root {
+            --vermelho: #CC092F;
+            --cinza-900: #1a1a2e;
+            --cinza-700: #3d3d5c;
+            --cinza-200: #e8e8ef;
+            --cinza-100: #f4f4f8;
+            --branco: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            color: var(--cinza-900);
+            background: var(--branco);
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a { color: var(--vermelho); }
+        .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+        header {
+            background: var(--cinza-900);
+            padding: 16px 0;
+        }
+        header .container { display: flex; align-items: center; gap: 12px; }
+        header img { display: block; }
+        main { flex: 1; padding: 56px 0 64px; }
+        .codigo {
+            display: inline-block;
+            background: var(--vermelho);
+            color: var(--branco);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .5px;
+            padding: 5px 13px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        h1 { font-size: 1.9rem; line-height: 1.25; margin: 16px 0 14px; }
+        .lead { font-size: 1.08rem; color: var(--cinza-700); margin-bottom: 30px; }
+        .destinos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+        .destino {
+            display: block;
+            padding: 16px 18px;
+            border: 1px solid var(--cinza-200);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color .15s, transform .15s;
+        }
+        .destino:hover { border-color: var(--vermelho); transform: translateY(-2px); }
+        .destino strong { display: block; color: var(--vermelho); margin-bottom: 3px; }
+        .destino span { font-size: .92rem; color: var(--cinza-700); }
+        .ajuda {
+            background: var(--cinza-100);
+            border-left: 4px solid var(--vermelho);
+            border-radius: 6px;
+            padding: 20px 22px;
+            font-size: .96rem;
+        }
+        footer {
+            background: var(--cinza-900);
+            color: var(--cinza-200);
+            padding: 22px 0;
+            font-size: .85rem;
+            text-align: center;
+        }
+        footer a { color: var(--branco); }
+        @media (max-width: 600px) { h1 { font-size: 1.5rem; } main { padding: 36px 0 44px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="/" aria-label="Página inicial"><img src="/img/logo-fortplanos.webp" alt="FortPlanos" width="120" height="30"></a>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <span class="codigo">Erro 404</span>
+        <h1>Esta página não existe — mas o que você procura provavelmente está aqui</h1>
+        <p class="lead">
+            O endereço digitado não corresponde a nenhuma página do site. Pode ser um link antigo,
+            um erro de digitação ou uma página que mudou de lugar.
+        </p>
+
+        <div class="destinos">
+            <a class="destino" href="/tabela-de-precos/">
+                <strong>Tabela de preços</strong>
+                <span>24 tabelas por faixa etária, linha e acomodação</span>
+            </a>
+            <a class="destino" href="/simulador-de-precos/">
+                <strong>Simulador de preços</strong>
+                <span>Estimativa por idade e número de vidas, sem cadastro</span>
+            </a>
+            <a class="destino" href="/planos/">
+                <strong>As 3 linhas de plano</strong>
+                <span>Nacional, Nacional Plus e Premium comparadas</span>
+            </a>
+            <a class="destino" href="/rede-credenciada/">
+                <strong>Rede credenciada</strong>
+                <span>Onde o plano é aceito e como a rede muda por linha</span>
+            </a>
+            <a class="destino" href="/individual/">
+                <strong>Plano individual</strong>
+                <span>Por que não existe e quais são os dois caminhos reais</span>
+            </a>
+            <a class="destino" href="/">
+                <strong>Página inicial</strong>
+                <span>Visão geral de preços, planos e contratação</span>
+            </a>
+        </div>
+
+        <div class="ajuda">
+            <strong>Não achou?</strong> Fale com a corretora responsável:
+            <a href="tel:+551151920609">(11) 5192-0609</a> ou
+            <a href="mailto:contato@fortplanos.com.br">contato@fortplanos.com.br</a>,
+            de segunda a sexta, das 9h às 18h.
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <strong>FortPlanos</strong> — Corretora autorizada Bradesco Saúde · CNPJ 53.290.346/0001-38<br>
+        Corretora responsável: Sara Santana de Souza — SUSEP 201046889
+    </div>
+</footer>
+
+</body>
+</html>

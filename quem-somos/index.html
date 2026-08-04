@@ -56,12 +56,15 @@
                 "url": "https://fortplanos.com.br",
                 "logo": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
                 "image": "https://planodesaudebradesco.com/img/logo-fortplanos.webp",
+                "telephone": "+551151920609",
                 "email": "contato@fortplanos.com.br",
                 "taxID": "53.290.346/0001-38",
                 "address": {
                     "@type": "PostalAddress",
+                    "streetAddress": "Rua Brigadeiro Brito Delamare, 222 - Vila Santa Teresa",
                     "addressLocality": "São Paulo",
                     "addressRegion": "SP",
+                    "postalCode": "03566-030",
                     "addressCountry": "BR"
                 },
                 "sameAs": [
@@ -78,6 +81,19 @@
                 "name": "Plano de Saúde Bradesco — FortPlanos",
                 "inLanguage": "pt-BR",
                 "publisher": { "@id": "https://planodesaudebradesco.com/#organization" }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://planodesaudebradesco.com/#sara",
+                "name": "Sara Santana de Souza",
+                "jobTitle": "Corretora de planos de saúde",
+                "worksFor": { "@id": "https://planodesaudebradesco.com/#organization" },
+                "url": "https://planodesaudebradesco.com/quem-somos/",
+                "identifier": {
+                    "@type": "PropertyValue",
+                    "name": "Registro SUSEP",
+                    "value": "201046889"
+                }
             }
         ]
     }
@@ -89,6 +105,7 @@
         "@context": "https://schema.org",
         "@type": "AboutPage",
         "@id": "https://planodesaudebradesco.com/quem-somos/#webpage",
+        "reviewedBy": { "@id": "https://planodesaudebradesco.com/#sara" },
         "isPartOf": { "@id": "https://planodesaudebradesco.com/#website" },
         "name": "Quem Somos — FortPlanos Corretora Bradesco Saúde",
         "description": "Página institucional da FortPlanos, corretora autorizada especializada em planos de saúde empresariais Bradesco Saúde.",
@@ -108,6 +125,7 @@
             "image": "https://planodesaudebradesco.com/img/equipe-fortplanos.webp",
             "description": "Corretora autorizada especializada em planos de saúde empresariais Bradesco Saúde. Atuação em São Paulo e em todo o Brasil, com consultoria personalizada para empresas de 3 a 99 vidas.",
             "foundingDate": "2024",
+            "telephone": "+551151920609",
             "email": "contato@fortplanos.com.br",
             "numberOfEmployees": {
                 "@type": "QuantitativeValue",
@@ -119,8 +137,10 @@
             },
             "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "Rua Brigadeiro Brito Delamare, 222 - Vila Santa Teresa",
                 "addressLocality": "São Paulo",
                 "addressRegion": "SP",
+                "postalCode": "03566-030",
                 "addressCountry": "BR"
             },
             "knowsAbout": [
@@ -692,6 +712,40 @@
     </div>
 </section>
 
+<!-- ═══════════════════ QUEM RESPONDE PELO CONTEUDO ═══════════════════
+     Conteudo sobre saude e contrato e YMYL. O Google espera saber QUEM
+     responde pela informacao, com credencial verificavel - nao basta o nome
+     da empresa. Esta secao e o par visivel do no Person do schema; schema
+     sem contrapartida visivel nao sustenta E-E-A-T.
+-->
+<section class="sec" id="autoria">
+    <div class="container">
+        <div class="section-header">
+            <span class="label">Responsável Técnica</span>
+            <h2>Quem Responde pelo Conteúdo Deste Site</h2>
+        </div>
+
+        <div style="max-width:760px; margin:28px auto 0; padding:26px 30px; background:var(--cinza-100); border-left:4px solid var(--vermelho); border-radius:6px;">
+            <p style="font-size:1.12rem; margin:0 0 10px;">
+                <strong>Sara Santana de Souza</strong><br>
+                <span style="color:var(--cinza-700);">Corretora de planos de saúde · Registro SUSEP <strong>201046889</strong></span>
+            </p>
+            <p style="margin:0 0 14px;">
+                Sara é a corretora responsável pelas informações publicadas neste site. Atua na intermediação de
+                planos de saúde empresariais na FortPlanos e responde pela conferência dos dados de produto,
+                preço e rede credenciada que aparecem aqui.
+            </p>
+            <p style="margin:0; font-size:.95rem; color:var(--cinza-700);">
+                O registro SUSEP pode ser consultado no site da Superintendência de Seguros Privados.
+                Quem define produto, preço, rede e regras de contrato é a <strong>Bradesco Saúde</strong>;
+                a corretora intermedeia a contratação e acompanha o contrato depois da assinatura.
+                Dúvidas sobre o conteúdo: <a href="mailto:contato@fortplanos.com.br">contato@fortplanos.com.br</a>
+                ou <a href="tel:+551151920609">(11) 5192-0609</a>.
+            </p>
+        </div>
+    </div>
+</section>
+
 <!-- ═══════════════════ DADOS OFICIAIS ═══════════════════ -->
 <section class="sec-alt">
     <div class="container">
@@ -717,12 +771,20 @@
                         <span class="dado-valor">53.290.346/0001-38</span>
                     </div>
                     <div class="dado-item">
-                        <span class="dado-label">Localização</span>
-                        <span class="dado-valor">São Paulo — SP, Brasil</span>
+                        <span class="dado-label">Endereço</span>
+                        <span class="dado-valor">Rua Brigadeiro Brito Delamare, 222 — Vila Santa Teresa<br>São Paulo — SP · CEP 03566-030</span>
+                    </div>
+                    <div class="dado-item">
+                        <span class="dado-label">Telefone</span>
+                        <span class="dado-valor"><a href="tel:+551151920609">(11) 5192-0609</a></span>
                     </div>
                     <div class="dado-item">
                         <span class="dado-label">E-mail</span>
                         <span class="dado-valor"><a href="mailto:contato@fortplanos.com.br">contato@fortplanos.com.br</a></span>
+                    </div>
+                    <div class="dado-item">
+                        <span class="dado-label">Corretora responsável</span>
+                        <span class="dado-valor">Sara Santana de Souza — registro SUSEP 201046889</span>
                     </div>
                     <div class="dado-item">
                         <span class="dado-label">Site Principal</span>
@@ -886,7 +948,10 @@
             <a href="/termos-de-uso/">Termos de Uso</a><br>
             <a href="/politica-de-privacidade/">Política de Privacidade</a><br>
             <a href="/lgpd/">Canal LGPD</a><br><br>
-            contato@fortplanos.com.br
+            <a href="tel:+551151920609">(11) 5192-0609</a><br>
+            <a href="mailto:contato@fortplanos.com.br">contato@fortplanos.com.br</a><br><br>
+            Rua Brigadeiro Brito Delamare, 222 - Vila Santa Teresa<br>
+            São Paulo — SP · CEP 03566-030
         </div>
 
         <!-- Legal -->
@@ -895,7 +960,7 @@
                 <span class="footer-trust-item">🔒 Site Seguro SSL</span>
                 <span class="footer-trust-item">🛡️ Operadoras registradas ANS</span>
                 <span class="footer-trust-item">✅ LGPD Compliant</span>
-                <span class="footer-trust-item">📋 Corretores habilitados SUSEP</span>
+                <span class="footer-trust-item">📋 Corretora responsável: Sara Santana de Souza — SUSEP 201046889</span>
             </div>
             <strong>CNPJ: 53.290.346/0001-38</strong> | A Clebio Costa Bispo Publicidade LTDA - ME<br><br>
             Este site é um canal independente de informação sobre planos Bradesco Saúde, operado pela FortPlanos.
