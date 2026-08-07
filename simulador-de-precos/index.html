@@ -514,7 +514,11 @@
         }
         .resultado-card:hover { border-color: var(--vermelho); box-shadow: 0 8px 24px rgba(204,9,47,.12); transform: translateY(-3px); }
         .resultado-card.menor-card { border-color: var(--verde); background: linear-gradient(180deg, #f0fff0 0%, var(--branco) 100%); }
-        .resultado-card.indisponivel { opacity: .5; pointer-events: none; }
+        /* Acessibilidade (6.7): antes era opacity .5, que derrubava o texto do
+           card para contraste 3,33. O Lighthouse nunca acusou porque este
+           estado so aparece depois que o usuario interage. Esmaecer por fundo
+           e borda mantem a leitura de "indisponivel" sem apagar o texto. */
+        .resultado-card.indisponivel { background: var(--cinza-100); border-style: dashed; pointer-events: none; }
         .resultado-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
         .resultado-card .resultado-tag {
             display: inline-block;
