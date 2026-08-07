@@ -251,7 +251,7 @@
             --cinza-200: #e8e8ef;
             --cinza-100: #f4f4f8;
             --branco: #ffffff;
-            --verde: #0a8f3c;
+            --verde: #087a33;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -264,6 +264,10 @@
         h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
         p { margin-bottom: 1em; }
         a { color: var(--vermelho); text-decoration: none; }
+        /* Acessibilidade (6.7): link em texto corrido precisa de marca
+           alem da cor. Escopo em p/li de proposito - menu, botao e card
+           clicavel ficam de fora porque ali o <a> envolve o conteudo. */
+        p > a:not(.btn), li > a:not(.btn) { text-decoration: underline; text-underline-offset: 2px; }
         a:hover { text-decoration: underline; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -326,9 +330,22 @@
             background: var(--branco); border-radius: 14px; padding: 32px 28px;
             box-shadow: 0 2px 12px rgba(0,0,0,.06); border: 1px solid var(--cinza-200);
             transition: box-shadow .2s, transform .2s; position: relative; overflow: hidden;
+            counter-increment: servico;
         }
         .servico-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.1); transform: translateY(-4px); }
-        .servico-card .servico-numero { position: absolute; top: 16px; right: 20px; font-size: 3rem; font-weight: 900; color: var(--cinza-100); line-height: 1; }
+        /* Acessibilidade (6.7): o numeral 01-12 e marca d'agua puramente
+           decorativa - contraste 1.09 de proposito. Como <span> ele era texto
+           real e o verificador de contraste cobrava 3:1, o que exigiria pinta-lo
+           e destruir o efeito. aria-hidden nao resolve: quem enxerga pouco
+           continua vendo. A forma correta de dizer "isto e decoracao" e tira-lo
+           do DOM e gera-lo por CSS. O contador vive no <body> para a numeracao
+           seguir continua atravessando as 3 grades. */
+        body { counter-reset: servico; }
+        .servico-card::before {
+            content: counter(servico, decimal-leading-zero);
+            position: absolute; top: 16px; right: 20px; font-size: 3rem;
+            font-weight: 900; color: var(--cinza-100); line-height: 1;
+        }
         .servico-card .servico-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
         .servico-card h3 { margin-bottom: 10px; font-size: 1.15rem; }
         .servico-card p { font-size: .92rem; color: var(--cinza-700); margin-bottom: 12px; }
@@ -339,14 +356,14 @@
         /* ── Fase Badge ── */
         .fase-badge { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 12px; }
         .fase-pre { background: #e6f0ff; color: #1a5fb4; }
-        .fase-contratacao { background: #fff4e6; color: #b35c00; }
+        .fase-contratacao { background: #fff4e6; color: #a85600; }
         .fase-pos { background: #e6ffe6; color: var(--verde); }
 
         /* ── Fluxo Visual ── */
         .fluxo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 35px; }
         .fluxo-step { text-align: center; padding: 25px 15px; background: var(--branco); border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.06); border: 1px solid var(--cinza-200); position: relative; }
         .fluxo-step .fluxo-num { font-size: 1.8rem; font-weight: 800; color: var(--vermelho); display: block; margin-bottom: 6px; }
-        .fluxo-step h4 { font-size: .95rem; margin-bottom: 5px; }
+        .fluxo-step h3 { font-size: .95rem; margin-bottom: 5px; }
         .fluxo-step p { font-size: .82rem; color: var(--cinza-700); margin: 0; }
         .fluxo-step .fluxo-arrow { display: none; }
         @media (min-width: 769px) {
@@ -398,11 +415,11 @@
         /* ── Footer ── */
         footer { background: var(--cinza-900); color: var(--cinza-200); padding: 40px 0 30px; font-size: .85rem; }
         footer .container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; }
-        footer a { color: var(--cinza-200); }
+        footer a { color: var(--cinza-200); display: inline-block; padding: 5px 0; text-decoration: underline; text-decoration-color: rgba(232,232,239,.45); text-underline-offset: 3px; }
         footer a:hover { color: var(--branco); }
         footer img { height: 30px; width: auto; margin-bottom: 10px; }
         .footer-social { display: flex; gap: 14px; margin-top: 12px; }
-        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; }
+        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; display: inline-block; padding: 5px 0; }
         .footer-social a:hover { color: var(--branco); text-decoration: none; }
         .footer-legal { grid-column: 1 / -1; font-size: .75rem; color: #888; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--cinza-800); text-align: center; }
         .footer-trust-item { font-size: .75rem; display: flex; align-items: center; gap: 4px; color: #888; }
@@ -504,32 +521,32 @@
         <div class="fluxo-grid">
             <div class="fluxo-step">
                 <span class="fluxo-num">1</span>
-                <h4>Primeiro Contato</h4>
+                <h3>Primeiro Contato</h3>
                 <p>Você nos procura pelo formulário online ou e-mail.</p>
             </div>
             <div class="fluxo-step">
                 <span class="fluxo-num">2</span>
-                <h4>Análise de Perfil</h4>
+                <h3>Análise de Perfil</h3>
                 <p>Entendemos sua empresa: vidas, idades, cidade, necessidades.</p>
             </div>
             <div class="fluxo-step">
                 <span class="fluxo-num">3</span>
-                <h4>Cotação e Comparação</h4>
+                <h3>Cotação e Comparação</h3>
                 <p>Montamos comparativo com preços e coberturas de todas as linhas.</p>
             </div>
             <div class="fluxo-step">
                 <span class="fluxo-num">4</span>
-                <h4>Escolha do Plano</h4>
+                <h3>Escolha do Plano</h3>
                 <p>Você escolhe com base em dados reais — sem pressão.</p>
             </div>
             <div class="fluxo-step">
                 <span class="fluxo-num">5</span>
-                <h4>Documentação</h4>
+                <h3>Documentação</h3>
                 <p>Orientamos e conferimos toda a papelada.</p>
             </div>
             <div class="fluxo-step">
                 <span class="fluxo-num">6</span>
-                <h4>Ativação</h4>
+                <h3>Ativação</h3>
                 <p>Plano ativo! E nosso trabalho continua no pós-venda.</p>
             </div>
         </div>
@@ -547,7 +564,6 @@
 
         <div class="servicos-grid">
             <div class="servico-card">
-                <span class="servico-numero">01</span>
                 <span class="fase-badge fase-pre">Pré-Venda</span>
                 <span class="servico-icon">📊</span>
                 <h3>Cotação Personalizada</h3>
@@ -562,7 +578,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">02</span>
                 <span class="fase-badge fase-pre">Pré-Venda</span>
                 <span class="servico-icon">🔍</span>
                 <h3>Análise de Perfil Empresarial</h3>
@@ -577,7 +592,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">03</span>
                 <span class="fase-badge fase-pre">Pré-Venda</span>
                 <span class="servico-icon">⚖️</span>
                 <h3>Comparação de Planos</h3>
@@ -592,7 +606,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">04</span>
                 <span class="fase-badge fase-pre">Pré-Venda</span>
                 <span class="servico-icon">🏥</span>
                 <h3>Consultoria em Rede Credenciada</h3>
@@ -620,7 +633,6 @@
 
         <div class="servicos-grid">
             <div class="servico-card">
-                <span class="servico-numero">05</span>
                 <span class="fase-badge fase-contratacao">Contratação</span>
                 <span class="servico-icon">📁</span>
                 <h3>Assessoria na Documentação</h3>
@@ -635,7 +647,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">06</span>
                 <span class="fase-badge fase-contratacao">Contratação</span>
                 <span class="servico-icon">📝</span>
                 <h3>Declaração de Saúde (DPS)</h3>
@@ -649,7 +660,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">07</span>
                 <span class="fase-badge fase-contratacao">Contratação</span>
                 <span class="servico-icon">📋</span>
                 <h3>Acompanhamento da Proposta</h3>
@@ -664,7 +674,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">08</span>
                 <span class="fase-badge fase-contratacao">Contratação</span>
                 <span class="servico-icon">🔄</span>
                 <h3>Aproveitamento de Carência</h3>
@@ -691,7 +700,6 @@
 
         <div class="servicos-grid">
             <div class="servico-card">
-                <span class="servico-numero">09</span>
                 <span class="fase-badge fase-pos">Pós-Venda</span>
                 <span class="servico-icon">👥</span>
                 <h3>Movimentação de Vidas</h3>
@@ -706,7 +714,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">10</span>
                 <span class="fase-badge fase-pos">Pós-Venda</span>
                 <span class="servico-icon">📈</span>
                 <h3>Gestão de Sinistralidade</h3>
@@ -721,7 +728,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">11</span>
                 <span class="fase-badge fase-pos">Pós-Venda</span>
                 <span class="servico-icon">🔁</span>
                 <h3>Renovação e Renegociação</h3>
@@ -736,7 +742,6 @@
             </div>
 
             <div class="servico-card">
-                <span class="servico-numero">12</span>
                 <span class="fase-badge fase-pos">Pós-Venda</span>
                 <span class="servico-icon">🛡️</span>
                 <h3>Suporte ao Beneficiário</h3>
@@ -920,11 +925,11 @@
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
             <a href="/cidades/">Todas as Cidades</a><br>
-            <span style="color:#999;">Campinas — em breve</span><br>
-            <span style="color:#999;">Baixada Santista — em breve</span><br>
-            <span style="color:#999;">Vale do Paraíba — em breve</span><br>
-            <span style="color:#999;">Rio de Janeiro — em breve</span><br>
-            <span style="color:#999;">Belo Horizonte — em breve</span>
+            <span style="color:#8a8a8a;">Campinas — em breve</span><br>
+            <span style="color:#8a8a8a;">Baixada Santista — em breve</span><br>
+            <span style="color:#8a8a8a;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#8a8a8a;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#8a8a8a;">Belo Horizonte — em breve</span>
         </div>
 
         <!-- Coluna 4: Institucional + Contato -->

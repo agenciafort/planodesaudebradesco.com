@@ -215,6 +215,10 @@
         body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--cinza-900); line-height: 1.75; background: var(--branco); }
         h1, h2, h3 { line-height: 1.28; }
         a { color: var(--vermelho); text-decoration: none; }
+        /* Acessibilidade (6.7): link em texto corrido precisa de marca
+           alem da cor. Escopo em p/li de proposito - menu, botao e card
+           clicavel ficam de fora porque ali o <a> envolve o conteudo. */
+        p > a:not(.btn), li > a:not(.btn) { text-decoration: underline; text-underline-offset: 2px; }
         a:hover { text-decoration: underline; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .article-wrap { max-width: 780px; margin: 0 auto; padding: 0 20px 60px; }
@@ -305,11 +309,11 @@
 
         footer { background: var(--cinza-900); color: var(--cinza-200); padding: 40px 0 30px; font-size: .85rem; }
         footer .container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; }
-        footer a { color: var(--cinza-200); }
+        footer a { color: var(--cinza-200); display: inline-block; padding: 5px 0; text-decoration: underline; text-decoration-color: rgba(232,232,239,.45); text-underline-offset: 3px; }
         footer a:hover { color: var(--branco); }
         footer img { height: 30px; width: auto; margin-bottom: 10px; }
         .footer-social { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; }
-        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; }
+        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; display: inline-block; padding: 5px 0; }
         .footer-social a:hover { color: var(--branco); text-decoration: none; }
         .footer-trust-item { font-size: .75rem; display: inline-flex; align-items: center; gap: 4px; color: #888; }
         .footer-legal { grid-column: 1 / -1; font-size: .75rem; color: #888; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--cinza-800); text-align: center; line-height: 1.65; }
@@ -544,11 +548,11 @@
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
             <a href="/cidades/">Todas as Cidades</a><br>
-            <span style="color:#999;">Campinas — em breve</span><br>
-            <span style="color:#999;">Baixada Santista — em breve</span><br>
-            <span style="color:#999;">Vale do Paraíba — em breve</span><br>
-            <span style="color:#999;">Rio de Janeiro — em breve</span><br>
-            <span style="color:#999;">Belo Horizonte — em breve</span>
+            <span style="color:#8a8a8a;">Campinas — em breve</span><br>
+            <span style="color:#8a8a8a;">Baixada Santista — em breve</span><br>
+            <span style="color:#8a8a8a;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#8a8a8a;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#8a8a8a;">Belo Horizonte — em breve</span>
         </div>
         <div>
             <strong style="color:var(--branco);">Institucional</strong><br>

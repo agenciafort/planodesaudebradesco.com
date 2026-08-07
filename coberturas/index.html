@@ -229,7 +229,7 @@
             --cinza-200: #e8e8ef;
             --cinza-100: #f4f4f8;
             --branco: #ffffff;
-            --verde: #0a8f3c;
+            --verde: #087a33;
             --dourado: #c9a84c;
         }
 
@@ -248,6 +248,10 @@
         h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
         p { margin-bottom: 1em; }
         a { color: var(--vermelho); text-decoration: none; }
+        /* Acessibilidade (6.7): link em texto corrido precisa de marca
+           alem da cor. Escopo em p/li de proposito - menu, botao e card
+           clicavel ficam de fora porque ali o <a> envolve o conteudo. */
+        p > a:not(.btn), li > a:not(.btn) { text-decoration: underline; text-underline-offset: 2px; }
         a:hover { text-decoration: underline; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -329,7 +333,7 @@
 
         .card .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: .75rem; font-weight: 600; margin-bottom: 10px; }
         .tag-nacional { background: #e6f0ff; color: #1a5fb4; }
-        .tag-regional { background: #fff4e6; color: #b35c00; }
+        .tag-regional { background: #fff4e6; color: #a85600; }
         .tag-premium { background: #fdf0f3; color: var(--vermelho); }
 
         .card .preco { font-size: 1.5rem; font-weight: 800; color: var(--vermelho); margin: 10px 0 4px; }
@@ -365,11 +369,11 @@
         /* ── Footer ── */
         footer { background: var(--cinza-900); color: var(--cinza-200); padding: 40px 0 30px; font-size: .85rem; }
         footer .container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; }
-        footer a { color: var(--cinza-200); }
+        footer a { color: var(--cinza-200); display: inline-block; padding: 5px 0; text-decoration: underline; text-decoration-color: rgba(232,232,239,.45); text-underline-offset: 3px; }
         footer a:hover { color: var(--branco); }
         footer img { height: 30px; width: auto; margin-bottom: 10px; }
         .footer-social { display: flex; gap: 14px; margin-top: 12px; }
-        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; }
+        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; display: inline-block; padding: 5px 0; }
         .footer-social a:hover { color: var(--branco); text-decoration: none; }
         .footer-legal { grid-column: 1 / -1; font-size: .75rem; color: #888; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--cinza-800); text-align: center; }
 
@@ -571,17 +575,17 @@
                     </tr>
                     <tr style="border-bottom:1px solid var(--cinza-200); background:var(--cinza-100);">
                         <td style="padding:13px 16px;"><strong>Rinoplastia</strong></td>
-                        <td style="padding:13px 16px; color:var(--dourado);"><strong>Depende</strong></td>
+                        <td style="padding:13px 16px; color:#866d28;"><strong>Depende</strong></td>
                         <td style="padding:13px 16px;">Funcional (septo, respiração) sim; estética não</td>
                     </tr>
                     <tr style="border-bottom:1px solid var(--cinza-200); background:var(--cinza-100);">
                         <td style="padding:13px 16px;"><strong>Abdominoplastia</strong></td>
-                        <td style="padding:13px 16px; color:var(--dourado);"><strong>Depende</strong></td>
+                        <td style="padding:13px 16px; color:#866d28;"><strong>Depende</strong></td>
                         <td style="padding:13px 16px;">Reparadora pós-bariátrica pode ser coberta; estética não</td>
                     </tr>
                     <tr style="border-bottom:1px solid var(--cinza-200); background:var(--cinza-100);">
                         <td style="padding:13px 16px;"><strong>Ginecomastia</strong></td>
-                        <td style="padding:13px 16px; color:var(--dourado);"><strong>Depende</strong></td>
+                        <td style="padding:13px 16px; color:#866d28;"><strong>Depende</strong></td>
                         <td style="padding:13px 16px;">Quando há condição patológica documentada</td>
                     </tr>
                     <tr style="border-bottom:1px solid var(--cinza-200);">
@@ -892,11 +896,11 @@
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
             <a href="/cidades/">Todas as Cidades</a><br>
-            <span style="color:#999;">Campinas — em breve</span><br>
-            <span style="color:#999;">Baixada Santista — em breve</span><br>
-            <span style="color:#999;">Vale do Paraíba — em breve</span><br>
-            <span style="color:#999;">Rio de Janeiro — em breve</span><br>
-            <span style="color:#999;">Belo Horizonte — em breve</span>
+            <span style="color:#8a8a8a;">Campinas — em breve</span><br>
+            <span style="color:#8a8a8a;">Baixada Santista — em breve</span><br>
+            <span style="color:#8a8a8a;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#8a8a8a;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#8a8a8a;">Belo Horizonte — em breve</span>
         </div>
 
         <!-- Coluna 4: Institucional + Contato -->

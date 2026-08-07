@@ -237,7 +237,7 @@
             --cinza-200: #e8e8ef;
             --cinza-100: #f4f4f8;
             --branco: #ffffff;
-            --verde: #0a8f3c;
+            --verde: #087a33;
             --dourado: #c9a84c;
             --azul: #1a5fb4;
         }
@@ -257,6 +257,10 @@
         h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
         p { margin-bottom: 1em; }
         a { color: var(--vermelho); text-decoration: none; }
+        /* Acessibilidade (6.7): link em texto corrido precisa de marca
+           alem da cor. Escopo em p/li de proposito - menu, botao e card
+           clicavel ficam de fora porque ali o <a> envolve o conteudo. */
+        p > a:not(.btn), li > a:not(.btn) { text-decoration: underline; text-underline-offset: 2px; }
         a:hover { text-decoration: underline; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -591,7 +595,7 @@
         }
 
         .badge-h { background: #e3f2fd; color: #1565c0; }
-        .badge-ps { background: #fff3e0; color: #e65100; }
+        .badge-ps { background: #fff3e0; color: #c54600; }
         .badge-m { background: #fce4ec; color: #c62828; }
         .badge-lab { background: #e8f5e9; color: #2e7d32; }
 
@@ -805,11 +809,11 @@
             gap: 30px;
         }
 
-        footer a { color: rgba(255,255,255,.7); }
+        footer a { color: rgba(255,255,255,.7); display: inline-block; padding: 5px 0; text-decoration: underline; text-decoration-color: rgba(255,255,255,.35); text-underline-offset: 3px; }
         footer a:hover { color: #fff; }
 
         .footer-social { display: flex; gap: 14px; margin-top: 12px; }
-        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; }
+        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; display: inline-block; padding: 5px 0; }
         .footer-social a:hover { color: var(--branco); text-decoration: none; }
         .footer-trust { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 15px; }
         .footer-trust-item { font-size: .75rem; display: flex; align-items: center; gap: 4px; color: #888; }
@@ -5062,11 +5066,11 @@
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
             <a href="/cidades/">Todas as Cidades</a><br>
-            <span style="color:#666;">Campinas — em breve</span><br>
-            <span style="color:#666;">Baixada Santista — em breve</span><br>
-            <span style="color:#666;">Vale do Paraíba — em breve</span><br>
-            <span style="color:#666;">Rio de Janeiro — em breve</span><br>
-            <span style="color:#666;">Belo Horizonte — em breve</span>
+            <span style="color:#8a8a8a;">Campinas — em breve</span><br>
+            <span style="color:#8a8a8a;">Baixada Santista — em breve</span><br>
+            <span style="color:#8a8a8a;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#8a8a8a;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#8a8a8a;">Belo Horizonte — em breve</span>
         </div>
 
         <!-- Coluna 4: Institucional + Contato -->

@@ -270,7 +270,7 @@
             --cinza-200: #e8e8ef;
             --cinza-100: #f4f4f8;
             --branco: #ffffff;
-            --verde: #0a8f3c;
+            --verde: #087a33;
             --dourado: #c9a84c;
         }
 
@@ -289,6 +289,10 @@
         h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
         p { margin-bottom: 1em; }
         a { color: var(--vermelho); text-decoration: none; }
+        /* Acessibilidade (6.7): link em texto corrido precisa de marca
+           alem da cor. Escopo em p/li de proposito - menu, botao e card
+           clicavel ficam de fora porque ali o <a> envolve o conteudo. */
+        p > a:not(.btn), li > a:not(.btn) { text-decoration: underline; text-underline-offset: 2px; }
         a:hover { text-decoration: underline; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -444,10 +448,10 @@
 
         .card .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: .75rem; font-weight: 600; margin-bottom: 10px; }
         .tag-nacional { background: #e6f0ff; color: #1a5fb4; }
-        .tag-regional { background: #fff4e6; color: #b35c00; }
+        .tag-regional { background: #fff4e6; color: #a85600; }
         .tag-premium { background: #fdf0f3; color: var(--vermelho); }
         .tag-ativo { background: #e6ffe6; color: var(--verde); }
-        .tag-breve { background: #fff4e6; color: #b35c00; }
+        .tag-breve { background: #fff4e6; color: #a85600; }
 
         .card .preco { font-size: 1.5rem; font-weight: 800; color: var(--vermelho); margin: 10px 0 4px; }
         .card .preco-detalhe { font-size: .8rem; color: var(--cinza-700); }
@@ -457,7 +461,7 @@
         .city-card .city-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
         .city-card .city-info { font-size: .82rem; color: var(--cinza-700); margin: 8px 0 15px; }
         .city-card.ativo { border-color: var(--verde); border-width: 2px; }
-        .city-card.breve { opacity: .7; }
+        .city-card.breve { background: var(--cinza-100); border-style: dashed; }
         .city-card.breve:hover { transform: none; box-shadow: 0 2px 12px rgba(0,0,0,.06); cursor: default; }
 
         /* ── Feature Cards ── */
@@ -473,7 +477,7 @@
         .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
         .benefit-item { display: flex; gap: 15px; align-items: flex-start; padding: 18px; background: var(--branco); border-radius: 10px; border: 1px solid var(--cinza-200); }
         .benefit-item .benefit-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
-        .benefit-item h4 { margin-bottom: 5px; }
+        .benefit-item h3 { margin-bottom: 5px; font-size: 1rem; }
         .benefit-item p { font-size: .9rem; color: var(--cinza-700); margin: 0; }
 
         /* ── Steps ── */
@@ -512,11 +516,11 @@
         /* ── Footer ── */
         footer { background: var(--cinza-900); color: var(--cinza-200); padding: 40px 0 30px; font-size: .85rem; }
         footer .container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 30px; }
-        footer a { color: var(--cinza-200); }
+        footer a { color: var(--cinza-200); display: inline-block; padding: 5px 0; text-decoration: underline; text-decoration-color: rgba(232,232,239,.45); text-underline-offset: 3px; }
         footer a:hover { color: var(--branco); }
         footer img { height: 30px; width: auto; margin-bottom: 10px; }
         .footer-social { display: flex; gap: 14px; margin-top: 12px; }
-        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; }
+        .footer-social a { color: var(--cinza-200); font-size: .85rem; transition: color .2s; display: inline-block; padding: 5px 0; }
         .footer-social a:hover { color: var(--branco); text-decoration: none; }
         .footer-trust { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 15px; }
         .footer-trust-item { font-size: .75rem; display: flex; align-items: center; gap: 4px; color: #888; }
@@ -954,42 +958,42 @@
             <div class="benefit-item">
                 <span class="benefit-icon">🏛️</span>
                 <div>
-                    <h4>Tradição e Solidez</h4>
+                    <h3>Tradição e Solidez</h3>
                     <p>Parte do grupo Bradesco Seguros, uma das maiores seguradoras da América Latina, com décadas de atuação no mercado de saúde.</p>
                 </div>
             </div>
             <div class="benefit-item">
                 <span class="benefit-icon">🗺️</span>
                 <div>
-                    <h4>Cobertura Nacional</h4>
+                    <h3>Cobertura Nacional</h3>
                     <p>As 3 linhas oferecem cobertura em todo o Brasil, com rede credenciada nos principais centros urbanos do país.</p>
                 </div>
             </div>
             <div class="benefit-item">
                 <span class="benefit-icon">🏥</span>
                 <div>
-                    <h4>Rede de Referência</h4>
+                    <h3>Rede de Referência</h3>
                     <p>Hospitais como Sírio-Libanês, Einstein, Oswaldo Cruz, A.C. Camargo e centenas de outros credenciados por cidade.</p>
                 </div>
             </div>
             <div class="benefit-item">
                 <span class="benefit-icon">📊</span>
                 <div>
-                    <h4>Flexibilidade de Planos</h4>
+                    <h3>Flexibilidade de Planos</h3>
                     <p>3 linhas de produto, 24 tabelas de preços, opções com e sem coparticipação, enfermaria ou apartamento, com ou sem reembolso.</p>
                 </div>
             </div>
             <div class="benefit-item">
                 <span class="benefit-icon">👥</span>
                 <div>
-                    <h4>A partir de 3 Vidas</h4>
+                    <h3>A partir de 3 Vidas</h3>
                     <p>Ideal para pequenas e médias empresas. Aceita MEI, ME, EIRELI e EPP. Sócios, funcionários e dependentes.</p>
                 </div>
             </div>
             <div class="benefit-item">
                 <span class="benefit-icon">💳</span>
                 <div>
-                    <h4>Reembolso</h4>
+                    <h3>Reembolso</h3>
                     <p>Opções de reembolso completo ou específico, permitindo consultas fora da rede credenciada quando necessário.</p>
                 </div>
             </div>
@@ -1253,11 +1257,11 @@
             <strong style="color:var(--branco);">Cidades</strong><br>
             <a href="/sao-paulo/">São Paulo e Grande SP</a><br>
             <a href="/cidades/">Todas as Cidades</a><br>
-            <span style="color:#999;">Campinas — em breve</span><br>
-            <span style="color:#999;">Baixada Santista — em breve</span><br>
-            <span style="color:#999;">Vale do Paraíba — em breve</span><br>
-            <span style="color:#999;">Rio de Janeiro — em breve</span><br>
-            <span style="color:#999;">Belo Horizonte — em breve</span>
+            <span style="color:#8a8a8a;">Campinas — em breve</span><br>
+            <span style="color:#8a8a8a;">Baixada Santista — em breve</span><br>
+            <span style="color:#8a8a8a;">Vale do Paraíba — em breve</span><br>
+            <span style="color:#8a8a8a;">Rio de Janeiro — em breve</span><br>
+            <span style="color:#8a8a8a;">Belo Horizonte — em breve</span>
         </div>
 
         <!-- Coluna 4: Institucional + Contato -->
