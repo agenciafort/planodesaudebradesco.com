@@ -13,6 +13,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#CC092F">
+
+    <!-- Preconnect: crmsaude.agenciafort.com.br e a unica origem externa do
+         site (cotador + widget). O crossorigin e para o fetch de precos do
+         crm-api.js, que manda X-API-Key e portanto e requisicao CORS anonima.
+         Removidos os preconnect de fortplanos.com.br (so link de navegacao, nao
+         baixa nada) e do supabase (nao e mais usado desde que o crm-api.js
+         passou a ler a tomada /api/v1/vivo): preconnect para origem que ninguem
+         requisita gasta DNS+TCP+TLS a toa em todo carregamento. Tarefa 5.4. -->
+    <link rel="preconnect" href="https://crmsaude.agenciafort.com.br" crossorigin>
 <meta name="robots" content="noindex, nofollow">
 <title>Painel de conexão — planodesaudebradesco.com</title>
 <style>

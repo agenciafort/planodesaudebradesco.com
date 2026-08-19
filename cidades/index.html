@@ -17,8 +17,12 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#CC092F">
 
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fortplanos.com.br" crossorigin>
+    <!-- Preconnect: crmsaude.agenciafort.com.br e a unica origem externa desta
+         pagina (widget do CRM, carregado no fim do body). Sem crossorigin
+         porque e <script> classico, requisicao nao-CORS. Removidos os
+         preconnect antigos de fortplanos.com.br e do supabase, que nada
+         baixavam daqui. Tarefa 5.4. -->
+    <link rel="preconnect" href="https://crmsaude.agenciafort.com.br">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Plano de Saúde Bradesco por Cidade | Rede e Preços">

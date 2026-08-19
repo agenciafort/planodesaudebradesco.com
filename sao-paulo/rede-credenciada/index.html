@@ -19,6 +19,13 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#CC092F">
 
+    <!-- Preconnect: crmsaude.agenciafort.com.br e a unica origem externa desta
+         pagina (widget do CRM, carregado no fim do body). Sem crossorigin
+         porque e <script> classico, requisicao nao-CORS. Removidos os
+         preconnect antigos de fortplanos.com.br e do supabase, que nada
+         baixavam daqui. Tarefa 5.4. -->
+    <link rel="preconnect" href="https://crmsaude.agenciafort.com.br">
+
     <!-- Open Graph -->
     <meta property="og:title" content="Buscar Hospitais Bradesco Saúde em São Paulo 2026">
     <meta property="og:description" content="Ferramenta de busca da rede Bradesco Saúde em SP: 128 hospitais e 166 laboratórios. Filtre por plano, região, cidade e tipo de atendimento.">

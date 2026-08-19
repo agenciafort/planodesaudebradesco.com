@@ -16,6 +16,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#CC092F">
+
+    <!-- Preconnect: crmsaude.agenciafort.com.br e a unica origem externa desta
+         pagina (widget do CRM, carregado no fim do body). Sem crossorigin
+         porque e <script> classico, requisicao nao-CORS. Removidos os
+         preconnect antigos de fortplanos.com.br e do supabase, que nada
+         baixavam daqui. Tarefa 5.4. -->
+    <link rel="preconnect" href="https://crmsaude.agenciafort.com.br">
     <meta property="og:image" content="https://planodesaudebradesco.com/img/blog/coparticipacao-bradesco-vale-a-pena.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="670">

@@ -17,6 +17,13 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#CC092F">
 
+    <!-- Preconnect: crmsaude.agenciafort.com.br e a unica origem externa desta
+         pagina (widget do CRM, carregado no fim do body). Sem crossorigin
+         porque e <script> classico, requisicao nao-CORS. Removidos os
+         preconnect antigos de fortplanos.com.br e do supabase, que nada
+         baixavam daqui. Tarefa 5.4. -->
+    <link rel="preconnect" href="https://crmsaude.agenciafort.com.br">
+
     <meta property="og:title" content="Como Escolher o Plano Bradesco Saúde para Sua Empresa">
     <meta property="og:description" content="7 critérios para escolher o plano de saúde Bradesco da sua empresa, os erros mais comuns e qual linha PME faz mais sentido no seu caso.">
     <meta property="og:type" content="article">
