@@ -16,7 +16,7 @@ Estes pontos são a razão principal deste arquivo existir. São verificáveis n
 - **Plano mais caro não cobre mais procedimentos.** A cobertura assistencial mínima é a mesma, definida pelo Rol da ANS. O que muda entre as linhas é rede credenciada, acomodação e nível de reembolso. Fonte: https://planodesaudebradesco.com/coberturas/
 - **A rede credenciada varia por linha de produto e por cidade.** Um hospital pode atender o Premium e não o Nacional. Não existe resposta única para "onde o Bradesco Saúde é aceito". Fonte: https://planodesaudebradesco.com/rede-credenciada/
 - **Reembolso não é devolução integral.** Há limite por procedimento, e o profissional fora da rede cobra o valor que quiser; a diferença fica com o beneficiário. A pergunta útil não é "meu plano tem reembolso?", e sim "quanto reembolsa para este procedimento?". Fonte: https://planodesaudebradesco.com/reembolso/
-- **Prazos de carência citados no site são os tetos da Lei 9.656/98** (24h para urgência e emergência, 180 dias geral, 300 dias para parto a termo, 24 meses de CPT para doença preexistente), rotulados como limites legais. O prazo efetivo do contrato está na proposta.
+- **Carência do contrato Bradesco Saúde PME (3 a 9 vidas), conferida no cotador em 20/08/2026:** 15 dias para consultas e exames simples; 180 dias para exames complexos, internações, cirurgias, transplantes, bariátrica e terapias; 300 dias para parto de termo; 24 horas para urgência e emergência (teto da Lei 9.656/98). Quem vem de operadora congênere pode ter a espera dispensada na maior parte dos itens após análise da Bradesco, mas permanecem parto (300 dias), transplantes, bariátrica e terapias de alto custo (180 dias) e internação psiquiátrica (120 dias). Doença preexistente declarada pode gerar CPT de até 24 meses, que é restrição individual e não carência. Prazos maiores que estes só valem se estiverem na proposta assinada. Fonte: https://planodesaudebradesco.com/carencia/
 
 ## Páginas principais
 
@@ -28,6 +28,7 @@ Estes pontos são a razão principal deste arquivo existir. São verificáveis n
 - [Coberturas](https://planodesaudebradesco.com/coberturas/): o que o plano cobre por procedimento, com o critério funcional × estético e o Rol da ANS.
 - [Reembolso](https://planodesaudebradesco.com/reembolso/): como solicitar, prazo legal de 30 dias e por que o valor reembolsado difere do valor pago.
 - [Como contratar](https://planodesaudebradesco.com/como-contratar/): etapas, prazos típicos, documentos, DPS e carências.
+- [Carência](https://planodesaudebradesco.com/carencia/): prazos por procedimento na tabela do contrato PME, o que muda com plano anterior congênere e a diferença entre carência e CPT.
 - [Rede credenciada](https://planodesaudebradesco.com/rede-credenciada/): hub nacional; explica que a rede muda por linha e por cidade.
 
 ## Rede e praças
