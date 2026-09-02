@@ -22,8 +22,17 @@
     var VIVO_BASE = 'https://crmsaude.agenciafort.com.br/api/v1/vivo';
     // chave pública travada NESTE domínio (planodesaudebradesco.com)
     var VIVO_KEY = 'fpk_live_bd28b61b354de068c3b5754a416b2e7cfefce2d82623addb';
-    var OPERADORA_PREFIXO = 'bradesco';  // slug da operadora no Tabelas
+    // Produto EXATO, nao prefixo: 'bradesco-saude' e 'bradesco-saude-hospitalar'
+    // sao produtos diferentes, com precos diferentes para o mesmo plano. Pegar
+    // os dois fazia cada celula ter dois precos e derrubava a carga inteira.
+    var OPERADORA_SLUG = 'bradesco-saude';
     var REGIAO_DO_SITE = 'sao paulo';    // este site vende SP; produto de outra região não entra
+    // Familia de tabela que o site publica. No mesmo produto convivem
+    // "Saúde PME" (a base), "… | Reembolso Específico" e "… | Reembolso
+    // Completo" — niveis de reembolso diferentes, com preco diferente para a
+    // mesma celula. O site publica a base; as outras entram quando houver
+    // pagina explicando a diferenca.
+    var FAMILIA_TABELA = 'saude pme';
 
     var FAIXAS_ORDEM = ['00a18', '19a23', '24a28', '29a33', '34a38', '39a43', '44a48', '49a53', '54a58', '59mais'];
 
@@ -124,7 +133,7 @@
 
         // só os produtos DESTA operadora, DESTA região, fora de manutenção
         var meus = (produtos || []).filter(function (p) {
-            if (normalizar(p.operadora_slug).indexOf(OPERADORA_PREFIXO) !== 0) return false;
+            if (normalizar(p.operadora_slug) !== OPERADORA_SLUG) return false;
             if (p.precos_manutencao === true) return false; // preço não confiável não se mostra
             var regioes = p.regioes || [];
             return regioes.some(function (r) {
@@ -150,6 +159,8 @@
             var rows = await vivoGet('precos', { produto: String(p.produto_id) });
             (rows || []).forEach(function (r) {
                 if (normalizar(r.tipo_empresa) === 'mei') return; // site não vende MEI
+                // só a família base; outra família é outro produto comercial
+                if (normalizar(r.tabela_nome).indexOf(FAMILIA_TABELA) !== 0) return;
                 var idx = FAIXAS_ORDEM.indexOf(r.faixa_codigo);
                 if (idx < 0) return;
 
