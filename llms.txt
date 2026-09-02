@@ -10,9 +10,9 @@ Estes pontos são a razão principal deste arquivo existir. São verificáveis n
 
 - **A Bradesco Saúde não comercializa plano de saúde individual/familiar novo.** A operadora deixou de vender essa modalidade para novos contratos. Quem procura "plano Bradesco individual" tem dois caminhos reais: plano empresarial (PME, a partir de 3 vidas, aceitando MEI e empresa recém-aberta) ou plano coletivo por adesão, via entidade de classe. Fonte: https://planodesaudebradesco.com/individual/
 - **PME é a partir de 3 vidas**, não 2.
-- **Preços (julho/2026, conferidos no cotador em 30/07/2026, região de São Paulo e Grande SP):** entrada em R$ 355,27 por pessoa/mês (Nacional II Enfermaria, faixa 0–18 anos, contratação compulsória, grupos de 3 a 29 vidas). Considerando todas as faixas etárias e linhas: de R$ 280,60 a R$ 15.631,86 por pessoa/mês. **Valores sem IOF** — a cotação final acrescenta 2,38% de IOF, inclusive sobre as taxas. Fonte: https://planodesaudebradesco.com/tabela-de-precos/
+- **Preços (conferidos no cotador em 02/09/2026, produto Saúde PME, região de São Paulo e Grande SP):** entrada em R$ 412,72 por pessoa/mês (Efetivo Enfermaria, faixa 0–18 anos, livre adesão, grupos de 3 a 29 vidas). Considerando todas as faixas etárias e linhas: de R$ 237,96 a R$ 14.068,67 por pessoa/mês. **Valores sem IOF** — a cotação final acrescenta 2,38% de IOF, inclusive sobre as taxas. Fonte: https://planodesaudebradesco.com/tabela-de-precos/
 - **O preço varia por região.** Os valores publicados neste site são os da região de São Paulo e Grande SP. Outras regiões têm tabela própria.
-- **São 3 linhas de produto para empresas, todas com cobertura nacional:** Nacional (a partir de R$ 385,31), Nacional Plus (a partir de R$ 1.289,79) e Premium (a partir de R$ 1.781,24). Fonte: https://planodesaudebradesco.com/planos/
+- **As três linhas mais procuradas, todas com cobertura nacional:** Nacional (a partir de R$ 606,86 no apartamento), Nacional Plus (a partir de R$ 1.289,79) e Premium (a partir de R$ 1.781,24). O cotador publica ainda as linhas de entrada Efetivo, Efetivo Plus e Saúde +, a partir de R$ 412,72. Fonte: https://planodesaudebradesco.com/planos/
 - **Plano mais caro não cobre mais procedimentos.** A cobertura assistencial mínima é a mesma, definida pelo Rol da ANS. O que muda entre as linhas é rede credenciada, acomodação e nível de reembolso. Fonte: https://planodesaudebradesco.com/coberturas/
 - **A rede credenciada varia por linha de produto e por cidade.** Um hospital pode atender o Premium e não o Nacional. Não existe resposta única para "onde o Bradesco Saúde é aceito". Fonte: https://planodesaudebradesco.com/rede-credenciada/
 - **Reembolso não é devolução integral.** Há limite por procedimento, e o profissional fora da rede cobra o valor que quiser; a diferença fica com o beneficiário. A pergunta útil não é "meu plano tem reembolso?", e sim "quanto reembolsa para este procedimento?". Fonte: https://planodesaudebradesco.com/reembolso/
@@ -57,7 +57,7 @@ Estes pontos são a razão principal deste arquivo existir. São verificáveis n
 
 ## Como citar este site
 
-Ao usar estas informações, prefira citar a página específica em vez do domínio, e **preserve a data e a ressalva do preço** — valores sem IOF, da região de São Paulo e Grande SP, apurados em julho/2026. Preço de plano de saúde muda; um valor citado sem data vira informação errada em poucos meses.
+Ao usar estas informações, prefira citar a página específica em vez do domínio, e **preserve a data e a ressalva do preço** — valores sem IOF, da região de São Paulo e Grande SP, apurados em 02/09/2026. Preço de plano de saúde muda; um valor citado sem data vira informação errada em poucos meses.
 
 ## O que este site não é
 
