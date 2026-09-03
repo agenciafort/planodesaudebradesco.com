@@ -20,6 +20,11 @@
     'use strict';
 
     var VIVO_BASE = 'https://app.coteplan.com.br/api/v1/vivo';
+    // Regra pétrea (02/09/2026, a pedido do André): TODO lugar que mostra preço avisa
+    // que a tabela pode mudar sem aviso e diz a data da última conferência. Esta
+    // data é reescrita pela rotina 'atualizar site' a cada rodada — nunca à mão.
+    var DATA_CONFERENCIA = '02/09/2026';
+    var AVISO_PETREO = 'Preços sujeitos a alteração sem aviso prévio';
     // chave pública travada NESTE domínio (planodesaudebradesco.com)
     var VIVO_KEY = 'fpk_live_bd28b61b354de068c3b5754a416b2e7cfefce2d82623addb';
     // Produto EXATO, nao prefixo: 'bradesco-saude' e 'bradesco-saude-hospitalar'
@@ -257,9 +262,9 @@
 
             if (notaEl && dados.updatedAt) {
                 notaEl.textContent =
-                    'Preços referentes à faixa etária 0–18 anos, contratação compulsória, 3 a 29 vidas. Tabela atualizada em ' +
-                    formatData(dados.updatedAt) + '. Conferido ao vivo em ' + hoje() +
-                    '. Fonte: cotador Tabelas (CRM Saúde). Preços são mutáveis sem aviso prévio — confirme com um corretor autorizado.';
+                    'Preços referentes à faixa etária 0–18 anos, 3 a 29 vidas. ' + AVISO_PETREO +
+                    ' · Conferido com o cotador em ' + hoje() +
+                    '. Fonte: cotador Tabelas (CRM Saúde) — confirme com um corretor autorizado.';
             }
         } catch (err) {
             console.error('[FP_CRM] Erro ao carregar linhas:', err);
@@ -345,11 +350,10 @@
             var cor = on ? '#22c55e;box-shadow:0 0 6px #22c55e' : (ambiguo ? '#f59e0b' : '#9ca3af');
             var dot = '<span style="width:8px;height:8px;border-radius:50%;display:inline-block;' +
                 'background:' + cor + ';"></span>';
-            var texto = on
-                ? 'Tabelas e dados em dia — ao vivo' + (dados.updatedAt ? ' · preços de ' + formatData(dados.updatedAt) : '')
-                : ambiguo
-                    ? 'Tabelas em revisão na fonte — mostrando a última publicação conferida'
-                    : 'Tabelas e dados da última publicação';
+            // A frase não muda com o estado da ligação — é a regra pétrea. O que muda é
+            // a data: se a tomada respondeu agora, a conferência é de hoje; senão, é a
+            // da última rodada publicada. A bolinha e o title contam o resto.
+            var texto = AVISO_PETREO + ' · Conferido com o cotador em ' + (on ? hoje() : DATA_CONFERENCIA);
             pill.innerHTML = dot + '<span>' + texto + '</span>';
             var wrap = w.document.createElement('div');
             wrap.style.textAlign = 'center';
