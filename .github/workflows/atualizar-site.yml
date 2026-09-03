@@ -1,0 +1,124 @@
+# Botão "Atualizar site agora" do cotador Tabelas.
+#
+# O Tabelas dispara um repository_dispatch (type: atualizar-site) neste
+# repositório com { retorno_url, retorno_token } no client_payload. Este
+# workflow roda a rotina "atualizar site" em MODO AUTOMÁTICO — zero perguntas:
+# só o que é gerador é alterado; o que exige decisão humana não é tocado e vai
+# para o resumo — faz commit e push se algo mudou (o deploy segue o fluxo
+# normal a partir do push) e RESPONDE ao Tabelas em qualquer desfecho.
+#
+# A ferramenta (sincronizar.py e companhia) NÃO mora neste repositório: tudo
+# aqui é publicado pelo host. Ela vive no repositório privado
+# agenciafort/planodesaudebradesco-ferramentas e é baixada com uma deploy key
+# (secrets.FERRAMENTAS_DEPLOY_KEY). A chave da tomada nunca vai no código:
+# secrets.TABELAS_API_KEY.
+name: Atualizar site
+
+on:
+  repository_dispatch:
+    types: [atualizar-site]
+  workflow_dispatch:
+
+concurrency:
+  group: atualizar-site
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      TZ: America/Sao_Paulo
+    steps:
+      - name: Site
+        uses: actions/checkout@v4
+        with:
+          path: site
+          fetch-depth: 0
+
+      - name: Ferramentas (repositório privado, via deploy key)
+        uses: actions/checkout@v4
+        with:
+          repository: agenciafort/planodesaudebradesco-ferramentas
+          ssh-key: ${{ secrets.FERRAMENTAS_DEPLOY_KEY }}
+          path: ferramentas
+          fetch-depth: 1
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependências
+        run: pip install -r ferramentas/_ferramentas/requirements.txt
+
+      - name: Rotina "atualizar site" (modo automático)
+        id: rotina
+        env:
+          TABELAS_API_KEY: ${{ secrets.TABELAS_API_KEY }}
+          SITE_REPO: ${{ github.workspace }}/site
+          FERRAMENTAS_RAIZ: ${{ github.workspace }}/ferramentas
+        run: |
+          set +e
+          python ferramentas/_ferramentas/sincronizar.py --automatico
+          codigo=$?
+          set -e
+          dia=$(date +%F)
+          echo "dia=$dia" >> "$GITHUB_OUTPUT"
+          echo "status=$(cat ferramentas/rodadas/$dia/status.txt 2>/dev/null || echo erro)" >> "$GITHUB_OUTPUT"
+          # 3 = nada mudou: não é falha
+          if [ "$codigo" != "0" ] && [ "$codigo" != "3" ]; then exit "$codigo"; fi
+
+      - name: Porta de saída (verificador)
+        if: steps.rotina.outputs.status == 'ok'
+        env:
+          SITE_REPO: ${{ github.workspace }}/site
+        run: python ferramentas/_ferramentas/verificar.py
+
+      - name: Publicar o site (só se mudou)
+        if: steps.rotina.outputs.status == 'ok'
+        working-directory: site
+        run: |
+          git config user.name "Tabelas (atualizar site)"
+          git config user.email "tabelas@agenciafort.com.br"
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "nenhuma alteração para publicar"; exit 0
+          fi
+          git add -A
+          git commit -m "sync(precos): rodada ${{ steps.rotina.outputs.dia }} — disparo automático do Tabelas"
+          git push origin HEAD:main
+
+      - name: Guardar o estado da ferramenta (retrato, praças, última exportação)
+        if: always()
+        working-directory: ferramentas
+        run: |
+          git config user.name "Tabelas (atualizar site)"
+          git config user.email "tabelas@agenciafort.com.br"
+          git add -A
+          if git diff --cached --quiet; then echo "estado inalterado"; exit 0; fi
+          git commit -m "rodada ${{ steps.rotina.outputs.dia }}: estado após o disparo automático"
+          git push origin HEAD:main
+
+      - name: Retorno ao Tabelas (sempre)
+        if: always() && github.event_name == 'repository_dispatch'
+        env:
+          RETORNO_URL: ${{ github.event.client_payload.retorno_url }}
+          RETORNO_TOKEN: ${{ github.event.client_payload.retorno_token }}
+          STATUS: ${{ steps.rotina.outputs.status || 'erro' }}
+          DIA: ${{ steps.rotina.outputs.dia }}
+        run: |
+          export RESUMO="$(cat "ferramentas/rodadas/${DIA:-$(date +%F)}/resumo.txt" 2>/dev/null || echo "A rotina não chegou a produzir resumo; veja o log do workflow.")"
+          [ "${{ job.status }}" = "success" ] || export STATUS=erro
+          python - <<'PY'
+          import json, os, urllib.request
+          corpo = json.dumps({"token": os.environ["RETORNO_TOKEN"], "status": os.environ["STATUS"],
+                              "resumo": os.environ["RESUMO"]}, ensure_ascii=False).encode("utf-8")
+          req = urllib.request.Request(os.environ["RETORNO_URL"], data=corpo,
+                                       headers={"Content-Type": "application/json"}, method="POST")
+          with urllib.request.urlopen(req, timeout=60) as r:
+              print("retorno ao Tabelas:", r.status)
+          PY
+        shell: bash
