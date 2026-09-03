@@ -19,7 +19,7 @@
 (function (w) {
     'use strict';
 
-    var VIVO_BASE = 'https://crmsaude.agenciafort.com.br/api/v1/vivo';
+    var VIVO_BASE = 'https://app.coteplan.com.br/api/v1/vivo';
     // chave pública travada NESTE domínio (planodesaudebradesco.com)
     var VIVO_KEY = 'fpk_live_bd28b61b354de068c3b5754a416b2e7cfefce2d82623addb';
     // Produto EXATO, nao prefixo: 'bradesco-saude' e 'bradesco-saude-hospitalar'
