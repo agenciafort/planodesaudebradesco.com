@@ -13,6 +13,7 @@
 # Fica na raiz por conveniência de edição, mas nunca é commitado nem servido.
 # Backup automático em _dados-seo-planodesaudebradesco\ ao fim de cada sessão.
 proximo-dia.md
+atualizar-site.md
 
 # Instruções de sessão do Claude — internas, nunca viram página do site.
 CLAUDE.md
