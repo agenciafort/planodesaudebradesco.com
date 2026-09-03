@@ -126,8 +126,9 @@
             linha('Tempo de resposta', ms + ' ms') +
             linha('Preços recebidos agora', (sem.n + com.n).toLocaleString('pt-BR') + ' (' + sem.n + ' sem copart. + ' + com.n + ' com copart.)') +
             linha('Planos vivos no cotador', sem.planos.length + ' → ' + sem.planos.join(', ')) +
-            linha('Fonte atualizada em', FP_CRM.formatData(d.updatedAt) || '—') +
-            linha('Conferido ao vivo em', FP_CRM.hoje());
+            linha('Tabela de preços atualizada na fonte em', FP_CRM.formatDataHora(d.updatedAt) || '—') +
+            linha('Conferido ao vivo em', FP_CRM.hoje() + ' (agora, nesta abertura)') +
+            linha('Selo que as páginas mostram', FP_CRM.seloTexto(d));
     }).catch(function (e) {
         selo.className = 'selo erro';
         selo.textContent = '🔴 ERRO NA TOMADA';

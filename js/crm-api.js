@@ -23,8 +23,12 @@
     // Regra pétrea (02/09/2026, a pedido do André): TODO lugar que mostra preço avisa
     // que a tabela pode mudar sem aviso e diz a data da última conferência. Esta
     // data é reescrita pela rotina 'atualizar site' a cada rodada — nunca à mão.
-    var DATA_CONFERENCIA = '02/09/2026';
+    var DATA_CONFERENCIA = '03/09/2026';
     var AVISO_PETREO = 'Preços sujeitos a alteração sem aviso prévio';
+    // Mês em que a tabela de preços foi atualizada NA FONTE (regra pétrea do kit de
+    // 03/09/2026): é a data dos dados, nunca o dia da rodada. Reescrita pela rotina;
+    // quando a tomada responde, o valor vivo vem de conferencia.tabela_precos.atualizado_em.
+    var MES_DADOS = 'julho/2026';
     // chave pública travada NESTE domínio (planodesaudebradesco.com)
     var VIVO_KEY = 'fpk_live_bd28b61b354de068c3b5754a416b2e7cfefce2d82623addb';
     // Produto EXATO, nao prefixo: 'bradesco-saude' e 'bradesco-saude-hospitalar'
@@ -116,6 +120,35 @@
             String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
     }
 
+    // Data completa com hora, para o painel /conexao (a regra pétrea pede hora lá)
+    function formatDataHora(isoStr) {
+        if (!isoStr) return '';
+        var d = new Date(isoStr);
+        var p2 = function (n) { return String(n).padStart(2, '0'); };
+        return p2(d.getDate()) + '/' + p2(d.getMonth() + 1) + '/' + d.getFullYear() + ' às ' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+    }
+
+    // O selo da regra pétrea, montado de um único lugar. Com a tomada respondendo
+    // (dados), o mês vem da fonte e a conferência é de agora; sem resposta, valem as
+    // constantes que a rotina 'atualizar site' gravou (iguais ao selo.py da ferramenta).
+    function seloTexto(dados) {
+        var mes = (dados && dados.updatedAt) ? formatData(dados.updatedAt) : MES_DADOS;
+        var conf = dados ? hoje() : DATA_CONFERENCIA;
+        return 'Preços de ' + mes + ' · Conferido com o cotador em ' + conf + ' · ' + AVISO_PETREO;
+    }
+
+    // Toda página carrega o selo em <span data-selo>; quando a tomada responde, o
+    // mesmo selo é renderizado a partir da resposta (a parte viva mostra o que a
+    // parte estática mostra — nunca um segundo selo).
+    function renderizarSelos(dados) {
+        if (!dados) return;
+        try {
+            var texto = seloTexto(dados);
+            var spans = w.document.querySelectorAll('[data-selo]');
+            for (var i = 0; i < spans.length; i++) spans[i].textContent = texto;
+        } catch (_) { /* o selo nunca pode quebrar a página */ }
+    }
+
     // ── carga única: tudo o que o cotador tem para este site ────────────────
     var _promessa = null;
 
@@ -159,7 +192,10 @@
 
         for (var i = 0; i < meus.length; i++) {
             var p = meus[i];
-            if (p.updated_at && (!updatedAt || p.updated_at > updatedAt)) updatedAt = p.updated_at;
+            // data dos DADOS: quando a tabela de preços foi atualizada na fonte — nunca o
+            // dia da visita nem o dia da rodada (regra pétrea)
+            var atu = (p.conferencia && p.conferencia.tabela_precos && p.conferencia.tabela_precos.atualizado_em) || p.updated_at;
+            if (atu && (!updatedAt || atu > updatedAt)) updatedAt = atu;
 
             var rows = await vivoGet('precos', { produto: String(p.produto_id) });
             (rows || []).forEach(function (r) {
@@ -244,9 +280,12 @@
             var dados = await loadAllPrices();
             if (!dados) return; // tomada falhou: HTML estático fica (data antiga visível na nota)
 
-            var bloco = (dados.D['3-a-29'] || {}).comp || {};
+            var bloco3 = dados.D['3-a-29'] || {};
+            var comp = bloco3.comp || {}, livre = bloco3.livre || {};
             var html = LINHAS_RESUMO.map(function (L) {
-                var precos = bloco[L.planoSlug];
+                // cada linha sai em UMA adesão no cotador (entrada em livre, Plus/Premium em
+                // compulsória): procurar só em 'comp' sumia com o card do Nacional III
+                var precos = comp[L.planoSlug] || livre[L.planoSlug];
                 var valor = precos ? precos[0] : null;
                 if (valor == null) return ''; // não está no cotador → não existe card
                 return '<div class="card">' +
@@ -260,12 +299,8 @@
 
             if (html) grid.innerHTML = html;
 
-            if (notaEl && dados.updatedAt) {
-                notaEl.textContent =
-                    'Preços referentes à faixa etária 0–18 anos, 3 a 29 vidas. ' + AVISO_PETREO +
-                    ' · Conferido com o cotador em ' + hoje() +
-                    '. Fonte: cotador Tabelas (CRM Saúde) — confirme com um corretor autorizado.';
-            }
+            // a nota (notaEl) fica como está: o selo dentro dela é atualizado por renderizarSelos
+            if (notaEl) renderizarSelos(dados);
         } catch (err) {
             console.error('[FP_CRM] Erro ao carregar linhas:', err);
         }
@@ -350,10 +385,11 @@
             var cor = on ? '#22c55e;box-shadow:0 0 6px #22c55e' : (ambiguo ? '#f59e0b' : '#9ca3af');
             var dot = '<span style="width:8px;height:8px;border-radius:50%;display:inline-block;' +
                 'background:' + cor + ';"></span>';
-            // A frase não muda com o estado da ligação — é a regra pétrea. O que muda é
-            // a data: se a tomada respondeu agora, a conferência é de hoje; senão, é a
-            // da última rodada publicada. A bolinha e o title contam o resto.
-            var texto = AVISO_PETREO + ' · Conferido com o cotador em ' + (on ? hoje() : DATA_CONFERENCIA);
+            // A frase não muda com o estado da ligação — é a regra pétrea. O que muda são
+            // as datas: tomada respondendo, o mês é o da tabela na fonte e a conferência é
+            // de agora; senão, valem as constantes da última rodada. A bolinha e o title
+            // contam o resto.
+            var texto = seloTexto(on ? dados : null);
             pill.innerHTML = dot + '<span>' + texto + '</span>';
             var wrap = w.document.createElement('div');
             wrap.style.textAlign = 'center';
@@ -364,7 +400,8 @@
 
     // acende sozinho em qualquer página que carregue este script
     function acenderSelinho() {
-        loadAllPrices().then(selinhoRodape, function () { selinhoRodape(null); });
+        loadAllPrices().then(function (dados) { renderizarSelos(dados); selinhoRodape(dados); },
+                             function () { selinhoRodape(null); });
     }
     if (w.document && w.document.readyState !== 'loading') acenderSelinho();
     else if (w.document) w.document.addEventListener('DOMContentLoaded', acenderSelinho);
@@ -377,6 +414,9 @@
         diagnostico: diagnostico,
         buildSimuladorTabela: buildSimuladorTabela,
         formatData: formatData,
+        formatDataHora: formatDataHora,
+        seloTexto: seloTexto,
+        renderizarSelos: renderizarSelos,
         hoje: hoje
     };
 })(typeof window !== 'undefined' ? window : globalThis);
