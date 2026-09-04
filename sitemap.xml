@@ -4,7 +4,7 @@
     <!-- ===== Institucional / hub ===== -->
     <url>
         <loc>https://planodesaudebradesco.com/</loc>
-        <lastmod>2026-08-20</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -24,7 +24,7 @@
     </url>
     <url>
         <loc>https://planodesaudebradesco.com/tabela-de-precos/</loc>
-        <lastmod>2026-09-02</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -81,7 +81,7 @@
     </url>
     <url>
         <loc>https://planodesaudebradesco.com/sao-paulo/</loc>
-        <lastmod>2026-08-20</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
